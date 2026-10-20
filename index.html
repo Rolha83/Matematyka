@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matematyka – Przygotowanie do Konkursu Leon</title>
+    <title>Matematyka – Konkurs Leon (Strefa Treningowa)</title>
     <style>
         :root {
             --primary: #1B4F72;
@@ -70,7 +70,7 @@
             padding: 0 20px;
         }
 
-        /* Boczna nawigacja (Klasy i konkursy) */
+        /* Boczna nawigacja (Wybór klasy) */
         nav.sidebar {
             width: 320px;
             background: var(--card);
@@ -254,49 +254,12 @@
         <!-- ================= KLASA II ================= -->
         <div id="m_klasa2" class="module active">
             <div class="lesson-intro">
-                <h2>Konkurs Matematyczny „Leon” – Klasa 2</h2>
-                <p>Sprawdź swoje umiejętności z dodawania, odejmowania, miar czasu i figur geometrycznych[cite: 3].</p>
+                <h2>Konkurs Matematyczny „Leon” – Klasa 2 (25 zadań)</h2>
+                <p>Rozwiąż pełny zestaw 25 zadań przygotowawczych z oficjalnego arkusza dla klasy 2[cite: 3, 4].</p>
             </div>
             <form id="form_klasa2">
-                <div class="tasks-grid">
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 1</span>
-                            <h3>Dodawanie</h3>
-                            <p>Oblicz: 48 + 27 =</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k2_1" value="A"> A) 65</label>
-                            <label><input type="radio" name="k2_1" value="B"> B) 75</label>
-                            <label><input type="radio" name="k2_1" value="C"> C) 85</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 2</span>
-                            <h3>Odejmowanie w zadaniu</h3>
-                            <p>Monika miała 63 cukierki. Zjadła 28. Ile jej zostało?[cite: 3]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k2_2" value="A"> A) 35</label>
-                            <label><input type="radio" name="k2_2" value="B"> B) 45</label>
-                            <label><input type="radio" name="k2_2" value="C"> C) 25</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 3</span>
-                            <h3>Zegar i czas</h3>
-                            <p>Ćwierć godziny to ile minut?[cite: 3]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k2_3" value="A"> A) 10 minut</label>
-                            <label><input type="radio" name="k2_3" value="B"> B) 15 minut</label>
-                            <label><input type="radio" name="k2_3" value="C"> C) 30 minut</label>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-submit" onclick="gradeMath('klasa2', 3)">Sprawdź wynik dla Klasy 2</button>
+                <div class="tasks-grid" id="container_klasa2"></div>
+                <button type="button" class="btn-submit" onclick="gradeMath('klasa2')">Sprawdź wynik dla Klasy 2 i wyślij</button>
             </form>
             <div id="res_klasa2" class="result-box">
                 <div id="score_klasa2" class="score"></div>
@@ -307,49 +270,12 @@
         <!-- ================= KLASA III ================= -->
         <div id="m_klasa3" class="module">
             <div class="lesson-intro">
-                <h2>Konkurs Matematyczny „Leon” – Klasa 3</h2>
-                <p>Zadania z mnożenia, dzielenia, obliczeń wag i ułamków[cite: 7].</p>
+                <h2>Konkurs Matematyczny „Leon” – Klasa 3 (25 zadań)</h2>
+                <p>Rozwiąż pełny zestaw 25 zadań przygotowawczych z oficjalnego arkusza dla klasy 3[cite: 7, 8].</p>
             </div>
             <form id="form_klasa3">
-                <div class="tasks-grid">
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 1</span>
-                            <h3>Działania pamięciowe</h3>
-                            <p>Oblicz: 6 × 9 – 12 =</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k3_1" value="A"> A) 42</label>
-                            <label><input type="radio" name="k3_1" value="B"> B) 54</label>
-                            <label><input type="radio" name="k3_1" value="C"> C) 48</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 2</span>
-                            <h3>Ułamki</h3>
-                            <p>W klasie jest 28 uczniów. 1/4 uczniów to:[cite: 8]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k3_2" value="A"> A) 6</label>
-                            <label><input type="radio" name="k3_2" value="B"> B) 7</label>
-                            <label><input type="radio" name="k3_2" value="C"> C) 8</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 3</span>
-                            <h3>Jednostki wagi</h3>
-                            <p>Ile to jest 2 kg 300 g?[cite: 7]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k3_3" value="A"> A) 2030 g</label>
-                            <label><input type="radio" name="k3_3" value="B"> B) 2300 g</label>
-                            <label><input type="radio" name="k3_3" value="C"> C) 230 g</label>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-submit" onclick="gradeMath('klasa3', 3)">Sprawdź wynik dla Klasy 3</button>
+                <div class="tasks-grid" id="container_klasa3"></div>
+                <button type="button" class="btn-submit" onclick="gradeMath('klasa3')">Sprawdź wynik dla Klasy 3 i wyślij</button>
             </form>
             <div id="res_klasa3" class="result-box">
                 <div id="score_klasa3" class="score"></div>
@@ -360,49 +286,12 @@
         <!-- ================= KLASA IV ================= -->
         <div id="m_klasa4" class="module">
             <div class="lesson-intro">
-                <h2>Konkurs Matematyczny „Leon” – Klasa 4</h2>
-                <p>Ułamki, ułamki dziesiętne, skala na mapie i pola figur[cite: 5, 6].</p>
+                <h2>Konkurs Matematyczny „Leon” – Klasa 4 (29 zadań)</h2>
+                <p>Rozwiąż pełny zestaw zadań przygotowawczych z oficjalnego arkusza dla klasy 4[cite: 5, 6].</p>
             </div>
             <form id="form_klasa4">
-                <div class="tasks-grid">
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 1</span>
-                            <h3>Ułamki</h3>
-                            <p>Zaznacz ułamek równy jednej drugiej (1/2):[cite: 5]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k4_1" value="A"> A) 3/8</label>
-                            <label><input type="radio" name="k4_1" value="B"> B) 6/12</label>
-                            <label><input type="radio" name="k4_1" value="C"> C) 5/11</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 2</span>
-                            <h3>Pole powierzchni</h3>
-                            <p>Kwadrat ma bok o długości 7 cm. Jakie jest jego pole?[cite: 6]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k4_2" value="A"> A) 28 cm²</label>
-                            <label><input type="radio" name="k4_2" value="B"> B) 49 cm²</label>
-                            <label><input type="radio" name="k4_2" value="C"> C) 14 cm²</label>
-                        </div>
-                    </div>
-                    <div class="task-card">
-                        <div>
-                            <span class="badge">Zadanie 3</span>
-                            <h3>Skala</h3>
-                            <p>Na mapie w skali 1:2000 odległość wynosi 6 cm. Jaka to odległość rzeczywista?[cite: 6]</p>
-                        </div>
-                        <div class="options">
-                            <label><input type="radio" name="k4_3" value="A"> A) 60 m</label>
-                            <label><input type="radio" name="k4_3" value="B"> B) 120 m</label>
-                            <label><input type="radio" name="k4_3" value="C"> C) 600 m</label>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn-submit" onclick="gradeMath('klasa4', 3)">Sprawdź wynik dla Klasy 4</button>
+                <div class="tasks-grid" id="container_klasa4"></div>
+                <button type="button" class="btn-submit" onclick="gradeMath('klasa4')">Sprawdź wynik dla Klasy 4 i wyślij</button>
             </form>
             <div id="res_klasa4" class="result-box">
                 <div id="score_klasa4" class="score"></div>
@@ -414,10 +303,10 @@
 </div>
 
 <script>
-    // Wklej tutaj adres URL swojego skryptu Google Apps Script (jeśli chcesz zbierać wyniki)
+    // Twój adres URL aplikacji internetowej z Google Apps Script
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbv5tCV0_A-7wsXRlvsy7bgKQcV0BJeKaiIXNgw2bRFzmuGDMDLGLgvirpUY4bRHQ9D/exec";
 
-    // Generowanie listy kodów uczniów A01 - A28
+    // Generowanie listy kodów uczniów od A01 do A28
     const select = document.getElementById('studentSelect');
     for (let i = 1; i <= 28; i++) {
         let code = 'A' + (i < 10 ? '0' + i : i);
@@ -435,6 +324,118 @@
         btn.classList.add('active');
     }
 
+    // Dane pełnych testów z oficjalnych arkuszy Leon
+    const dataClass2 = [
+        { id: 1, text: "Oblicz: 48 + 27 =", options: { A: "65", B: "75", C: "85", D: "74" }, correct: "B", topic: "Dodawanie w zakresie 100" },
+        { id: 2, text: "Monika miała 63 cukierki. Zjadła 28 cukierków. Ile cukierków jej zostało?", options: { A: "35", B: "45", C: "25", D: "55" }, correct: "A", topic: "Odejmowanie z przekraczaniem progu" },
+        { id: 3, text: "Która liczba jest większa od 509?", options: { A: "590", B: "495", C: "508", D: "500" }, correct: "A", topic: "Porównywanie liczb" },
+        { id: 4, text: "Zaznacz poprawny wynik mnożenia: 6 × 5 =", options: { A: "30", B: "24", C: "27", D: "36" }, correct: "A", topic: "Tabliczka mnożenia" },
+        { id: 5, text: "Mama kupiła 3 opakowania po 10 jajek. Ile jajek kupiła?", options: { A: "13", B: "30", C: "20", D: "3" }, correct: "B", topic: "Mnożenie w zadaniach praktycznych" },
+        { id: 6, text: "Zuzia miała 50 zł. Wydała 18 zł. Ile jej zostało?", options: { A: "32 zł", B: "42 zł", C: "28 zł", D: "38 zł" }, correct: "A", topic: "Obliczenia pieniężne" },
+        { id: 7, text: "Które liczby są parzyste? (Wskaż poprawną opcję parzystej liczby)", options: { A: "34", B: "57", C: "91", D: "Wszystkie nieparzyste" }, correct: "A", topic: "Liczby parzyste i nieparzyste" },
+        { id: 8, text: "Połowa liczby 40 to:", options: { A: "10", B: "30", C: "20", D: "25" }, correct: "C", topic: "Ułamek liczby (połowa)" },
+        { id: 9, text: "Ćwierć godziny to:", options: { A: "10 minut", B: "15 minut", C: "20 minut", D: "30 minut" }, correct: "B", topic: "Jednostki czasu i zegar" },
+        { id: 10, text: "Która figura ma 4 równe boki?", options: { A: "Prostokąt", B: "Trójkąt", C: "Kwadrat", D: "Koło" }, correct: "C", topic: "Figury geometryczne" },
+        { id: 11, text: "Która figura nie ma boków?", options: { A: "Trójkąt", B: "Kwadrat", C: "Prostokąt", D: "Koło" }, correct: "D", topic: "Rozpoznawanie figur" },
+        { id: 12, text: "Bryła przypominająca kostkę do gry to:", options: { A: "Walec", B: "Sześcian", C: "Kula", D: "Stożek" }, correct: "B", topic: "Bryły geometryczne" },
+        { id: 13, text: "1 metr to:", options: { A: "10 cm", B: "100 cm", C: "1000 cm", D: "50 cm" }, correct: "B", topic: "Jednostki długości" },
+        { id: 14, text: "Mąka waży 2 kg, a karma 3 kg. Ile to łącznie kilogramów?", options: { A: "6 kg", B: "5 kg", C: "4 kg", D: "7 kg" }, correct: "B", topic: "Dodawanie wag" },
+        { id: 15, text: "Które miesiące mają 31 dni? (Wskaż miesiąc z 31 dniami)", options: { A: "Luty", B: "Kwiecień", C: "Styczeń", D: "Listopad" }, correct: "C", topic: "Kalendarz" },
+        { id: 16, text: "W koszyku było 25 jabłek. Dołożono 15. Ile jest teraz?", options: { A: "35", B: "40", C: "50", D: "45" }, correct: "B", topic: "Działania w zadaniach tekstowych" },
+        { id: 17, text: "W klasie jest 24 uczniów. Co czwarty uczeń ma okulary. Ilu uczniów ma okulary?", options: { A: "4", B: "6", C: "8", D: "12" }, correct: "B", topic: "Część całości (ułamki)" },
+        { id: 18, text: "Mama miała 100 zł. Kupiła trzy zabawki po 25 zł każda. Ile pieniędzy jej zostało?", options: { A: "25 zł", B: "75 zł", C: "20 zł", D: "15 zł" }, correct: "A", topic: "Obliczenia finansowe wieloetapowe" },
+        { id: 19, text: "Lekcja zaczęła się o 8:15 i trwała 45 minut. O której się skończyła?", options: { A: "8:45", B: "9:00", C: "9:15", D: "9:30" }, correct: "B", topic: "Obliczenia zegarowe" },
+        { id: 20, text: "W koszyku było 36 śliwek. Zjedzono połowę, a potem jeszcze 6. Ile śliwek zostało?", options: { A: "12", B: "18", C: "6", D: "24" }, correct: "A", topic: "Zadania wieloetapowe" },
+        { id: 21, text: "Michał czytał 5 stron rano i 5 wieczorem przez 6 dni. Ile stron przeczytał?", options: { A: "30", B: "60", C: "55", D: "50" }, correct: "B", topic: "Mnożenie i dodawanie w praktyce" },
+        { id: 22, text: "Ile centymetrów ma 2 metry i 5 cm?", options: { A: "25 cm", B: "205 cm", C: "250 cm", D: "2005 cm" }, correct: "B", topic: "Zamiana jednostek" },
+        { id: 23, text: "Temperatura wzrosła o 4°C, a potem spadła o 6°C. Początkowo było 3°C. Ile jest teraz?", options: { A: "1°C", B: "-1°C", C: "-3°C", D: "5°C" }, correct: "A", topic: "Temperatura i liczby dodatnie/ujemne" },
+        { id: 24, text: "Kuba miał 50 zł. Kupił 4 drożdżówki po 5 zł oraz 3 soki po 4 zł. Ile zostało?", options: { A: "12 zł", B: "18 zł", C: "20 zł", D: "22 zł" }, correct: "B", topic: "Zadania z budżetem" },
+        { id: 25, text: "Kasia miała 20 zł. Kupiła dwa soki po 4 zł i loda za 2 zł. Ile pieniędzy jej zostało?", options: { A: "2 zł", B: "11 zł", C: "5 zł", D: "10 zł" }, correct: "D", topic: "Proste zakupy i reszta" }
+    ];
+
+    const dataClass3 = [
+        { id: 1, text: "Jaka liczba ukryła się pod działaniem: 458 + 267 =", options: { A: "615", B: "725", C: "735", D: "715" }, correct: "B", topic: "Dodawanie pisemne / w pamięci" },
+        { id: 2, text: "Oblicz: 900 – 478 =", options: { A: "422", B: "432", C: "412", D: "442" }, correct: "A", topic: "Odejmowanie wielkich liczb" },
+        { id: 3, text: "Która liczba ma 5 setek, 8 jedności i 0 dziesiątek?", options: { A: "580", B: "508", C: "805", D: "558" }, correct: "B", topic: "Budowa dziesiętna liczby" },
+        { id: 4, text: "Oblicz: 6 × 9 – 12 =", options: { A: "42", B: "54", C: "48", D: "36" }, correct: "A", topic: "Kolejność wykonywania działań" },
+        { id: 5, text: "Zaokrąglij liczbę 347 do najbliższej dziesiątki.", options: { A: "340", B: "345", C: "350", D: "300" }, correct: "C", topic: "Zaokrąglanie liczb" },
+        { id: 6, text: "Jaką liczbę należy wstawić w miejsce babeczki? [ ] + 275 = 500", options: { A: "225", B: "215", C: "235", D: "205" }, correct: "A", topic: "Równania z niewiadomą" },
+        { id: 7, text: "Prostokąt ma boki o długościach 8 cm i 5 cm. Jaki jest jego obwód?", options: { A: "13 cm", B: "26 cm", C: "40 cm", D: "16 cm" }, correct: "B", topic: "Obwód prostokąta" },
+        { id: 8, text: "250 cm to:", options: { A: "2 m 5 cm", B: "25 m", C: "2 m 50 cm", D: "2500 cm" }, correct: "C", topic: "Jednostki długości" },
+        { id: 9, text: "Ile to jest 2 kg 300 g?", options: { A: "230 g", B: "2030 g", C: "2300 g", D: "2003 g" }, correct: "C", topic: "Jednostki masy" },
+        { id: 10, text: "W sklepie było 345 zeszytów. Sprzedano 178. Ile zostało?", options: { A: "167", B: "157", C: "177", D: "187" }, correct: "A", topic: "Odejmowanie w zadaniach" },
+        { id: 11, text: "Na wycieczkę pojechały 3 autobusy. W każdym było po 45 uczniów. Ilu uczniów pojechało?", options: { A: "120", B: "135", C: "140", D: "150" }, correct: "B", topic: "Mnożenie pisemne/pamięciowe" },
+        { id: 12, text: "W klasie jest 28 uczniów. 1/4 uczniów to:", options: { A: "6", B: "7", C: "8", D: "9" }, correct: "B", topic: "Ułamek liczby" },
+        { id: 13, text: "Temperatura wzrosła o 6°C, a potem spadła o 9°C. Zaczęło się od 4°C. Ile wynosi teraz?", options: { A: "1°C", B: "-1°C", C: "-3°C", D: "3°C" }, correct: "A", topic: "Działania na liczbach ze znakiem" },
+        { id: 14, text: "Jeśli 5 jednakowych zeszytów kosztuje 40 zł, to ile kosztuje 1 zeszyt?", options: { A: "5 zł", B: "8 zł", C: "6 zł", D: "10 zł" }, correct: "B", topic: "Dzielenie i proporcje" },
+        { id: 15, text: "Od sumy liczb 85 i 35 odejmij różnicę liczb 90 i 28.", options: { A: "52", B: "58", C: "60", D: "62", }, correct: "B", topic: "Skomplikowane wyrażenia arytmetyczne" },
+        { id: 16, text: "Zegar pokazuje 8:20. Druga godzina jest o 1 godzinę i 40 minut późniejsza. Jaka to godzina?", options: { A: "9:40", B: "10:00", C: "10:20", D: "9:50" }, correct: "B", topic: "Obliczenia zegarowe" },
+        { id: 17, text: "Rok 2024 w zapisie rzymskim to:", options: { A: "MMXXIV", B: "MMXIV", C: "MMXXVI", D: "MCMXXIV" }, correct: "A", topic: "Cyfry rzymskie" },
+        { id: 18, text: "Wskaż szereg uporządkowany od najmniejszej do największej:", options: { A: "14500, 14499...", B: "13450, 13405...", C: "12034, 12340, 12403, 12430", D: "11020, 11002..." }, correct: "C", topic: "Porządkowanie liczbowe" },
+        { id: 19, text: "Ślimak robi kroki. Jeśli wraca lub idzie w prawo, wskaż wynik ruchu.", options: { A: "Wróci do startu", B: "1 krok w prawo", C: "1 krok w górę", D: "2 kroki w prawo" }, correct: "B", topic: "Zadania logiczno-przestrzenne" },
+        { id: 20, text: "Obwód prostokąta wynosi 40 cm. Jeden bok ma 12 cm. Ile ma drugi bok?", options: { A: "28 cm", B: "8 cm", C: "14 cm", D: "16 cm" }, correct: "B", topic: "Własności prostokąta" },
+        { id: 21, text: "Porównaj wyrażenia: 156 – 40 oraz 140 – 20", options: { A: ">", B: "<", C: "=", D: "Nie wiadomo" }, correct: "B", topic: "Porównywanie wartości" },
+        { id: 22, text: "Waga jednej paczki to 4 kg. Ile ważą 3 takie paczki i jedna o połowę lżejsza?", options: { A: "14 kg", B: "15 kg", C: "16 kg", D: "18 kg" }, correct: "A", topic: "Wagi i masa" },
+        { id: 23, text: "Kasia ma 4 pudełka. W każdym 2 rzędy klocków (5 zielonych, 3 żółte). Ile jest żółtych klocków?", options: { A: "16", B: "24", C: "32", D: "20" }, correct: "B", topic: "Zadania z treścią wieloetapowe" },
+        { id: 24, text: "Miesiąc pod liczbą X ma określoną liczbę dni (np. kwiecień/maj).", options: { A: "30 dni", B: "31 dni", C: "28 dni", D: "29 dni" }, correct: "A", topic: "Kalendarz" },
+        { id: 25, text: "Oblicz: 400 + 30 × 3 =", options: { A: "1290", B: "490", C: "390", D: "430" }, correct: "B", topic: "Kolejność działań w arytmetyce" }
+    ];
+
+    const dataClass4 = [
+        { id: 1, text: "Zaznacz ułamki równe jednej drugiej (1/2):", options: { A: "3/8", B: "6/12", C: "5/10", D: "7/14" }, correct: "B", topic: "Ułamki właściwe i skracanie" },
+        { id: 2, text: "W pudełku jest 36 kredek. 1/4 kredek to kredki czerwone. Ile jest czerwonych?", options: { A: "6", B: "8", C: "9", D: "12" }, correct: "C", topic: "Ułamek liczby" },
+        { id: 3, text: "Oblicz wartość wyrażenia: 480 : 12 – 5 × 3 + 18", options: { A: "25", B: "28", C: "33", D: "43" }, correct: "C", topic: "Kolejność działań w klasie 4" },
+        { id: 4, text: "Która liczba jest największa? (5/6, 7/9, 8/11, 3/4)", options: { A: "5/6", B: "7/9", C: "8/11", D: "3/4" }, correct: "A", topic: "Porównywanie ułamków" },
+        { id: 5, text: "Różnica dwóch liczb wynosi 468. Większa liczba to 905. Ile wynosi mniejsza?", options: { A: "437", B: "447", C: "457", D: "467" }, correct: "A", topic: "Działania na dużych liczbach" },
+        { id: 6, text: "Który zapis jest poprawny? (np. ułamki dziesiętne)", options: { A: "90 + 0,5 = 90,5", B: "3/4 = 0,34", C: "0,7 = 7/100", D: "1/5 = 0,25" }, correct: "A", topic: "Ułamki dziesiętne" },
+        { id: 7, text: "Na mapie w skali 1:2000 odległość wynosi 6 cm. Jaka to odległość rzeczywista?", options: { A: "60 m", B: "600 m", C: "12 m", D: "120 m" }, correct: "A", topic: "Skala na mapie" },
+        { id: 8, text: "Oblicz: 5 × (6 + 2) – 4 × 3", options: { A: "36", B: "28", C: "32", D: "24" }, correct: "B", topic: "Wyrażenia w nawiasach" },
+        { id: 9, text: "Która z liczb nie jest iloczynem liczby parzystej i nieparzystej?", options: { A: "18", B: "20", C: "21", D: "24" }, correct: "C", topic: "Liczby parzyste i nieparzyste" },
+        { id: 10, text: "Jaką największą liczbę można podzielić przez 5 bez reszty, nie przekraczając 73?", options: { A: "75", B: "65", C: "70", D: "72" }, correct: "C", topic: "Podzielność liczb" },
+        { id: 11, text: "Dokończ zdanie: Prostopadłościan ma...", options: { A: "8 ścian, 12 wierzchołków", B: "4 ściany, 8 wierzchołków", C: "6 ścian, 8 krawędzi", D: "6 ścian, 12 krawędzi" }, correct: "D", topic: "Własności brył" },
+        { id: 12, text: "Iloczyn dwóch liczb wynosi 0. Które zdanie jest zawsze prawdziwe?", options: { A: "Obie dodatnie", C: "Jedna z liczb jest równa 0", B: "Obie > 1", D: "Obie ujemne" }, correct: "C", topic: "Własności działania mnożenia przez zero" },
+        { id: 13, text: "Kwadrat ma bok o długości 7 cm. Jakie jest jego pole?", options: { A: "28 cm²", B: "49 cm²", C: "14 cm²", D: "21 cm²" }, correct: "B", topic: "Pole kwadratu" },
+        { id: 14, text: "Liczba 840 została podzielona przez 7. Następnie do wyniku dodano 15. Jaki wynik?", options: { A: "120", B: "135", C: "125", D: "140" }, correct: "B", topic: "Działania wieloetapowe" },
+        { id: 15, text: "W sklepie była promocja: cena 200 zł została obniżona o 1/4. Ile kosztuje po obniżce?", options: { A: "150 zł", B: "160 zł", C: "175 zł", D: "140 zł" }, correct: "A", topic: "Obniżki cen i ułamki" },
+        { id: 16, text: "Która z podanych liczb ma najwięcej dzielników? (16, 18, 19, 23)", options: { A: "16", B: "18", C: "19", D: "23" }, correct: "B", topic: "Dzielniki liczby" },
+        { id: 17, text: "Ile różnych sum można otrzymać przy rzucie dwiema kostkami do gry (od 1 do 6)?", options: { A: "12", B: "36", C: "11", D: "10" }, correct: "C", topic: "Kombinatoryka" },
+        { id: 18, text: "W liczbie 4 506 372 cyfra 6 oznacza:", options: { A: "6", B: "60", C: "6000", D: "600 000" }, correct: "C", topic: "Rzędy wielkości" },
+        { id: 19, text: "Liczba mieszana 5 i 3/8 to w postaci ułamka niewłaściwego:", options: { A: "43/8", B: "53/8", C: "38/5", D: "40/8" }, correct: "A", topic: "Ułamki niewłaściwe" },
+        { id: 20, text: "Liczbę 960 zmniejszono o 25%, a wynik zwiększono o 20%. Jaka jest liczba końcowa?", options: { A: "864", B: "900", C: "912", D: "920" }, correct: "A", topic: "Procenty" },
+        { id: 21, text: "Suma cyfr liczby 3-cyfrowej wynosi 15. Setki = jedności + 2, dziesiątki = 5. Jaka to liczba?", options: { A: "654", B: "465", C: "735", D: "285" }, correct: "C", topic: "Zadania logiczne" },
+        { id: 22, text: "Rowerzysta przejechał 180 km. Zawrócił i przejechał 2/3 tej trasy. Gdzie jest?", options: { A: "90 km", B: "100 km", C: "120 km", D: "60 km" }, correct: "D", topic: "Ułamki w zadaniach ruchu" },
+        { id: 23, text: "Z liczby 500 odjęto pewną liczbę, podzielono przez 4 i otrzymano 75. Jaka to liczba?", options: { A: "100", B: "150", C: "200", D: "300" }, correct: "C", topic: "Równania i odwrotność działań" },
+        { id: 24, text: "Kwadrat ma obwód równy prostokątowi o bokach 10 cm i 6 cm. Jakie jest pole kwadratu?", options: { A: "64 cm²", B: "36 cm²", C: "49 cm²", D: "81 cm²" }, correct: "B", topic: "Pole i obwód figur" },
+        { id: 25, text: "Oblicz: 3/4 + 5/8 =", options: { A: "1 1/8", B: "1 3/8", C: "1 1/4", D: "1 5/8" }, correct: "A", topic: "Dodawanie ułamków zwykłych" }
+    ];
+
+    // Funkcja dynamicznie ładująca zadania do każdej klasy
+    function renderTasks(containerId, dataset) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        dataset.forEach(q => {
+            let card = document.createElement('div');
+            card.className = 'task-card';
+            card.innerHTML = `
+                <div>
+                    <span class="badge">Zadanie ${q.id}</span>
+                    <p><strong>${q.text}</strong></p>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="${containerId}_q${q.id}" value="A"> A) ${q.options.A}</label>
+                    <label><input type="radio" name="${containerId}_q${q.id}" value="B"> B) ${q.options.B}</label>
+                    <label><input type="radio" name="${containerId}_q${q.id}" value="C"> C) ${q.options.C}</label>
+                    <label><input type="radio" name="${containerId}_q${q.id}" value="D"> D) ${q.options.D}</label>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    renderTasks('container_klasa2', dataClass2);
+    renderTasks('container_klasa3', dataClass3);
+    renderTasks('container_klasa4', dataClass4);
+
     // Wysyłanie wyników do Google Apps Script
     function sendResultsToGoogle(studentCode, className, scorePercent) {
         if (!GOOGLE_SCRIPT_URL) return;
@@ -451,35 +452,29 @@
     }
 
     // Sprawdzanie testu matematycznego
-    function gradeMath(classKey, totalTasks) {
+    function gradeMath(classKey) {
         const student = select.value;
         if (!student) {
-            alert('Wybierz najpierw swój kod ucznia (np. A01) z listy rozwijanej u góry!');
+            alert('Wybierz najpierw swój kod ucznia (np. A01) z listy rozwijanej u góry strony!');
             select.focus();
             return;
         }
 
+        let dataset = classKey === 'klasa2' ? dataClass2 : (classKey === 'klasa3' ? dataClass3 : dataClass4);
+        let containerId = 'container_' + classKey;
         let correctCount = 0;
         let weakPoints = [];
 
-        // Klucze prawidłowych odpowiedzi
-        const answers = {
-            'klasa2': { k2_1: 'B', k2_2: 'A', k2_3: 'B' },
-            'klasa3': { k3_1: 'A', k3_2: 'B', k3_3: 'B' },
-            'klasa4': { k4_1: 'B', k4_2: 'B', k4_3: 'B' }
-        };
-
-        let currentAnswers = answers[classKey];
-
-        for (let key in currentAnswers) {
-            let checked = document.querySelector(`input[name="${key}"]:checked`);
-            if (checked && checked.value === currentAnswers[key]) {
+        dataset.forEach(q => {
+            let checked = document.querySelector(`input[name="${containerId}_q${q.id}"]:checked`);
+            if (checked && checked.value === q.correct) {
                 correctCount++;
             } else {
-                weakPoints.push(`Zadanie w dziale ${classKey} (wymaga powtórki)`);
+                weakPoints.push(`Zadanie ${q.id} (${q.topic})`);
             }
-        }
+        });
 
+        let totalTasks = dataset.length;
         let finalScore = Math.round((correctCount / totalTasks) * 100);
         sendResultsToGoogle(student, classKey, finalScore);
 
@@ -488,23 +483,33 @@
         const feedList = document.getElementById(`feed_${classKey}`);
 
         resBox.style.display = 'block';
-        scoreDisp.innerText = `Uczeń ${student} – Twój wynik: ${finalScore}% (${correctCount}/${totalTasks})`;
+        scoreDisp.innerText = `Uczeń ${student} – Twój wynik: ${finalScore}% (${correctCount}/${totalTasks} poprawnych)`;
         scoreDisp.style.color = finalScore >= 80 ? '#2ECC71' : (finalScore >= 50 ? '#F39C12' : '#E74C3C');
 
         feedList.innerHTML = '';
         if (correctCount === totalTasks) {
             let li = document.createElement('li');
             li.style.color = 'green';
-            li.innerHTML = '<strong>Rewelacja!</strong> Wszystkie zadania rozwiązane bezbłędnie!';
+            li.innerHTML = '<strong>Rewelacja!</strong> Wszystkie zadania rozwiązane bezbłędnie! Wynik zapisany w arkuszu.';
             feedList.appendChild(li);
         } else {
             let headerLi = document.createElement('li');
             headerLi.innerHTML = '<strong>Miejsca do powtórzenia przed konkursem:</strong>';
             feedList.appendChild(headerLi);
-            let li = document.createElement('li');
-            li.style.color = '#C0392B';
-            li.innerText = '• Przećwicz ponownie zagadnienia z błędnie zaznaczonych zadań.';
-            feedList.appendChild(li);
+            
+            // Pokazujemy do 8 głównych obszarów do powtórki
+            weakPoints.slice(0, 8).forEach(item => {
+                let li = document.createElement('li');
+                li.style.color = '#C0392B';
+                li.innerText = '• ' + item;
+                feedList.appendChild(li);
+            });
+            if (weakPoints.length > 8) {
+                let moreLi = document.createElement('li');
+                moreLi.style.color = '#555';
+                moreLi.innerText = `... oraz ${weakPoints.length - 8} innych tematów do przejrzenia w arkuszu.`;
+                feedList.appendChild(moreLi);
+            }
         }
         resBox.scrollIntoView({ behavior: 'smooth' });
     }
