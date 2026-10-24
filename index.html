@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matematyka – Konkurs Leon (Pełna Baza Archiwalna)</title>
+    <title>Matematyka – Konkurs Leon (Baza Archiwalna)</title>
     <style>
         :root {
             --primary: #1B4F72;
@@ -171,7 +171,6 @@
             background: var(--accent);
         }
 
-        .task-card h3 { font-size: 1.05em; margin-top: 0; color: var(--primary); }
         .task-card p { font-size: 0.9em; color: #555; margin-bottom: 15px; }
 
         .options label {
@@ -340,98 +339,98 @@
 
     // ================= WIOSNA 2023 =================
     const data_k2_w23 = [
-        { id: 1, text: "Liczby ukryte pod obrazkiem: 16 + [ ] = 25; [ ] + 17 = 36; 15 + 14 = [ ]", options: { A: "9, 19, 29", B: "8, 16, 28", C: "6, 17, 30", D: "7, 18, 27" }, correct: ["A"], topic: "Równania z okienkiem" },
+        { id: 1, text: "Jakie liczby ukryły się pod obrazkiem? 16 + ... = 25; ... + 17 = 36; 15 + 14 = ...", options: { A: "9, 19, 29", B: "8, 16, 28", C: "6, 17, 30", D: "7, 18, 27" }, correct: ["A"], topic: "Równania z okienkiem" },
         { id: 2, text: "Zaznacz błędne obliczenie:", options: { A: "17+23+4-9 = 35", B: "25+39+16-27 = 53", C: "58+14-29 = 44", D: "83-29+15 = 69" }, correct: ["C"], topic: "Błędne obliczenie" },
         { id: 3, text: "Ile tu jest prostokątów? Wskaż działanie pasujące do zadania:", options: { A: "3 × 8 + 4", B: "3 × 9 + 4", C: "4 × 8 - 4", D: "9 × 3" }, correct: ["B"], topic: "Liczenie figur" },
         { id: 4, text: "Wskaż liczbę, która nie pasuje do pozostałych: 1, 27, 19, 5, 13, 4, 17, 21, 11, 25", options: { A: "5", B: "4", C: "11", D: "27" }, correct: ["B"], topic: "Parzystość" },
         { id: 5, text: "W dwóch pudełkach było 16 ciastek. W pierwszym 8. Ile w drugim?", options: { A: "6", B: "7", C: "8", D: "9" }, correct: ["C"], topic: "Odejmowanie" },
-        { id: 6, text: "Zaznacz liczby nieparzyste: 7, 8, 6, 15", options: { A: "7", B: "8", C: "6", D: "15" }, correct: ["A", "D"], topic: "Liczby nieparzyste" },
-        { id: 7, text: "Ceny ubrań: 5 par rękawiczek (25zł), 3 szaliki (27zł), 8 czapek (48zł), 6 par skarpet (18zł). Zaznacz poprawne:", options: { A: "25 zł, 18 zł, 24 zł, 30 zł", B: "18 zł, 15 zł...", C: "35 zł...", D: "Inne" }, correct: ["A"], topic: "Zakupy" },
+        { id: 6, text: "Zaznacz liczby nieparzyste ze zbioru: 7, 8, 6, 15", options: { A: "7, 15", B: "8, 6", C: "Wszystkie", D: "Żadna" }, correct: ["A"], topic: "Liczby nieparzyste" },
+        { id: 7, text: "Przeanalizuj ceny ubrań w sklepie i oblicz należności.", options: { A: "25 zł, 18 zł, 24 zł, 30 zł", B: "18 zł, 15 zł...", C: "35 zł...", D: "Inne" }, correct: ["A"], topic: "Zakupy" },
         { id: 8, text: "Która data jest najwcześniejsza?", options: { A: "23.08.2023 r.", B: "24 VII 2023 r.", C: "29 września 2023 r.", D: "19 XII 2023 r." }, correct: ["B"], topic: "Kalendarz" },
-        { id: 9, text: "Wartość, którego wyrażenia wynosi 30?", options: { A: "14 + 16", B: "6 × 5", C: "52 - 21", D: "60 : 2" }, correct: ["A", "B", "D"], topic: "Działania dające 30" },
-        { id: 10, text: "Ocen zdania (P=Prawda, F=Fałsz): Odjemna-odjemnik=różnica (P); Obwód to suma boków (P); CLVI=154 (F); Tuzin to 60 (F); Działanie odwrotne do mnożenia to dzielenie (P).", options: { A: "P, P, F, F, P", B: "Wszystkie P", C: "Wszystkie F", D: "P, F, P, F, P" }, correct: ["A"], topic: "Pojęcia matematyczne" },
-        { id: 11, text: "Oblicz: 28:7; 5×6; 15:3; 9×4", options: { A: "4, 5, 36", B: "5, 3, 45", C: "4, 3, 18", D: "6, 5, 27" }, correct: ["A"], topic: "Mnożenie i dzielenie" },
-        { id: 12, text: "8 jabłoni co 3m. Jaka odległość między 1 a 7 jabłonią (6 × 3m)?", options: { A: "15 m", B: "18 m", C: "9 m", D: "24 m" }, correct: ["B"], topic: "Odstępy" },
-        { id: 13, text: "Zaznacz odpowiedni znak: 30g < 40g; 450g > 250g; 19g = 1dag 9g", options: { A: "<, >, =", B: "<, <, =", C: ">, >, <", D: "=, <, >" }, correct: ["A"], topic: "Waga" },
-        { id: 14, text: "Zaszyfrowane: 12+[ ]=21; 20+[ ]=35; 19+8=27", options: { A: "9, 15, 27", B: "12, 2, 11", C: "6, 3, 10", D: "8, 10, 9" }, correct: ["A"], topic: "Szyfry" },
-        { id: 15, text: "Tata 192 cm, Marta niższa o 56 cm. Wzrost Marty (192-56):", options: { A: "192 cm", B: "248 cm", C: "136 cm", D: "56 cm" }, correct: ["C"], topic: "Różnica wzrostu" },
-        { id: 16, text: "Pasek 20 cm potnij na 5 równych części. Długość jednej części:", options: { A: "3 cm", B: "4 cm", C: "6 cm", D: "8 cm" }, correct: ["B"], topic: "Dzielenie paska" },
-        { id: 17, text: "Przedwczoraj był czwartek (dziś sobota). Jaki dzień będzie jutro?", options: { A: "środa", B: "sobota", C: "niedziela", D: "piątek" }, correct: ["C"], topic: "Dni tygodnia" },
-        { id: 18, text: "Tydzień i 6 dni. Ile to dni?", options: { A: "12", B: "13", C: "14", D: "11" }, correct: ["B"], topic: "Dni" },
-        { id: 19, text: "Droga ślimaka: 9 + 14 + 6 + 11 + 4 = ?", options: { A: "44 cm", B: "43 cm", C: "46 cm", D: "45 cm" }, correct: ["A"], topic: "Łamana" },
-        { id: 20, text: "Upieczono 25 babeczek, zjedzono 9. Ile zostało?", options: { A: "17", B: "15", C: "16", D: "34" }, correct: ["C"], topic: "Odejmowanie" },
+        { id: 9, text: "Wartość, którego wyrażenia wynosi 30?", options: { A: "14 + 16", B: "6 × 5", C: "52 - 21", D: "Wszystkie wymienione" }, correct: ["D"], topic: "Wyrażenia" },
+        { id: 10, text: "Przeczytaj i zaznacz PRAWDA lub FAŁSZ (Odjemna - odjemnik = różnica, obwód, rzymskie itp.).", options: { A: "P, P, F, F, P", B: "Wszystkie P", C: "Wszystkie F", D: "P, F, P, F, P" }, correct: ["A"], topic: "Teoria" },
+        { id: 11, text: "Oblicz: 28:7, 15:3, 9×4", options: { A: "4, 5, 36", B: "5, 3, 45", C: "4, 3, 18", D: "6, 5, 27" }, correct: ["A"], topic: "Dzielenie i mnożenie" },
+        { id: 12, text: "Sad: 8 jabłoni co 3 metry. Jaka odległość między 1 a 7 jabłonią?", options: { A: "15 m", B: "18 m", C: "9 m", D: "24 m" }, correct: ["B"], topic: "Odstępy" },
+        { id: 13, text: "Zaznacz odpowiedni znak: <, =, > dla podanych mas.", options: { A: "<, >, =", B: "<, <, =", C: ">, >, <", D: "=, <, >" }, correct: ["A"], topic: "Waga" },
+        { id: 14, text: "Rozwiąż zaszyfrowane działania z okienkami.", options: { A: "9, 15, 27", B: "12, 2, 11", C: "6, 3, 10", D: "8, 10, 9" }, correct: ["A"], topic: "Szyfry" },
+        { id: 15, text: "Tata Marty ma 192 cm wzrostu. Marta jest niższa o 56 cm. Ile wzrostu ma Marta?", options: { A: "192 cm", B: "248 cm", C: "136 cm", D: "56 cm" }, correct: ["C"], topic: "Wzrost" },
+        { id: 16, text: "Pasek papieru 20 cm potnij na 5 równych części. Ile ma każda część?", options: { A: "3 cm", B: "4 cm", C: "6 cm", D: "8 cm" }, correct: ["B"], topic: "Podział odcinka" },
+        { id: 17, text: "Przedwczoraj był czwartek. Jaki dzień będzie jutro?", options: { A: "środa", B: "sobota", C: "niedziela", D: "piątek" }, correct: ["C"], topic: "Dni tygodnia" },
+        { id: 18, text: "Tydzień i 6 dni. Ile to dni?", options: { A: "12 dni", B: "13 dni", C: "14 dni", D: "11 dni" }, correct: ["B"], topic: "Dni" },
+        { id: 19, text: "Ile wynosi długość drogi ślimaka z rysunku?", options: { A: "44 cm", B: "43 cm", C: "46 cm", D: "45 cm" }, correct: ["A"], topic: "Długość linii" },
+        { id: 20, text: "Mama upiekła 25 babeczek. Zjedli 9. Ile zostało?", options: { A: "17", B: "15", C: "16", D: "34" }, correct: ["C"], topic: "Odejmowanie" },
         { id: 21, text: "Wskaż wyniki mnożenia liczb przez 6:", options: { A: "36", B: "24", C: "32", D: "21" }, correct: ["A", "B"], topic: "Mnożenie przez 6" },
-        { id: 22, text: "Działania z tabeli liczb:", options: { A: "16, 19, 20", B: "19, 17, 14", C: "18, 20, 21", D: "Wszystkie" }, correct: ["A"], topic: "Odczyt z tabeli" }
+        { id: 22, text: "Wykonaj działania korzystając z zaszyfrowanych w tabeli liczb.", options: { A: "16, 19, 20", B: "19, 17, 14", C: "18, 20, 21", D: "Wszystkie" }, correct: ["A"], topic: "Tabela" }
     ];
 
     const data_k3_w23 = [
-        { id: 1, text: "Od różnicy liczb 74 i 16 odejmij sumę liczb 25 i 9 (58 - 34):", options: { A: "33", B: "24", C: "58", D: "92" }, correct: ["B"], topic: "Złożone działania" },
-        { id: 2, text: "Mrówki (6 nóg) i kanarki (2 nogi). 48 nóg i 12 głów. Ile jest mrówek, ile kanarków?", options: { A: "Kanarków: 6, mrówek: 6", B: "5 i 4", C: "8 i 3", D: "7 i 5" }, correct: ["A"], topic: "Głowy i nogi" },
-        { id: 3, text: "Obwód prostokąta o bokach 8 cm i 6 cm:", options: { A: "14 cm", B: "28 cm", C: "48 cm", D: "16 cm" }, correct: ["B"], topic: "Obwód prostokąta" },
-        { id: 4, text: "Ile to dni? 3 tyg. i 2 dni (23); 2 tyg. i 5 dni (19); 1 tyg. i 6 dni (13)", options: { A: "23, 19, 13", B: "21, 14, 12", C: "25, 20, 15", D: "20, 18, 12" }, correct: ["A"], topic: "Przeliczanie dni" },
-        { id: 5, text: "Słodycze: 5 babeczek (40 zł); 6 prezentów (112 zł); 7 słoików (84 zł); 9 lizaków (36 zł).", options: { A: "40 zł, 112 zł, 84 zł, 36 zł", B: "20 zł...", C: "48 zł...", D: "32 zł..." }, correct: ["A"], topic: "Zakupy" },
-        { id: 6, text: "Wskaż chmurki z wynikiem 63:", options: { A: "17+46, 100-37, 7×9", B: "Tylko 7×9", C: "8-8", D: "Żadna" }, correct: ["A"], topic: "Wynik 63" },
-        { id: 7, text: "Zsumuj: 10 + 1 + 8 + 6 + 9 + 25 = ?", options: { A: "40", B: "41", C: "42", D: "39" }, correct: ["B"], topic: "Suma elementów" },
-        { id: 8, text: "Laura ma 54 zł. Bukiet 45 zł, bombonierka 26 zł. Ile brakuje?", options: { A: "17 zł", B: "35 zł", C: "0 zł", D: "26 zł" }, correct: ["A"], topic: "Budżet" },
-        { id: 9, text: "Skarbonka: 4×50gr, 5×20gr, 7×10gr. Ile pieniędzy i ile monet?", options: { A: "3 zł 70 gr oraz 16 monet", B: "2 zł 70 gr oraz 12 monet", C: "4 zł", D: "3 zł" }, correct: ["A"], topic: "Monety" },
-        { id: 10, text: "Długość drogi zajączka:", options: { A: "73 cm", B: "75 cm", C: "76 cm", D: "74 cm" }, correct: ["B"], topic: "Suma długości" },
-        { id: 11, text: "Za 5h 15m będzie 9:30. Którą godzinę wskazuje teraz?", options: { A: "4:15", B: "5:00", C: "3:45", D: "4:30" }, correct: ["A"], topic: "Obliczenia zegarowe" },
-        { id: 12, text: "Wskazanie kolejnej grupy liczb:", options: { A: "Odpowiedź A z arkusza", B: "B", C: "C", D: "D" }, correct: ["A"], topic: "Ciągi ułamków" },
-        { id: 13, text: "Zaszyfrowane: 73 - [ ] = 27; [ ] + 45 = 93; 54 + 28 = 82", options: { A: "46, 48, 82", B: "44, 45, 91", C: "47, 46, 80", D: "49, 43, 89" }, correct: ["A"], topic: "Działania ukryte" },
-        { id: 14, text: "Jaka liczba pod kwiatkiem?", options: { A: "6", B: "4", C: "7", D: "5" }, correct: ["A"], topic: "Nierówności" },
-        { id: 15, text: "Oblicz i wskaż działania z takimi samymi wynikami:", options: { A: "36+27 oraz 9×7", B: "100-37 oraz 45+19", C: "Wszystkie", D: "Żadne" }, correct: ["A"], topic: "Wynik 63" },
-        { id: 16, text: "Rozwiąż działania z grafem i podaj poprawne wyniki:", options: { A: "62, 17, 33", B: "65, 11...", C: "9...", D: "10..." }, correct: ["A"], topic: "Działania w grafie" },
-        { id: 17, text: "Które liczby zamienić w magicznym kwadracie?", options: { A: "40 i 10", B: "50 i 60", C: "70 i 30", D: "Brak" }, correct: ["A"], topic: "Kwadrat magiczny" },
-        { id: 18, text: "Ania 35kg, Zosia o 9kg więcej, Kasia o 28kg mniej od Zosi:", options: { A: "Zosia 44 kg, Kasia 16 kg, Zosia najwięcej", B: "Inne", C: "Ania", D: "Kasia" }, correct: ["A"], topic: "Waga osób" },
-        { id: 19, text: "Pralnia: 42 ubrania + 12 - 29 odebranych. Ile zostało?", options: { A: "24", B: "25", C: "26", D: "27" }, correct: ["B"], topic: "Zadania praktyczne" },
-        { id: 20, text: "Książka miękka 13 zł, twarda 17 zł. Za 4 miękkie i 5 twardych:", options: { A: "137 zł", B: "52 zł", C: "85 zł", D: "127 zł" }, correct: ["A"], topic: "Zakup książek" }
+        { id: 1, text: "Od różnicy liczb 74 i 16 odejmij sumę liczb 25 i 9.", options: { A: "33", B: "24", C: "58", D: "92" }, correct: ["B"], topic: "Działania złożone" },
+        { id: 2, text: "Dzieci hodują mrówki i kanarki. Zwierzęta mają razem 48 nóg i 12 głów. Ile jest kanarków, ile mrówek?", options: { A: "Kanarków: 6, mrówek: 6", B: "5 i 4", C: "8 i 3", D: "7 i 5" }, correct: ["A"], topic: "Zagadki logiczne" },
+        { id: 3, text: "Ile wynosi obwód prostokąta o bokach 8 cm i 6 cm?", options: { A: "14 cm", B: "28 cm", C: "48 cm", D: "16 cm" }, correct: ["B"], topic: "Obwód" },
+        { id: 4, text: "Ile to dni? (3 tyg. i 2 dni, 2 tyg. i 5 dni, 1 tydzień i 6 dni)", options: { A: "23, 19, 13", B: "21, 14, 12", C: "25, 20, 15", D: "20, 18, 12" }, correct: ["A"], topic: "Czas" },
+        { id: 5, text: "Przeanalizuj ceny słodyczy i oblicz koszt zakupów.", options: { A: "40 zł, 112 zł, 84 zł, 36 zł", B: "20 zł...", C: "48 zł...", D: "32 zł..." }, correct: ["A"], topic: "Zakupy" },
+        { id: 6, text: "Wskaż chmurki, w których wynik działania wynosi 63:", options: { A: "17+46, 100-37, 7×9", B: "Tylko 7×9", C: "8-8", D: "Żadna" }, correct: ["A"], topic: "Wynik 63" },
+        { id: 7, text: "Zsumuj ze sobą wszystkie liczby: 10, 1, 8, 6, 9, 25.", options: { A: "40", B: "41", C: "42", D: "39" }, correct: ["B"], topic: "Suma" },
+        { id: 8, text: "Laura ma 54 zł. Chce kupić bukiet róż za 45 zł i bombonierkę za 26 zł. Ile brakuje?", options: { A: "17 zł", B: "35 zł", C: "0 zł", D: "26 zł" }, correct: ["A"], topic: "Budżet" },
+        { id: 9, text: "W skarbonce są monety: 4×50gr, 5×20gr, 7×10gr. Ile pieniędzy i monet?", options: { A: "3 zł 70 gr oraz 16 monet", B: "2 zł 70 gr oraz 12 monet", C: "4 zł", D: "3 zł" }, correct: ["A"], topic: "Monety" },
+        { id: 10, text: "Ile wynosi długość drogi zajączka z rysunku?", options: { A: "73 cm", B: "75 cm", C: "76 cm", D: "74 cm" }, correct: ["B"], topic: "Trasa" },
+        { id: 11, text: "Za 5 godzin i 15 minut zegar będzie wskazywał 9:30. Którą godzinę wskazuje teraz?", options: { A: "4:15", B: "5:00", C: "3:45", D: "4:30" }, correct: ["A"], topic: "Zegar" },
+        { id: 12, text: "Która grupa liczb pojawi się jako kolejna w ciągu?", options: { A: "Odpowiedź A z arkusza", B: "B", C: "C", D: "D" }, correct: ["A"], topic: "Ciągi" },
+        { id: 13, text: "Rozwiąż zaszyfrowane działania z kartami.", options: { A: "46, 48, 82", B: "44, 45, 91", C: "47, 46, 80", D: "49, 43, 89" }, correct: ["A"], topic: "Szyfry" },
+        { id: 14, text: "Jaka liczba ukryła się pod kwiatkiem w nierówności?", options: { A: "6", B: "4", C: "7", D: "5" }, correct: ["A"], topic: "Nierówności" },
+        { id: 15, text: "Oblicz i wskaż działania z takimi samymi wynikami.", options: { A: "36+27 oraz 9×7", B: "100-37 oraz 45+19", C: "Wszystkie", D: "Żadne" }, correct: ["A"], topic: "Równość wyników" },
+        { id: 16, text: "Oblicz i wskaż prawidłową odpowiedź (grafika z tabelą).", options: { A: "62, 17, 33", B: "65, 11...", C: "9...", D: "10..." }, correct: ["A"], topic: "Tabela" },
+        { id: 17, text: "Które z dwóch liczb należy zamienić miejscami, żeby kwadrat był magiczny?", options: { A: "40 i 10", B: "50 i 60", C: "70 i 30", D: "Brak" }, correct: ["A"], topic: "Kwadrat magiczny" },
+        { id: 18, text: "Ania waży 35 kg, Zosia o 9 kg więcej, Kasia o 28 kg mniej od Zosi. Kto waży najwięcej?", options: { A: "Zosia 44 kg, Kasia 16 kg, Zosia najwięcej", B: "Inne", C: "Ania", D: "Kasia" }, correct: ["A"], topic: "Waga" },
+        { id: 19, text: "Do pralni przyniesiono 42 ubrania, potem 12, a odebrano 29. Ile czeka na odbiór?", options: { A: "24", B: "25", C: "26", D: "27" }, correct: ["B"], topic: "Zadanie tekstowe" },
+        { id: 20, text: "Książka miękka 13 zł, twarda o 4 zł droższa. Ile za 4 miękkie i 5 twardych?", options: { A: "137 zł", B: "52 zł", C: "85 zł", D: "127 zł" }, correct: ["A"], topic: "Zakupy książek" }
     ];
 
     const data_k4_w23 = [
         { id: 1, text: "Która z podanych liczb jest nieparzysta?", options: { A: "52", B: "12", C: "14", D: "37" }, correct: ["D"], topic: "Nieparzysta" },
-        { id: 2, text: "Wybierz brakującą liczbę: 157 - [ ] = 124", options: { A: "13", B: "33", C: "24", D: "23" }, correct: ["B"], topic: "Odejmowanie" },
-        { id: 3, text: "Jaki jest wynik działania 2 + 7 - 3?", options: { A: "8", B: "10", C: "11", D: "13" }, correct: ["A"], topic: "Kolejność" },
-        { id: 4, text: "Wynik, którego działania jest najmniejszy?", options: { A: "49+0", B: "89+10", C: "79+11", D: "85+7" }, correct: ["A"], topic: "Najmniejszy wynik" },
-        { id: 5, text: "Jak zapiszesz liczbę 27 w systemie rzymskim?", options: { A: "XVII", B: "DVII", C: "XXVII", D: "LXVII" }, correct: ["C"], topic: "Rzymskie" },
+        { id: 2, text: "Wybierz brakującą liczbę, aby wynik działania był poprawny: 157 - ... = 124", options: { A: "13", B: "33", C: "24", D: "23" }, correct: ["B"], topic: "Odejmowanie" },
+        { id: 3, text: "Jaki jest wynik działania 2 × 7 - 3?", options: { A: "8", B: "10", C: "11", D: "13" }, correct: ["C"], topic: "Kolejność" },
+        { id: 4, text: "Wynik, którego działania jest najmniejszy?", options: { A: "49+0", B: "89+10", C: "79+11", D: "85+7" }, correct: ["A"], topic: "Porównanie sum" },
+        { id: 5, text: "Jak zapiszesz liczbę 27 w systemie rzymskim?", options: { A: "XVII", B: "DVII", C: "XXVII", D: "LXVII" }, correct: ["C"], topic: "System rzymski" },
         { id: 6, text: "Dla których par liczb NWD wynosi 6?", options: { A: "12, 16", B: "6, 12", C: "12, 18", D: "24, 30" }, correct: ["B", "C"], topic: "NWD" },
-        { id: 7, text: "Wynikiem dodawania 2 liczb parzystych jest:", options: { A: "zero", B: "liczba nieparzysta", C: "liczba parzysta", D: "czasem tak, czasem nie" }, correct: ["C"], topic: "Suma parzystych" },
-        { id: 8, text: "A) 9×2+3 oraz B) 9×(2+3). Prawdą jest:", options: { A: "A = B", B: "3×A > B", C: "B > A", D: "A > 30" }, correct: ["C"], topic: "Porównywanie wyrażeń" },
+        { id: 7, text: "Wynikiem dodawania 2 liczb parzystych jest:", options: { A: "zero", B: "liczba nieparzysta", C: "liczba parzysta", D: "czasem parzysta, czasem nie" }, correct: ["C"], topic: "Parzystość" },
+        { id: 8, text: "Mamy dwa działania: A) 9×2+3 oraz B) 9×(2+3). Prawdą jest, że wyniki:", options: { A: "A = B", B: "3×A > B", C: "B > A", D: "A > 30" }, correct: ["C"], topic: "Nawiasy" },
         { id: 9, text: "Która z podanych liczb jest największa?", options: { A: "X", B: "III", C: "C", D: "XC" }, correct: ["C"], topic: "Cyfry rzymskie" },
-        { id: 10, text: "Natasza pomnożyła liczbę 2-cyfrową przez 3, wynik jest dzielnikiem 78:", options: { A: "11", B: "13", C: "17", D: "26" }, correct: ["B"], topic: "Dzielniki 78" },
-        { id: 11, text: "Średnica koła wynosi 4 cm. Pole wynosi w przybliżeniu:", options: { A: "50,24 cm²", B: "25,12 cm²", C: "12,56 cm²", D: "8 cm²" }, correct: ["C"], topic: "Pole koła" },
+        { id: 10, text: "Natasza pomyślała o liczbie dwucyfrowej. Pomnożyła przez 3, wynik jest dzielnikiem 78. O jakiej liczbie pomyślała?", options: { A: "11", B: "13", C: "17", D: "26" }, correct: ["B"], topic: "Dzielniki" },
+        { id: 11, text: "Średnica koła ma długość 4 cm. Pole tego koła wynosi w przybliżeniu:", options: { A: "50,24 cm²", B: "25,12 cm²", C: "12,56 cm²", D: "8 cm²" }, correct: ["C"], topic: "Pole koła" },
         { id: 12, text: "21 to tyle samo co:", options: { A: "306/14", B: "30", C: "1", D: "133/7" }, correct: ["D"], topic: "Ułamki" },
         { id: 13, text: "Kąt prosty jest mniejszy od kąta półpełnego o:", options: { A: "90°", B: "45°", C: "30°", D: "180°" }, correct: ["A"], topic: "Kąty" },
-        { id: 14, text: "Wskazówki zegara o 6:00 tworzą kąt:", options: { A: "pełny", B: "półpełny", C: "prosty", D: "ostry" }, correct: ["B"], topic: "Kąty zegara" },
-        { id: 15, text: "Skala 1:50000, na mapie 5 cm. Odległość rzeczywista:", options: { A: "2,5 km", B: "0,25 km", C: "25 km", D: "250 km" }, correct: ["A"], topic: "Skala" },
-        { id: 16, text: "Wybierz zdanie prawdziwe:", options: { A: "Cięciwa zawsze krótsza od średnicy", B: "Istnieje cięciwa równa średnicy", C: "Promień to cięciwa", D: "Cięciwa zawsze przechodzi przez środek" }, correct: ["B"], topic: "Okrąg" },
-        { id: 17, text: "Wskaż największą liczbę:", options: { A: "1 14/50", B: "1 14/25", C: "1,14", D: "1,114" }, correct: ["B"], topic: "Największy ułamek" },
-        { id: 18, text: "Która liczba jest parzysta i podzielna przez 7?", options: { A: "76", B: "77", C: "96", D: "98" }, correct: ["D"], topic: "Podzielność" },
+        { id: 14, text: "Wskazówki zegara o godzinie 6:00 tworzą kąt:", options: { A: "pełny", B: "półpełny", C: "prosty", D: "ostry" }, correct: ["B"], topic: "Kąt na zegarze" },
+        { id: 15, text: "Jaka jest rzeczywista odległość z A do B na mapie w skali 1:50000 wynosząca 5 cm?", options: { A: "2,5 km", B: "0,25 km", C: "25 km", D: "250 km" }, correct: ["A"], topic: "Skala" },
+        { id: 16, text: "Wybierz zdanie prawdziwe o okręgu:", options: { A: "Cięciwa zawsze krótsza od średnicy", B: "Istnieje cięciwa równa średnicy", C: "Promień to cięciwa", D: "Cięciwa zawsze przechodzi przez środek" }, correct: ["B"], topic: "Geometria" },
+        { id: 17, text: "Wskaż największą liczbę:", options: { A: "1 14/50", B: "1 14/25", C: "1,14", D: "1,114" }, correct: ["B"], topic: "Ułamki dziesiętne i zwykłe" },
+        { id: 18, text: "Która z poniższych liczb jest liczbą parzystą, podzielną przez 7?", options: { A: "76", B: "77", C: "96", D: "98" }, correct: ["D"], topic: "Podzielność" },
         { id: 19, text: "NWW liczb 24 i 36 wynosi:", options: { A: "36", B: "72", C: "432", D: "864" }, correct: ["B"], topic: "NWW" },
-        { id: 20, text: "Jedna tona to:", options: { A: "1000 kg", B: "100000 dag", C: "1000000 g", D: "Wszystkie wymienione" }, optionsObj: { A: "1000 kg", B: "100000 dag", C: "1000000 g", D: "Wszystkie wymienione" }, correct: ["A", "B", "C"], topic: "Jednostki masy" },
+        { id: 20, text: "Jedna tona to:", options: { A: "1000 kg", B: "100000 dag", C: "1000000 g", D: "Wszystkie wymienione" }, correct: ["A", "B", "C"], topic: "Jednostki masy" },
         { id: 21, text: "Pole kwadratu o boku 2 dm wynosi:", options: { A: "4 dm²", B: "400 cm²", C: "4 dm", D: "400 cm" }, correct: ["A", "B"], topic: "Pole kwadratu" },
-        { id: 22, text: "Kasia ma 150 cm, urodziła się z 54 cm. O ile urosła?", options: { A: "9 dm 6 cm", B: "96 cm", C: "1 m 6 cm", D: "Wszystkie poprawne" }, correct: ["A", "B"], topic: "Jednostki długości" },
-        { id: 23, text: "Wyniki, których równań to liczba nieparzysta, podzielna przez 3:", options: { A: "2×6+3", B: "4×8-5", C: "2×6+6", D: "6×9-11" }, correct: ["A", "B"], topic: "Działania" },
-        { id: 24, text: "Które liczby są podzielne przez 12?", options: { A: "600", B: "612", C: "700", D: "712" }, correct: ["A", "B"], topic: "Podzielność przez 12" },
-        { id: 25, text: "10 kur, 3 krowy, 7 owiec. Ile razem nóg?", options: { A: "60", B: "mniej niż 70", C: "ponad 60", D: "80" }, correct: ["A", "B"], topic: "Nogi zwierząt" },
-        { id: 26, text: "Wynik działania -17 + 16 jest:", options: { A: "33", B: "-33", C: "1", D: "-1" }, correct: ["D"], topic: "Liczby ujemne" },
-        { id: 27, text: "Prostopadłościan jest:", options: { A: "Sześcianem", B: "Figurą płaską", C: "Figurą przestrzenną", D: "Bryłą obrotową" }, correct: ["C"], topic: "Geometria przestrzenna" },
-        { id: 28, text: "Jaką cyfrę wstawić w 5....40, aby liczba była podzielna przez 3 i przez 4?", options: { A: "2", B: "3", C: "6", D: "8" }, correct: ["C"], topic: "Podzielność przez 3 i 4" },
-        { id: 29, text: "Konkurs trwa 45 minut. Ile to jest?", options: { A: "3/4 godziny", B: "jedną godzinę lekcyjną", C: "ponad 1/2 godziny", D: "godzinę" }, correct: ["A", "B", "C"], topic: "Czas trwania" }
+        { id: 22, text: "Kasia ma 150 cm wzrostu, kiedy się urodziła mierzyła 54 cm. O ile urosła?", options: { A: "9 dm 6 cm", B: "96 cm", C: "1 m 6 cm", D: "Wszystkie poprawne" }, correct: ["A", "B"], topic: "Wzrost" },
+        { id: 23, text: "Wyniki, których równań to liczba nieparzysta, podzielna przez 3:", options: { A: "2×6+3", B: "4×8-5", C: "2×6+6", D: "6×9-11" }, correct: ["A", "B"], topic: "Równania" },
+        { id: 24, text: "Które z poniższych liczb są podzielne przez 12?", options: { A: "600", B: "612", C: "700", D: "712" }, correct: ["A", "B"], topic: "Podzielność przez 12" },
+        { id: 25, text: "Na farmie jest 10 kur, 3 krowy i 7 owiec. Ile razem nóg mają zwierzęta?", options: { A: "60", B: "mniej niż 70", C: "ponad 60", D: "80" }, correct: ["A", "B"], topic: "Zwierzęta" },
+        { id: 26, text: "Wynikiem działania -17 + 16 jest:", options: { A: "33", B: "-33", C: "1", D: "-1" }, correct: ["D"], topic: "Liczby ujemne" },
+        { id: 27, text: "Prostopadłościan jest:", options: { A: "Sześcianem", B: "Figurą płaską", C: "Figurą przestrzenną", D: "Bryłą obrotową" }, correct: ["C"], topic: "Bryły" },
+        { id: 28, text: "Jaką cyfrę musimy wstawić w miejsce kropek 5....40, aby otrzymać liczbę podzielną przez 3 i przez 4?", options: { A: "2", B: "3", C: "6", D: "8" }, correct: ["C"], topic: "Cecha podzielności" },
+        { id: 29, text: "Konkurs matematyczny Leon trwa 45 minut. Ile to trwa?", options: { A: "3/4 godziny", B: "jedną godzinę lekcyjną", C: "ponad 1/2 godziny", D: "godzinę" }, correct: ["A", "B", "C"], topic: "Czas" }
     ];
 
-    // ================= JESIEŃ 2024 =================
+    // Pozostałe arkusze (Jesień 2024 / Wiosna 2026)
     const data_k2_j24 = [
         { id: 1, text: "Ile par można skompletować z 18 rękawiczek?", options: { A: "12", B: "8", C: "18", D: "9" }, correct: ["D"], topic: "Pary" },
-        { id: 2, text: "Liczby pod liśćmi: 28 + [ ] = 40; [ ] + 15 = 25; 23 + 9 = [ ]", options: { A: "12", B: "10", C: "32", D: "11" }, correct: ["A", "B", "C"], topic: "Odejmowanie i dodawanie" },
-        { id: 3, text: "Liczba z cyfrą 9 w rzędzie dziesiątek:", options: { A: "95", B: "292", C: "924", D: "19" }, correct: ["A", "B"], topic: "Dziesiątki" },
-        { id: 4, text: "Liczba niepasująca do pozostałych: 7, 9, 5, 2, 11, 3, 13", options: { A: "7", B: "2", C: "3", D: "9" }, correct: ["B"], topic: "Parzysta" },
-        { id: 5, text: "Zeszyt po 6 zł. Za 5 zeszytów:", options: { A: "20 zł", B: "25 zł", C: "30 zł", D: "35 zł" }, correct: ["C"], topic: "Cena" }
+        { id: 2, text: "Rozwiąż działania z zakrytymi liczbami.", options: { A: "12", B: "10", C: "32", D: "11" }, correct: ["A", "B", "C"], topic: "Równania" },
+        { id: 3, text: "Wskaż liczbę z cyfrą 9 w dziesiątkach.", options: { A: "95", B: "292", C: "924", D: "19" }, correct: ["A", "B"], topic: "Dziesiątki" },
+        { id: 4, text: "Wskaż liczbę niepasującą do pozostałych.", options: { A: "7", B: "2", C: "3", D: "9" }, correct: ["B"], topic: "Parzystość" },
+        { id: 5, text: "Zeszyt kosztuje 6 zł. Ile trzeba zapłacić za 5 zeszytów?", options: { A: "20 zł", B: "25 zł", C: "30 zł", D: "35 zł" }, correct: ["C"], topic: "Zakupy" }
     ];
 
     const data_k3_j24 = [
         { id: 1, text: "Jestem o 8 mniejsza od 25, ale o 3 większa od 14. Jaka to liczba?", options: { A: "10", B: "12", C: "17", D: "9" }, correct: ["C"], topic: "Zagadka" },
-        { id: 2, text: "Ile jest osób w 12 parach?", options: { A: "20", B: "24", C: "22", D: "12" }, correct: ["B"], topic: "Mnożenie przez 2" },
-        { id: 3, text: "Ile jest razem złotych: 200 + 200 + 100 + 100?", options: { A: "900 zł", B: "700 zł", C: "600 zł", D: "500 zł" }, correct: ["C"], topic: "Pieniądze" }
+        { id: 2, text: "Ile jest osób w 12 parach?", options: { A: "20", B: "24", C: "22", D: "12" }, correct: ["B"], topic: "Pary" },
+        { id: 3, text: "Oblicz sumę banknotów: 200 + 200 + 100 + 100 zł.", options: { A: "900 zł", B: "700 zł", C: "600 zł", D: "500 zł" }, correct: ["C"], topic: "Pieniądze" }
     ];
 
     const data_k4_j24 = [
@@ -439,7 +438,6 @@
         { id: 2, text: "W której liczbie cyfra setek jest większa od cyfry jedności?", options: { A: "431", B: "534", C: "132", D: "261" }, correct: ["A", "B"], topic: "Rzędy" }
     ];
 
-    // ================= WIOSNA 2026 =================
     const data_k2_w26 = [
         { id: 1, text: "Oblicz: 48 + 27 =", options: { A: "65", B: "75", C: "85", D: "74" }, correct: ["B"], topic: "Dodawanie" },
         { id: 2, text: "Monika miała 63 cukierki. Zjadła 28. Ile zostało?", options: { A: "35", B: "45", C: "25", D: "55" }, correct: ["A"], topic: "Odejmowanie" }
@@ -455,7 +453,6 @@
         { id: 2, text: "36 kredek, 1/4 to czerwone. Ile czerwonych?", options: { A: "6", B: "8", C: "9", D: "12" }, correct: ["C"], topic: "Ułamek liczby" }
     ];
 
-    // Funkcja budująca pytania
     function renderTasks(containerId, dataset) {
         const container = document.getElementById(containerId);
         if (!container) return;
