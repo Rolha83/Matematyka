@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon - Matematyka Klasa III (Wiosna 2024)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question-card {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        .sub-group {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        .option {
+            margin: 8px 0;
+            display: block;
+            cursor: pointer;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f8f5;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Leon - Matematyka Klasa III (Wiosna 2024)</h1>
+
+    <!-- Zadanie 1 -->
+    <div class="question-card">
+        <div class="question-title">1. Wskaż równość prawdziwą[span_5](start_span)[span_5](end_span).</div>
+        <label class="option"><input type="checkbox" name="q1" value="A"> 36 : 9 = 28 : 7[span_6](start_span)[span_6](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="B"> 4 : 4 = 54 : 8[span_7](start_span)[span_7](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="C"> 63 : 7 = 27 : 3[span_8](start_span)[span_8](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="D"> 48 : 6 = 4 · 2[span_9](start_span)[span_9](end_span)</label>
+    </div>
+
+    <!-- Zadanie 2 -->
+    <div class="question-card">
+        <div class="question-title">2. Wskaż zamalowaną ćwierć kwadratu[span_10](start_span)[span_10](end_span).</div>
+        <label class="option"><input type="checkbox" name="q2" value="A"> Opcja z 1/4 częścią[span_11](start_span)[span_11](end_span)</label>
+        <label class="option"><input type="checkbox" name="q2" value="B"> Inna opcja</label>
+    </div>
+
+    <!-- Zadanie 3 -->
+    <div class="question-card">
+        <div class="question-title">3. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia[span_12](start_span)[span_12](end_span).</div>
+        <label class="option"><input type="checkbox" name="q3" value="A"> 17 lat[span_13](start_span)[span_13](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="B"> 16 lat[span_14](start_span)[span_14](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="C"> 35 lat[span_15](start_span)[span_15](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="D"> 18 lat[span_16](start_span)[span_16](end_span)</label>
+    </div>
+
+    <!-- Zadanie 4 -->
+    <div class="question-card">
+        <div class="question-title">4. Wskaż działanie niewykonalne[span_17](start_span)[span_17](end_span).</div>
+        <label class="option"><input type="checkbox" name="q4" value="A"> 0 : 5[span_18](start_span)[span_18](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="B"> 5 : 0[span_19](start_span)[span_19](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="C"> 5 · 0[span_20](start_span)[span_20](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="D"> 0 · 5[span_21](start_span)[span_21](end_span)</label>
+    </div>
+
+    <!-- Zadanie 5 -->
+    <div class="question-card">
+        <div class="question-title">5. Ustal, jakie wartości kryją się pod motylkami[span_22](start_span)[span_22](end_span).</div>
+        <div class="sub-group">37 + 🦋 = 100:</div>
+        <label class="option"><input type="checkbox" name="q5" value="A"> 63[span_23](start_span)[span_23](end_span)</label>
+        <label class="option"><input type="checkbox" name="q5" value="B"> 64[span_24](start_span)[span_24](end_span)</label>
+        <label class="option"><input type="checkbox" name="q5" value="C"> 65[span_25](start_span)[span_25](end_span)</label>
+    </div>
+
+    <!-- Zadanie 6 -->
+    <div class="question-card">
+        <div class="question-title">6. Miesiąc IX (wrzesień) ma[span_26](start_span)[span_26](end_span):</div>
+        <label class="option"><input type="checkbox" name="q6" value="A"> 30 dni[span_27](start_span)[span_27](end_span)</label>
+        <label class="option"><input type="checkbox" name="q6" value="B"> 28 dni[span_28](start_span)[span_28](end_span)</label>
+        <label class="option"><input type="checkbox" name="q6" value="C"> 29 dni[span_29](start_span)[span_29](end_span)</label>
+        <label class="option"><input type="checkbox" name="q6" value="D"> 31 dni[span_30](start_span)[span_30](end_span)</label>
+    </div>
+
+    <!-- Zadanie 7 -->
+    <div class="question-card">
+        <div class="question-title">7. Jest godzina 8.45. Która godzina będzie za półtorej godziny?[span_31](start_span)[span_31](end_span)</div>
+        <label class="option"><input type="checkbox" name="q7" value="A"> 9.45[span_32](start_span)[span_32](end_span)</label>
+        <label class="option"><input type="checkbox" name="q7" value="B"> 10.45[span_33](start_span)[span_33](end_span)</label>
+        <label class="option"><input type="checkbox" name="q7" value="C"> 10.15[span_34](start_span)[span_34](end_span)</label>
+        <label class="option"><input type="checkbox" name="q7" value="D"> 10.30[span_35](start_span)[span_35](end_span)</label>
+    </div>
+
+    <!-- Zadanie 8 -->
+    <div class="question-card">
+        <div class="question-title">8. Przedwczoraj był piątek. Pojutrze będzie[span_36](start_span)[span_36](end_span):</div>
+        <label class="option"><input type="checkbox" name="q8" value="A"> środa[span_37](start_span)[span_37](end_span)</label>
+        <label class="option"><input type="checkbox" name="q8" value="B"> poniedziałek[span_38](start_span)[span_38](end_span)</label>
+        <label class="option"><input type="checkbox" name="q8" value="C"> wtorek[span_39](start_span)[span_39](end_span)</label>
+        <label class="option"><input type="checkbox" name="q8" value="D"> czwartek[span_40](start_span)[span_40](end_span)</label>
+    </div>
+
+    <!-- Zadanie 9 -->
+    <div class="question-card">
+        <div class="question-title">9. Wskaż liczbę złożoną z 4 setek, 3 dziesiątek i 8 jedności[span_41](start_span)[span_41](end_span).</div>
+        <label class="option"><input type="checkbox" name="q9" value="A"> 438[span_42](start_span)[span_42](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="B"> 834[span_43](start_span)[span_43](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="C"> 483[span_44](start_span)[span_44](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="D"> 348[span_45](start_span)[span_45](end_span)</label>
+    </div>
+
+    <!-- Zadanie 10 -->
+    <div class="question-card">
+        <div class="question-title">10. Wskaż iloczyny, które mają takie same wyniki[span_46](start_span)[span_46](end_span).</div>
+        <label class="option"><input type="checkbox" name="q10" value="A"> 2 · 9[span_47](start_span)[span_47](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="B"> 3 · 6[span_48](start_span)[span_48](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="C"> 7 · 3[span_49](start_span)[span_49](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="D"> 5 · 4[span_50](start_span)[span_50](end_span)</label>
+    </div>
+
+    <!-- Zadanie 11 -->
+    <div class="question-card">
+        <div class="question-title">11. Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile złotych zostało Markowi?[span_51](start_span)[span_51](end_span)</div>
+        <label class="option"><input type="checkbox" name="q11" value="A"> 33 zł[span_52](start_span)[span_52](end_span)</label>
+        <label class="option"><input type="checkbox" name="q11" value="B"> 9 zł[span_53](start_span)[span_53](end_span)</label>
+        <label class="option"><input type="checkbox" name="q11" value="C"> 13 zł[span_54](start_span)[span_54](end_span)</label>
+        <label class="option"><input type="checkbox" name="q11" value="D"> 26 zł[span_55](start_span)[span_55](end_span)</label>
+    </div>
+
+    <!-- Zadanie 12 -->
+    <div class="question-card">
+        <div class="question-title">12. Oblicz i wskaż działania z takimi samymi wynikami[span_56](start_span)[span_56](end_span).</div>
+        <label class="option"><input type="checkbox" name="q12" value="A"> 100 : 2[span_57](start_span)[span_57](end_span)</label>
+        <label class="option"><input type="checkbox" name="q12" value="B"> 23 + 27[span_58](start_span)[span_58](end_span)</label>
+        <label class="option"><input type="checkbox" name="q12" value="C"> 80 - 30[span_59](start_span)[span_59](end_span)</label>
+        <label class="option"><input type="checkbox" name="q12" value="D"> 75 - 26[span_60](start_span)[span_60](end_span)</label>
+    </div>
+
+    <!-- Zadanie 13 -->
+    <div class="question-card">
+        <div class="question-title">13. Zmniejszyć liczbę 24 trzy razy, to znaczy[span_61](start_span)[span_61](end_span):</div>
+        <label class="option"><input type="checkbox" name="q13" value="A"> pomnożyć ją przez 3[span_62](start_span)[span_62](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="B"> podzielić ją przez 3[span_63](start_span)[span_63](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="C"> odjąć od niej 3[span_64](start_span)[span_64](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="D"> dodać do niej 3[span_65](start_span)[span_65](end_span)</label>
+    </div>
+
+    <!-- Zadanie 14 -->
+    <div class="question-card">
+        <div class="question-title">14. Jaka liczba ukryła się pod kwiatkiem?[span_66](start_span)[span_66](end_span)</div>
+        <label class="option"><input type="checkbox" name="q14" value="A"> 27[span_67](start_span)[span_67](end_span)</label>
+        <label class="option"><input type="checkbox" name="q14" value="B"> 36[span_68](start_span)[span_68](end_span)</label>
+        <label class="option"><input type="checkbox" name="q14" value="C"> 28[span_69](start_span)[span_69](end_span)</label>
+        <label class="option"><input type="checkbox" name="q14" value="D"> 24[span_70](start_span)[span_70](end_span)</label>
+    </div>
+
+    <!-- Zadanie 15 -->
+    <div class="question-card">
+        <div class="question-title">15. Rodzice Marty mają razem pół wieku (50 lat). Mama Marty jest młodsza od taty i ma 23 lata. Ile lat ma tata Marty?[span_71](start_span)[span_71](end_span)</div>
+        <label class="option"><input type="checkbox" name="q15" value="A"> 23 lata[span_72](start_span)[span_72](end_span)</label>
+        <label class="option"><input type="checkbox" name="q15" value="B"> 27 lat[span_73](start_span)[span_73](end_span)</label>
+        <label class="option"><input type="checkbox" name="q15" value="C"> 26 lat[span_74](start_span)[span_74](end_span)</label>
+        <label class="option"><input type="checkbox" name="q15" value="D"> 28 lat[span_75](start_span)[span_75](end_span)</label>
+    </div>
+
+    <!-- Zadanie 16 -->
+    <div class="question-card">
+        <div class="question-title">16. Ma początek, ale nie ma końca[span_76](start_span)[span_76](end_span).</div>
+        <label class="option"><input type="checkbox" name="q16" value="A"> półprosta[span_77](start_span)[span_77](end_span)</label>
+        <label class="option"><input type="checkbox" name="q16" value="B"> odcinek[span_78](start_span)[span_78](end_span)</label>
+        <label class="option"><input type="checkbox" name="q16" value="C"> prosta[span_79](start_span)[span_79](end_span)</label>
+        <label class="option"><input type="checkbox" name="q16" value="D"> punkt[span_80](start_span)[span_80](end_span)</label>
+    </div>
+
+    <!-- Zadanie 17 -->
+    <div class="question-card">
+        <div class="question-title">17. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej[span_81](start_span)[span_81](end_span).</div>
+        <label class="option"><input type="checkbox" name="q17" value="A"> 12 434, 9 872, 71 602, 38 432[span_82](start_span)[span_82](end_span)</label>
+        <label class="option"><input type="checkbox" name="q17" value="B"> 8 574, 45 678, 76 521, 10 736[span_83](start_span)[span_83](end_span)</label>
+        <label class="option"><input type="checkbox" name="q17" value="C"> 5 864, 13 897, 38 655, 79 321[span_84](start_span)[span_84](end_span)</label>
+        <label class="option"><input type="checkbox" name="q17" value="D"> 7 321, 8 933, 13 762, 2 345[span_85](start_span)[span_85](end_span)</label>
+    </div>
+
+    <!-- Zadanie 18 -->
+    <div class="question-card">
+        <div class="question-title">18. Jak można podzielić 36 ciastek między sześcioro dzieci?[span_86](start_span)[span_86](end_span)</div>
+        <label class="option"><input type="checkbox" name="q18" value="A"> 1+3+5+7+9+11[span_87](start_span)[span_87](end_span)</label>
+        <label class="option"><input type="checkbox" name="q18" value="B"> 2+4+6+8+10+12[span_88](start_span)[span_88](end_span)</label>
+        <label class="option"><input type="checkbox" name="q18" value="C"> 6 · 6[span_89](start_span)[span_89](end_span)</label>
+        <label class="option"><input type="checkbox" name="q18" value="D"> 2+3+7+8+6+9[span_90](start_span)[span_90](end_span)</label>
+    </div>
+
+    <!-- Zadanie 19 -->
+    <div class="question-card">
+        <div class="question-title">19. Wskaż liczby, których połowa jest liczbą parzystą[span_91](start_span)[span_91](end_span).</div>
+        <label class="option"><input type="checkbox" name="q19" value="A"> 72[span_92](start_span)[span_92](end_span)</label>
+        <label class="option"><input type="checkbox" name="q19" value="B"> 66[span_93](start_span)[span_93](end_span)</label>
+        <label class="option"><input type="checkbox" name="q19" value="C"> 50[span_94](start_span)[span_94](end_span)</label>
+        <label class="option"><input type="checkbox" name="q19" value="D"> 84[span_95](start_span)[span_95](end_span)</label>
+    </div>
+
+    <!-- Zadanie 20 -->
+    <div class="question-card">
+        <div class="question-title">20. Długość skoku kangura wynosi dziewięć metrów. Ile takich skoków musi wykonać kangur, żeby pokonać odległość 81 metrów?[span_96](start_span)[span_96](end_span)</div>
+        <label class="option"><input type="checkbox" name="q20" value="A"> 6[span_97](start_span)[span_97](end_span)</label>
+        <label class="option"><input type="checkbox" name="q20" value="B"> 8[span_98](start_span)[span_98](end_span)</label>
+        <label class="option"><input type="checkbox" name="q20" value="C"> 9[span_99](start_span)[span_99](end_span)</label>
+        <label class="option"><input type="checkbox" name="q20" value="D"> 7[span_100](start_span)[span_100](end_span)</label>
+    </div>
+
+    <!-- Zadanie 21 -->
+    <div class="question-card">
+        <div class="question-title">21. Od iloczynu liczb 6 i 8 odejmij ich sumę[span_101](start_span)[span_101](end_span).</div>
+        <label class="option"><input type="checkbox" name="q21" value="A"> 14[span_102](start_span)[span_102](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="B"> 42[span_103](start_span)[span_103](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="C"> 40[span_104](start_span)[span_104](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="D"> 34[span_105](start_span)[span_105](end_span)</label>
+    </div>
+
+    <!-- Zadanie 22 -->
+    <div class="question-card">
+        <div class="question-title">22. Wskaż liczby trzycyfrowe parzyste, w których rząd setek to dziewięć, a rząd jedności to osiem[span_106](start_span)[span_106](end_span).</div>
+        <label class="option"><input type="checkbox" name="q22" value="A"> 998[span_107](start_span)[span_107](end_span)</label>
+        <label class="option"><input type="checkbox" name="q22" value="B"> 989[span_108](start_span)[span_108](end_span)</label>
+        <label class="option"><input type="checkbox" name="q22" value="C"> 898[span_109](start_span)[span_109](end_span)</label>
+        <label class="option"><input type="checkbox" name="q22" value="D"> 908[span_110](start_span)[span_110](end_span)</label>
+    </div>
+
+    <!-- Zadanie 23 -->
+    <div class="question-card">
+        <div class="question-title">23. Ile razem nóg mają 3 tygrysy, 4 lwy i 2 papugi?[span_111](start_span)[span_111](end_span)</div>
+        <label class="option"><input type="checkbox" name="q23" value="A"> 32[span_112](start_span)[span_112](end_span)</label>
+        <label class="option"><input type="checkbox" name="q23" value="B"> 16[span_113](start_span)[span_113](end_span)</label>
+        <label class="option"><input type="checkbox" name="q23" value="C"> 9[span_114](start_span)[span_114](end_span)</label>
+        <label class="option"><input type="checkbox" name="q23" value="D"> 22[span_115](start_span)[span_115](end_span)</label>
+    </div>
+
+    <!-- Zadanie 24 -->
+    <div class="question-card">
+        <div class="question-title">24. Zosia spędziła dwa tygodnie ferii zimowych u babci na wsi. Ile to dni?[span_116](start_span)[span_116](end_span)</div>
+        <label class="option"><input type="checkbox" name="q24" value="A"> 28 dni[span_117](start_span)[span_117](end_span)</label>
+        <label class="option"><input type="checkbox" name="q24" value="B"> 21 dni[span_118](start_span)[span_118](end_span)</label>
+        <label class="option"><input type="checkbox" name="q24" value="C"> 7 dni[span_119](start_span)[span_119](end_span)</label>
+        <label class="option"><input type="checkbox" name="q24" value="D"> 14 dni[span_120](start_span)[span_120](end_span)</label>
+    </div>
+
+    <!-- Zadanie 25 -->
+    <div class="question-card">
+        <div class="question-title">25. Ile wynosi długość drogi liska? (27 cm + 25 cm + 9 cm + 12 cm + 6 cm)[span_121](start_span)[span_121](end_span)</div>
+        <label class="option"><input type="checkbox" name="q25" value="A"> 80 cm[span_122](start_span)[span_122](end_span)</label>
+        <label class="option"><input type="checkbox" name="q25" value="B"> 78 cm[span_123](start_span)[span_123](end_span)</label>
+        <label class="option"><input type="checkbox" name="q25" value="C"> 79 cm[span_124](start_span)[span_124](end_span)</label>
+        <label class="option"><input type="checkbox" name="q25" value="D"> 77 cm[span_125](start_span)[span_125](end_span)</label>
+    </div>
+
+    <button onclick="checkQuiz()">Sprawdź wynik</button>
+    <div id="result"></div>
+
+    <script>
+        function checkQuiz() {
+            // Przykładowy słownik poprawnych odpowiedzi dla klasy III
+            const correctAnswers = {
+                q1: ['A', 'C'], q2: ['A'], q3: ['A'], q4: ['B'], q5: ['A'],
+                q6: ['A'], q7: ['B'], q8: ['B'], q9: ['A'], q10: ['A', 'B'],
+                q11: ['D'], q12: ['A', 'C'], q13: ['B'], q14: ['A'], q15: ['B'],
+                q16: ['A'], q17: ['C'], q18: ['C'], q19: ['A', 'D'], q20: ['C'],
+                q21: ['D'], q22: ['A', 'D'], q23: ['A'], q24: ['D'], q25: ['C']
+            };
+
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+
+            for (let q in correctAnswers) {
+                const checkboxes = document.querySelectorAll(`input[name="${q}"]:checked`);
+                const userSelected = Array.from(checkboxes).map(cb => cb.value);
+                
+                const isCorrect = correctAnswers[q].length === userSelected.length && 
+                                  correctAnswers[q].every(val => userSelected.includes(val));
+
+                if (isCorrect) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
+        }
+    </script>
+</body>
+</html>
