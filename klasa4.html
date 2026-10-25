@@ -5,63 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leon - Matematyka Klasa IV (Wiosna 2024)</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 900px;
-            margin: 0 auto;
+        :root {
+            --bg-1: #edf6f3;
+            --bg-2: #f5f9ff;
+            --card: #ffffff;
+            --primary: #2d7dd2;
+            --primary-dark: #1f5fa9;
+            --success: #2e9b67;
+            --success-dark: #1f7d52;
+            --danger: #d94f4f;
+            --text: #1d2a36;
+            --muted: #5d6d7d;
+            --line: #dfeaf6;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 30px 18px;
+        }
+
+        .quiz-shell {
+            max-width: 980px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 18px;
+            padding: 28px 24px 40px;
+            box-shadow: 0 12px 35px rgba(29, 42, 54, 0.08);
+        }
+
         h1 {
             text-align: center;
-            color: #2c3e50;
+            color: var(--primary-dark);
+            margin: 0 0 28px;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            letter-spacing: 0.04em;
         }
+
         .question-card {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 6px solid var(--primary);
+            padding: 22px 20px 18px;
+            margin-bottom: 22px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(29, 42, 54, 0.04);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
+
+        .question-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(29, 42, 54, 0.07);
+        }
+
         .question-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2980b9;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--primary-dark);
+            font-size: 1.08rem;
         }
+
         .option {
-            margin: 8px 0;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px 12px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+            border: 1px solid transparent;
         }
+
+        .option:hover {
+            background: #f2f8ff;
+            border-color: #cfe2ff;
+        }
+
+        .option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--success);
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .answer-label {
+            flex: 1;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .exam-actions {
+            margin-top: 28px;
+        }
+
         button {
             display: block;
             width: 100%;
-            padding: 15px;
-            background-color: #27ae60;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 20px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 10px 18px rgba(46, 155, 103, 0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
+
         button:hover {
-            background-color: #219150;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 22px rgba(46, 155, 103, 0.35);
         }
+
         #result {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e8f8f5;
-            border: 2px solid #27ae60;
-            border-radius: 8px;
+            margin-top: 22px;
+            padding: 20px 18px;
+            background: linear-gradient(135deg, #eafaf2 0%, #ebf7ff 100%);
+            border: 2px solid #a8e2c0;
+            border-radius: 12px;
             text-align: center;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
             display: none;
         }
+
+        .result-summary {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .question-note {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #eef5ff;
+            color: var(--primary-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .mjx-container {
+            font-size: 1.05em !important;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 18px 12px;
+            }
+
+            .quiz-shell {
+                padding: 18px 14px 26px;
+                border-radius: 12px;
+            }
+
+            .question-card {
+                padding: 18px 14px 14px;
+            }
+
+            .option {
+                padding: 8px 10px;
+            }
+        }
     </style>
+
     <script>
         window.MathJax = {
             tex: {
@@ -70,280 +194,298 @@
             },
             svg: {
                 fontCache: 'global'
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
             }
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+    <div class="quiz-shell">
+        <h1>Leon - Matematyka Klasa IV (Wiosna 2024)</h1>
 
-    <h1>Leon - Matematyka Klasa IV (Wiosna 2024)</h1>
+        <!-- Zadanie 1 -->
+        <div class="question-card">
+            <div class="question-title">1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:</div>
+            <label class="option"><input type="checkbox" name="q1" value="A"><span class="answer-label">A. 0</span></label>
+            <label class="option"><input type="checkbox" name="q1" value="B"><span class="answer-label">B. 20</span></label>
+            <label class="option"><input type="checkbox" name="q1" value="C"><span class="answer-label">C. 40</span></label>
+            <label class="option"><input type="checkbox" name="q1" value="D"><span class="answer-label">D. 60</span></label>
+        </div>
 
-    <!-- Zadanie 1 -->
-    <div class="question-card">
-        <div class="question-title">1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:</div>
-        <label class="option"><input type="checkbox" name="q1" value="A"> A. 0</label>
-        <label class="option"><input type="checkbox" name="q1" value="B"> B. 20</label>
-        <label class="option"><input type="checkbox" name="q1" value="C"> C. 40</label>
-        <label class="option"><input type="checkbox" name="q1" value="D"> D. 60</label>
+        <!-- Zadanie 2 -->
+        <div class="question-card">
+            <div class="question-title">2. Iloczyn $5 \cdot 5 \cdot 5 \cdot 5$ możemy zapisać w postaci:</div>
+            <label class="option"><input type="checkbox" name="q2" value="A"><span class="answer-label">A. $5^4$</span></label>
+            <label class="option"><input type="checkbox" name="q2" value="B"><span class="answer-label">B. $5^5$</span></label>
+            <label class="option"><input type="checkbox" name="q2" value="C"><span class="answer-label">C. $55^2$</span></label>
+            <label class="option"><input type="checkbox" name="q2" value="D"><span class="answer-label">D. $4^5$</span></label>
+        </div>
+
+        <!-- Zadanie 3 -->
+        <div class="question-card">
+            <div class="question-title">3. Jeśli średnica okręgu ma długość 10 dm, to długość jego promienia wynosi:</div>
+            <label class="option"><input type="checkbox" name="q3" value="A"><span class="answer-label">A. 40 dm</span></label>
+            <label class="option"><input type="checkbox" name="q3" value="B"><span class="answer-label">B. 20 dm</span></label>
+            <label class="option"><input type="checkbox" name="q3" value="C"><span class="answer-label">C. 10 dm</span></label>
+            <label class="option"><input type="checkbox" name="q3" value="D"><span class="answer-label">D. 5 dm</span></label>
+        </div>
+
+        <!-- Zadanie 4 -->
+        <div class="question-card">
+            <div class="question-title">4. Długość odcinka AB w skali 3 : 1 wynosi 4 cm, wobec tego ten odcinek w rzeczywistości ma długość:</div>
+            <label class="option"><input type="checkbox" name="q4" value="A"><span class="answer-label">A. 3 cm</span></label>
+            <label class="option"><input type="checkbox" name="q4" value="B"><span class="answer-label">B. 4 cm</span></label>
+            <label class="option"><input type="checkbox" name="q4" value="C"><span class="answer-label">C. 12 cm</span></label>
+            <label class="option"><input type="checkbox" name="q4" value="D"><span class="answer-label">D. 34 cm</span></label>
+        </div>
+
+        <!-- Zadanie 5 -->
+        <div class="question-card">
+            <div class="question-title">5. Obwód narysowanego trójkąta (boki: 1 dm, 6 cm, 8 cm) wynosi:</div>
+            <label class="option"><input type="checkbox" name="q5" value="A"><span class="answer-label">A. 14 cm</span></label>
+            <label class="option"><input type="checkbox" name="q5" value="B"><span class="answer-label">B. 15 cm</span></label>
+            <label class="option"><input type="checkbox" name="q5" value="C"><span class="answer-label">C. 24 cm</span></label>
+            <label class="option"><input type="checkbox" name="q5" value="D"><span class="answer-label">D. 48 cm</span></label>
+        </div>
+
+        <!-- Zadanie 6 -->
+        <div class="question-card">
+            <div class="question-title">6. Kąt o mierze $89^\circ$ jest:</div>
+            <label class="option"><input type="checkbox" name="q6" value="A"><span class="answer-label">A. kątem ostrym</span></label>
+            <label class="option"><input type="checkbox" name="q6" value="B"><span class="answer-label">B. kątem prostym</span></label>
+            <label class="option"><input type="checkbox" name="q6" value="C"><span class="answer-label">C. kątem rozwartym</span></label>
+            <label class="option"><input type="checkbox" name="q6" value="D"><span class="answer-label">D. kątem półpełnym</span></label>
+        </div>
+
+        <!-- Zadanie 7 -->
+        <div class="question-card">
+            <div class="question-title">7. Pole kwadratu o obwodzie 16 cm wynosi:</div>
+            <label class="option"><input type="checkbox" name="q7" value="A"><span class="answer-label">A. $16\text{ cm}^2$</span></label>
+            <label class="option"><input type="checkbox" name="q7" value="B"><span class="answer-label">B. $8\text{ cm}^2$</span></label>
+            <label class="option"><input type="checkbox" name="q7" value="C"><span class="answer-label">C. $64\text{ cm}^2$</span></label>
+            <label class="option"><input type="checkbox" name="q7" value="D"><span class="answer-label">D. $32\text{ cm}^2$</span></label>
+        </div>
+
+        <!-- Zadanie 8 -->
+        <div class="question-card">
+            <div class="question-title">8. Odległość w rzeczywistości wynosi 2000 cm, w skali 1 : 100 ta odległość będzie miała długość:</div>
+            <label class="option"><input type="checkbox" name="q8" value="A"><span class="answer-label">A. 2 cm</span></label>
+            <label class="option"><input type="checkbox" name="q8" value="B"><span class="answer-label">B. 20 cm</span></label>
+            <label class="option"><input type="checkbox" name="q8" value="C"><span class="answer-label">C. 2000 cm</span></label>
+            <label class="option"><input type="checkbox" name="q8" value="D"><span class="answer-label">D. 200000 cm</span></label>
+        </div>
+
+        <!-- Zadanie 9 -->
+        <div class="question-card">
+            <div class="question-title">9. 250 minut to:</div>
+            <label class="option"><input type="checkbox" name="q9" value="A"><span class="answer-label">A. 2 godziny i 5 minut</span></label>
+            <label class="option"><input type="checkbox" name="q9" value="B"><span class="answer-label">B. 2 godziny i 10 minut</span></label>
+            <label class="option"><input type="checkbox" name="q9" value="C"><span class="answer-label">C. 2 godziny i 50 minut</span></label>
+            <label class="option"><input type="checkbox" name="q9" value="D"><span class="answer-label">D. 4 godziny i 10 minut</span></label>
+        </div>
+
+        <!-- Zadanie 10 -->
+        <div class="question-card">
+            <div class="question-title">10. Liczba 5 razy mniejsza od 555 to:</div>
+            <label class="option"><input type="checkbox" name="q10" value="A"><span class="answer-label">A. 500</span></label>
+            <label class="option"><input type="checkbox" name="q10" value="B"><span class="answer-label">B. 111</span></label>
+            <label class="option"><input type="checkbox" name="q10" value="C"><span class="answer-label">C. 155</span></label>
+            <label class="option"><input type="checkbox" name="q10" value="D"><span class="answer-label">D. 550</span></label>
+        </div>
+
+        <!-- Zadanie 11 -->
+        <div class="question-card">
+            <div class="question-title">11. Różnica największej dwucyfrowej liczby i najmniejszej dwucyfrowej wynosi:</div>
+            <label class="option"><input type="checkbox" name="q11" value="A"><span class="answer-label">A. 89</span></label>
+            <label class="option"><input type="checkbox" name="q11" value="B"><span class="answer-label">B. 100</span></label>
+            <label class="option"><input type="checkbox" name="q11" value="C"><span class="answer-label">C. 110</span></label>
+            <label class="option"><input type="checkbox" name="q11" value="D"><span class="answer-label">D. 989</span></label>
+        </div>
+
+        <!-- Zadanie 12 -->
+        <div class="question-card">
+            <div class="question-title">12. Kwadrat liczby 9 pomniejszony o 9 wynosi:</div>
+            <label class="option"><input type="checkbox" name="q12" value="A"><span class="answer-label">A. 0</span></label>
+            <label class="option"><input type="checkbox" name="q12" value="B"><span class="answer-label">B. 9</span></label>
+            <label class="option"><input type="checkbox" name="q12" value="C"><span class="answer-label">C. 72</span></label>
+            <label class="option"><input type="checkbox" name="q12" value="D"><span class="answer-label">D. 81</span></label>
+        </div>
+
+        <!-- Zadanie 13 -->
+        <div class="question-card">
+            <div class="question-title">13. Wynik działania $1\frac{2}{17} + 2\frac{3}{17}$ (lub analogiczny) wynosi:</div>
+            <label class="option"><input type="checkbox" name="q13" value="A"><span class="answer-label">A. $1\frac{1}{68}$</span></label>
+            <label class="option"><input type="checkbox" name="q13" value="B"><span class="answer-label">B. $3\frac{5}{17}$</span></label>
+            <label class="option"><input type="checkbox" name="q13" value="C"><span class="answer-label">C. $1\frac{1}{13}$</span></label>
+            <label class="option"><input type="checkbox" name="q13" value="D"><span class="answer-label">D. 13</span></label>
+        </div>
+
+        <!-- Zadanie 14 -->
+        <div class="question-card">
+            <div class="question-title">14. Wspólną wielokrotnością liczb 2, 3 oraz 8 jest:</div>
+            <label class="option"><input type="checkbox" name="q14" value="A"><span class="answer-label">A. 238</span></label>
+            <label class="option"><input type="checkbox" name="q14" value="B"><span class="answer-label">B. 13</span></label>
+            <label class="option"><input type="checkbox" name="q14" value="C"><span class="answer-label">C. 24</span></label>
+            <label class="option"><input type="checkbox" name="q14" value="D"><span class="answer-label">D. 832</span></label>
+        </div>
+
+        <!-- Zadanie 15 -->
+        <div class="question-card">
+            <div class="question-title">15. Iloraz liczb 250 i 50 wynosi:</div>
+            <label class="option"><input type="checkbox" name="q15" value="A"><span class="answer-label">A. 50</span></label>
+            <label class="option"><input type="checkbox" name="q15" value="B"><span class="answer-label">B. 5</span></label>
+            <label class="option"><input type="checkbox" name="q15" value="C"><span class="answer-label">C. 300</span></label>
+            <label class="option"><input type="checkbox" name="q15" value="D"><span class="answer-label">D. 750</span></label>
+        </div>
+
+        <!-- Zadanie 16 -->
+        <div class="question-card">
+            <div class="question-title">16. Obwód podanego trójkąta (boki: 25 cm, 25 cm, 13 cm) wynosi:</div>
+            <label class="option"><input type="checkbox" name="q16" value="A"><span class="answer-label">A. 38 cm</span></label>
+            <label class="option"><input type="checkbox" name="q16" value="B"><span class="answer-label">B. 50 cm</span></label>
+            <label class="option"><input type="checkbox" name="q16" value="C"><span class="answer-label">C. 63 cm</span></label>
+            <label class="option"><input type="checkbox" name="q16" value="D"><span class="answer-label">D. 75 cm</span></label>
+        </div>
+
+        <!-- Zadanie 17 -->
+        <div class="question-card">
+            <div class="question-title">17. Liczba setek w sumie liczb 187 i 113 wynosi:</div>
+            <label class="option"><input type="checkbox" name="q17" value="A"><span class="answer-label">A. 1</span></label>
+            <label class="option"><input type="checkbox" name="q17" value="B"><span class="answer-label">B. 2</span></label>
+            <label class="option"><input type="checkbox" name="q17" value="C"><span class="answer-label">C. 3</span></label>
+            <label class="option"><input type="checkbox" name="q17" value="D"><span class="answer-label">D. 4</span></label>
+        </div>
+
+        <!-- Zadanie 18 -->
+        <div class="question-card">
+            <div class="question-title">18. Wynikiem działania $10 - 4 : 2$ jest liczba:</div>
+            <label class="option"><input type="checkbox" name="q18" value="A"><span class="answer-label">A. 3</span></label>
+            <label class="option"><input type="checkbox" name="q18" value="B"><span class="answer-label">B. 6</span></label>
+            <label class="option"><input type="checkbox" name="q18" value="C"><span class="answer-label">C. 8</span></label>
+            <label class="option"><input type="checkbox" name="q18" value="D"><span class="answer-label">D. 10</span></label>
+        </div>
+
+        <!-- Zadanie 19 -->
+        <div class="question-card">
+            <div class="question-title">19. W sali kinowej jest dziesięć rzędów po 12 miejsc w każdym i 5 miejsc specjalnych. W tej sali jest:</div>
+            <label class="option"><input type="checkbox" name="q19" value="A"><span class="answer-label">A. 125 miejsc</span></label>
+            <label class="option"><input type="checkbox" name="q19" value="B"><span class="answer-label">B. 120 miejsc</span></label>
+            <label class="option"><input type="checkbox" name="q19" value="C"><span class="answer-label">C. 60 miejsc</span></label>
+            <label class="option"><input type="checkbox" name="q19" value="D"><span class="answer-label">D. 12 miejsc</span></label>
+        </div>
+
+        <!-- Zadanie 20 -->
+        <div class="question-card">
+            <div class="question-title">20. Osiem kwadransów to:</div>
+            <label class="option"><input type="checkbox" name="q20" value="A"><span class="answer-label">A. 80 minut</span></label>
+            <label class="option"><input type="checkbox" name="q20" value="B"><span class="answer-label">B. 100 minut</span></label>
+            <label class="option"><input type="checkbox" name="q20" value="C"><span class="answer-label">C. 120 minut</span></label>
+            <label class="option"><input type="checkbox" name="q20" value="D"><span class="answer-label">D. 800 minut</span></label>
+        </div>
+
+        <!-- Zadanie 21 -->
+        <div class="question-card">
+            <div class="question-title">21. Liczby większe od 47 to:<span class="question-note">wielokrotny wybór</span></div>
+            <label class="option"><input type="checkbox" name="q21" value="A"><span class="answer-label">A. XXVIII</span></label>
+            <label class="option"><input type="checkbox" name="q21" value="B"><span class="answer-label">B. L</span></label>
+            <label class="option"><input type="checkbox" name="q21" value="C"><span class="answer-label">C. XLIX</span></label>
+            <label class="option"><input type="checkbox" name="q21" value="D"><span class="answer-label">D. XXIII</span></label>
+        </div>
+
+        <!-- Zadanie 22 -->
+        <div class="question-card">
+            <div class="question-title">22. Które nierówności są prawidłowe?<span class="question-note">wielokrotny wybór</span></div>
+            <label class="option"><input type="checkbox" name="q22" value="A"><span class="answer-label">A. $1548 - 500 > 1000$</span></label>
+            <label class="option"><input type="checkbox" name="q22" value="B"><span class="answer-label">B. $2400 : 600 > 5$</span></label>
+            <label class="option"><input type="checkbox" name="q22" value="C"><span class="answer-label">C. $4874 - 800 > 5000$</span></label>
+            <label class="option"><input type="checkbox" name="q22" value="D"><span class="answer-label">D. $250 : 50 < 60$</span></label>
+        </div>
+
+        <!-- Zadanie 23 -->
+        <div class="question-card">
+            <div class="question-title">23. Które liczby są większe od 0,4?<span class="question-note">wielokrotny wybór</span></div>
+            <label class="option"><input type="checkbox" name="q23" value="A"><span class="answer-label">A. 0,397</span></label>
+            <label class="option"><input type="checkbox" name="q23" value="B"><span class="answer-label">B. 0,401</span></label>
+            <label class="option"><input type="checkbox" name="q23" value="C"><span class="answer-label">C. 0,098</span></label>
+            <label class="option"><input type="checkbox" name="q23" value="D"><span class="answer-label">D. 0,674</span></label>
+        </div>
+
+        <!-- Zadanie 24 -->
+        <div class="question-card">
+            <div class="question-title">24. Które działania dają wynik 25?<span class="question-note">wielokrotny wybór</span></div>
+            <label class="option"><input type="checkbox" name="q24" value="A"><span class="answer-label">A. $1600 : 64$</span></label>
+            <label class="option"><input type="checkbox" name="q24" value="B"><span class="answer-label">B. $5^2$</span></label>
+            <label class="option"><input type="checkbox" name="q24" value="C"><span class="answer-label">C. $125 : 25$</span></label>
+            <label class="option"><input type="checkbox" name="q24" value="D"><span class="answer-label">D. $625 - 500$</span></label>
+        </div>
+
+        <!-- Zadanie 25 -->
+        <div class="question-card">
+            <div class="question-title">25. Ćwierć kilograma to inaczej:<span class="question-note">wielokrotny wybór</span></div>
+            <label class="option"><input type="checkbox" name="q25" value="A"><span class="answer-label">A. 250 g</span></label>
+            <label class="option"><input type="checkbox" name="q25" value="B"><span class="answer-label">B. 25 dag</span></label>
+            <label class="option"><input type="checkbox" name="q25" value="C"><span class="answer-label">C. 0,25 kg</span></label>
+            <label class="option"><input type="checkbox" name="q25" value="D"><span class="answer-label">D. 2,5 kg</span></label>
+        </div>
+
+        <!-- Zadanie 26 -->
+        <div class="question-card">
+            <div class="question-title">26. Które lata były w XIV wieku?</div>
+            <label class="option"><input type="checkbox" name="q26" value="A"><span class="answer-label">A. 1300</span></label>
+            <label class="option"><input type="checkbox" name="q26" value="B"><span class="answer-label">B. 1301</span></label>
+            <label class="option"><input type="checkbox" name="q26" value="C"><span class="answer-label">C. 1299</span></label>
+            <label class="option"><input type="checkbox" name="q26" value="D"><span class="answer-label">D. 1400</span></label>
+        </div>
+
+        <!-- Zadanie 27 -->
+        <div class="question-card">
+            <div class="question-title">27. Nieparzyste wyniki dają działania:</div>
+            <label class="option"><input type="checkbox" name="q27" value="A"><span class="answer-label">A. $444 : 44$</span></label>
+            <label class="option"><input type="checkbox" name="q27" value="B"><span class="answer-label">B. $150 : 150$</span></label>
+            <label class="option"><input type="checkbox" name="q27" value="C"><span class="answer-label">C. $24 : 4$</span></label>
+            <label class="option"><input type="checkbox" name="q27" value="D"><span class="answer-label">D. $400 : 50$</span></label>
+        </div>
+
+        <!-- Zadanie 28 -->
+        <div class="question-card">
+            <div class="question-title">28. Odcinek o długości 2 cm narysowany w skali 100 : 1 będzie miał długość:</div>
+            <label class="option"><input type="checkbox" name="q28" value="A"><span class="answer-label">A. 120 cm</span></label>
+            <label class="option"><input type="checkbox" name="q28" value="B"><span class="answer-label">B. 1,2 m</span></label>
+            <label class="option"><input type="checkbox" name="q28" value="C"><span class="answer-label">C. 200 cm</span></label>
+            <label class="option"><input type="checkbox" name="q28" value="D"><span class="answer-label">D. 2 m</span></label>
+        </div>
+
+        <!-- Zadanie 29 -->
+        <div class="question-card">
+            <div class="question-title">29. Które kąty mogą być kątami równoległoboku?</div>
+            <label class="option"><input type="checkbox" name="q29" value="A"><span class="answer-label">A. $100^\circ, 100^\circ, 20^\circ, 20^\circ$</span></label>
+            <label class="option"><input type="checkbox" name="q29" value="B"><span class="answer-label">B. $135^\circ, 135^\circ, 45^\circ, 45^\circ$</span></label>
+            <label class="option"><input type="checkbox" name="q29" value="C"><span class="answer-label">C. $165^\circ, 165^\circ, 15^\circ, 15^\circ$</span></label>
+            <label class="option"><input type="checkbox" name="q29" value="D"><span class="answer-label">D. $88^\circ, 88^\circ, 12^\circ, 12^\circ$</span></label>
+        </div>
+
+        <div class="exam-actions">
+            <button onclick="checkQuiz()">Sprawdź wynik</button>
+            <div id="result"></div>
+        </div>
     </div>
-
-    <!-- Zadanie 2 -->
-    <div class="question-card">
-        <div class="question-title">2. Iloczyn $5 \cdot 5 \cdot 5 \cdot 5$ możemy zapisać w postaci:</div>
-        <label class="option"><input type="checkbox" name="q2" value="A"> A. $5^4$</label>
-        <label class="option"><input type="checkbox" name="q2" value="B"> B. $5^5$</label>
-        <label class="option"><input type="checkbox" name="q2" value="C"> C. $55^2$</label>
-        <label class="option"><input type="checkbox" name="q2" value="D"> D. $4^5$</label>
-    </div>
-
-    <!-- Zadanie 3 -->
-    <div class="question-card">
-        <div class="question-title">3. Jeśli średnica okręgu ma długość 10 dm, to długość jego promienia wynosi:</div>
-        <label class="option"><input type="checkbox" name="q3" value="A"> A. 40 dm</label>
-        <label class="option"><input type="checkbox" name="q3" value="B"> B. 20 dm</label>
-        <label class="option"><input type="checkbox" name="q3" value="C"> C. 10 dm</label>
-        <label class="option"><input type="checkbox" name="q3" value="D"> D. 5 dm</label>
-    </div>
-
-    <!-- Zadanie 4 -->
-    <div class="question-card">
-        <div class="question-title">4. Długość odcinka AB w skali 3 : 1 wynosi 4 cm, wobec tego ten odcinek w rzeczywistości ma długość:</div>
-        <label class="option"><input type="checkbox" name="q4" value="A"> A. 3 cm</label>
-        <label class="option"><input type="checkbox" name="q4" value="B"> B. 4 cm</label>
-        <label class="option"><input type="checkbox" name="q4" value="C"> C. 12 cm</label>
-        <label class="option"><input type="checkbox" name="q4" value="D"> D. 34 cm</label>
-    </div>
-
-    <!-- Zadanie 5 -->
-    <div class="question-card">
-        <div class="question-title">5. Obwód narysowanego trójkąta (boki: 1 dm, 6 cm, 8 cm) wynosi:</div>
-        <label class="option"><input type="checkbox" name="q5" value="A"> A. 14 cm</label>
-        <label class="option"><input type="checkbox" name="q5" value="B"> B. 15 cm</label>
-        <label class="option"><input type="checkbox" name="q5" value="C"> C. 24 cm</label>
-        <label class="option"><input type="checkbox" name="q5" value="D"> D. 48 cm</label>
-    </div>
-
-    <!-- Zadanie 6 -->
-    <div class="question-card">
-        <div class="question-title">6. Kąt o mierze $89^\circ$ jest:</div>
-        <label class="option"><input type="checkbox" name="q6" value="A"> A. kątem ostrym</label>
-        <label class="option"><input type="checkbox" name="q6" value="B"> B. kątem prostym</label>
-        <label class="option"><input type="checkbox" name="q6" value="C"> C. kątem rozwartym</label>
-        <label class="option"><input type="checkbox" name="q6" value="D"> D. kątem półpełnym</label>
-    </div>
-
-    <!-- Zadanie 7 -->
-    <div class="question-card">
-        <div class="question-title">7. Pole kwadratu o obwodzie 16 cm wynosi:</div>
-        <label class="option"><input type="checkbox" name="q7" value="A"> A. $16\text{ cm}^2$</label>
-        <label class="option"><input type="checkbox" name="q7" value="B"> B. $8\text{ cm}^2$</label>
-        <label class="option"><input type="checkbox" name="q7" value="C"> C. $64\text{ cm}^2$</label>
-        <label class="option"><input type="checkbox" name="q7" value="D"> D. $32\text{ cm}^2$</label>
-    </div>
-
-    <!-- Zadanie 8 -->
-    <div class="question-card">
-        <div class="question-title">8. Odległość w rzeczywistości wynosi 2000 cm, w skali 1 : 100 ta odległość będzie miała długość:</div>
-        <label class="option"><input type="checkbox" name="q8" value="A"> A. 2 cm</label>
-        <label class="option"><input type="checkbox" name="q8" value="B"> B. 20 cm</label>
-        <label class="option"><input type="checkbox" name="q8" value="C"> C. 2000 cm</label>
-        <label class="option"><input type="checkbox" name="q8" value="D"> D. 200000 cm</label>
-    </div>
-
-    <!-- Zadanie 9 -->
-    <div class="question-card">
-        <div class="question-title">9. 250 minut to:</div>
-        <label class="option"><input type="checkbox" name="q9" value="A"> A. 2 godziny i 5 minut</label>
-        <label class="option"><input type="checkbox" name="q9" value="B"> B. 2 godziny i 10 minut</label>
-        <label class="option"><input type="checkbox" name="q9" value="C"> C. 2 godziny i 50 minut</label>
-        <label class="option"><input type="checkbox" name="q9" value="D"> D. 4 godziny i 10 minut</label>
-    </div>
-
-    <!-- Zadanie 10 -->
-    <div class="question-card">
-        <div class="question-title">10. Liczba 5 razy mniejsza od 555 to:</div>
-        <label class="option"><input type="checkbox" name="q10" value="A"> A. 500</label>
-        <label class="option"><input type="checkbox" name="q10" value="B"> B. 111</label>
-        <label class="option"><input type="checkbox" name="q10" value="C"> C. 155</label>
-        <label class="option"><input type="checkbox" name="q10" value="D"> D. 550</label>
-    </div>
-
-    <!-- Zadanie 11 -->
-    <div class="question-card">
-        <div class="question-title">11. Różnica największej dwucyfrowej liczby i najmniejszej dwucyfrowej wynosi:</div>
-        <label class="option"><input type="checkbox" name="q11" value="A"> A. 89</label>
-        <label class="option"><input type="checkbox" name="q11" value="B"> B. 100</label>
-        <label class="option"><input type="checkbox" name="q11" value="C"> C. 110</label>
-        <label class="option"><input type="checkbox" name="q11" value="D"> D. 989</label>
-    </div>
-
-    <!-- Zadanie 12 -->
-    <div class="question-card">
-        <div class="question-title">12. Kwadrat liczby 9 pomniejszony o 9 wynosi:</div>
-        <label class="option"><input type="checkbox" name="q12" value="A"> A. 0</label>
-        <label class="option"><input type="checkbox" name="q12" value="B"> B. 9</label>
-        <label class="option"><input type="checkbox" name="q12" value="C"> C. 72</label>
-        <label class="option"><input type="checkbox" name="q12" value="D"> D. 81</label>
-    </div>
-
-    <!-- Zadanie 13 -->
-    <div class="question-card">
-        <div class="question-title">13. Wynik działania $1\frac{2}{17} + 2\frac{3}{17}$ (lub analogiczny) wynosi:</div>
-        <label class="option"><input type="checkbox" name="q13" value="A"> A. $1\frac{1}{68}$</label>
-        <label class="option"><input type="checkbox" name="q13" value="B"> B. $3\frac{5}{17}$</label>
-        <label class="option"><input type="checkbox" name="q13" value="C"> C. $1\frac{1}{13}$</label>
-        <label class="option"><input type="checkbox" name="q13" value="D"> D. 13</label>
-    </div>
-
-    <!-- Zadanie 14 -->
-    <div class="question-card">
-        <div class="question-title">14. Wspólną wielokrotnością liczb 2, 3 oraz 8 jest:</div>
-        <label class="option"><input type="checkbox" name="q14" value="A"> A. 238</label>
-        <label class="option"><input type="checkbox" name="q14" value="B"> B. 13</label>
-        <label class="option"><input type="checkbox" name="q14" value="C"> C. 24</label>
-        <label class="option"><input type="checkbox" name="q14" value="D"> D. 832</label>
-    </div>
-
-    <!-- Zadanie 15 -->
-    <div class="question-card">
-        <div class="question-title">15. Iloraz liczb 250 i 50 wynosi:</div>
-        <label class="option"><input type="checkbox" name="q15" value="A"> A. 50</label>
-        <label class="option"><input type="checkbox" name="q15" value="B"> B. 5</label>
-        <label class="option"><input type="checkbox" name="q15" value="C"> C. 300</label>
-        <label class="option"><input type="checkbox" name="q15" value="D"> D. 750</label>
-    </div>
-
-    <!-- Zadanie 16 -->
-    <div class="question-card">
-        <div class="question-title">16. Obwód podanego trójkąta (boki: 25 cm, 25 cm, 13 cm) wynosi:</div>
-        <label class="option"><input type="checkbox" name="q16" value="A"> A. 38 cm</label>
-        <label class="option"><input type="checkbox" name="q16" value="B"> B. 50 cm</label>
-        <label class="option"><input type="checkbox" name="q16" value="C"> C. 63 cm</label>
-        <label class="option"><input type="checkbox" name="q16" value="D"> D. 75 cm</label>
-    </div>
-
-    <!-- Zadanie 17 -->
-    <div class="question-card">
-        <div class="question-title">17. Liczba setek w sumie liczb 187 i 113 wynosi:</div>
-        <label class="option"><input type="checkbox" name="q17" value="A"> A. 1</label>
-        <label class="option"><input type="checkbox" name="q17" value="B"> B. 2</label>
-        <label class="option"><input type="checkbox" name="q17" value="C"> C. 3</label>
-        <label class="option"><input type="checkbox" name="q17" value="D"> D. 4</label>
-    </div>
-
-    <!-- Zadanie 18 -->
-    <div class="question-card">
-        <div class="question-title">18. Wynikiem działania $10 - 4 : 2$ jest liczba:</div>
-        <label class="option"><input type="checkbox" name="q18" value="A"> A. 3</label>
-        <label class="option"><input type="checkbox" name="q18" value="B"> B. 6</label>
-        <label class="option"><input type="checkbox" name="q18" value="C"> C. 8</label>
-        <label class="option"><input type="checkbox" name="q18" value="D"> D. 10</label>
-    </div>
-
-    <!-- Zadanie 19 -->
-    <div class="question-card">
-        <div class="question-title">19. W sali kinowej jest dziesięć rzędów po 12 miejsc w każdym i 5 miejsc specjalnych. W tej sali jest:</div>
-        <label class="option"><input type="checkbox" name="q19" value="A"> A. 125 miejsc</label>
-        <label class="option"><input type="checkbox" name="q19" value="B"> B. 120 miejsc</label>
-        <label class="option"><input type="checkbox" name="q19" value="C"> C. 60 miejsc</label>
-        <label class="option"><input type="checkbox" name="q19" value="D"> D. 12 miejsc</label>
-    </div>
-
-    <!-- Zadanie 20 -->
-    <div class="question-card">
-        <div class="question-title">20. Osiem kwadransów to:</div>
-        <label class="option"><input type="checkbox" name="q20" value="A"> A. 80 minut</label>
-        <label class="option"><input type="checkbox" name="q20" value="B"> B. 100 minut</label>
-        <label class="option"><input type="checkbox" name="q20" value="C"> C. 120 minut</label>
-        <label class="option"><input type="checkbox" name="q20" value="D"> D. 800 minut</label>
-    </div>
-
-    <!-- Zadanie 21 -->
-    <div class="question-card">
-        <div class="question-title">21. Liczby większe od 47 to:</div>
-        <label class="option"><input type="checkbox" name="q21" value="A"> A. XXVIII</label>
-        <label class="option"><input type="checkbox" name="q21" value="B"> B. L</label>
-        <label class="option"><input type="checkbox" name="q21" value="C"> C. XLIX</label>
-        <label class="option"><input type="checkbox" name="q21" value="D"> D. XXIII</label>
-    </div>
-
-    <!-- Zadanie 22 -->
-    <div class="question-card">
-        <div class="question-title">22. Które nierówności są prawidłowe? (Wielokrotny wybór)</div>
-        <label class="option"><input type="checkbox" name="q22" value="A"> A. $1548 - 500 > 1000$</label>
-        <label class="option"><input type="checkbox" name="q22" value="B"> B. $2400 : 600 > 5$</label>
-        <label class="option"><input type="checkbox" name="q22" value="C"> C. $4874 - 800 > 5000$</label>
-        <label class="option"><input type="checkbox" name="q22" value="D"> D. $250 : 50 < 60$</label>
-    </div>
-
-    <!-- Zadanie 23 -->
-    <div class="question-card">
-        <div class="question-title">23. Które liczby są większe od 0,4? (Wielokrotny wybór)</div>
-        <label class="option"><input type="checkbox" name="q23" value="A"> A. 0,397</label>
-        <label class="option"><input type="checkbox" name="q23" value="B"> B. 0,401</label>
-        <label class="option"><input type="checkbox" name="q23" value="C"> C. 0,098</label>
-        <label class="option"><input type="checkbox" name="q23" value="D"> D. 0,674</label>
-    </div>
-
-    <!-- Zadanie 24 -->
-    <div class="question-card">
-        <div class="question-title">24. Które działania dają wynik 25? (Wielokrotny wybór)</div>
-        <label class="option"><input type="checkbox" name="q24" value="A"> A. $1600 : 64$</label>
-        <label class="option"><input type="checkbox" name="q24" value="B"> B. $5^2$</label>
-        <label class="option"><input type="checkbox" name="q24" value="C"> C. $125 : 25$</label>
-        <label class="option"><input type="checkbox" name="q24" value="D"> D. $625 - 500$</label>
-    </div>
-
-    <!-- Zadanie 25 -->
-    <div class="question-card">
-        <div class="question-title">25. Ćwierć kilograma to inaczej:</div>
-        <label class="option"><input type="checkbox" name="q25" value="A"> A. 250 g</label>
-        <label class="option"><input type="checkbox" name="q25" value="B"> B. 25 dag</label>
-        <label class="option"><input type="checkbox" name="q25" value="C"> C. 0,25 kg</label>
-        <label class="option"><input type="checkbox" name="q25" value="D"> D. 2,5 kg</label>
-    </div>
-
-    <!-- Zadanie 26 -->
-    <div class="question-card">
-        <div class="question-title">26. Które lata były w XIV wieku?</div>
-        <label class="option"><input type="checkbox" name="q26" value="A"> A. 1300</label>
-        <label class="option"><input type="checkbox" name="q26" value="B"> B. 1301</label>
-        <label class="option"><input type="checkbox" name="q26" value="C"> C. 1299</label>
-        <label class="option"><input type="checkbox" name="q26" value="D"> D. 1400</label>
-    </div>
-
-    <!-- Zadanie 27 -->
-    <div class="question-card">
-        <div class="question-title">27. Nieparzyste wyniki dają działania:</div>
-        <label class="option"><input type="checkbox" name="q27" value="A"> A. $444 : 44$</label>
-        <label class="option"><input type="checkbox" name="q27" value="B"> B. $150 : 150$</label>
-        <label class="option"><input type="checkbox" name="q27" value="C"> C. $24 : 4$</label>
-        <label class="option"><input type="checkbox" name="q27" value="D"> D. $400 : 50$</label>
-    </div>
-
-    <!-- Zadanie 28 -->
-    <div class="question-card">
-        <div class="question-title">28. Odcinek o długości 2 cm narysowany w skali 100 : 1 będzie miał długość:</div>
-        <label class="option"><input type="checkbox" name="q28" value="A"> A. 120 cm</label>
-        <label class="option"><input type="checkbox" name="q28" value="B"> B. 1,2 m</label>
-        <label class="option"><input type="checkbox" name="q28" value="C"> C. 200 cm</label>
-        <label class="option"><input type="checkbox" name="q28" value="D"> D. 2 m</label>
-    </div>
-
-    <!-- Zadanie 29 -->
-    <div class="question-card">
-        <div class="question-title">29. Które kąty mogą być kątami równoległoboku?</div>
-        <label class="option"><input type="checkbox" name="q29" value="A"> A. $100^\circ, 100^\circ, 20^\circ, 20^\circ$</label>
-        <label class="option"><input type="checkbox" name="q29" value="B"> B. $135^\circ, 135^\circ, 45^\circ, 45^\circ$</label>
-        <label class="option"><input type="checkbox" name="q29" value="C"> C. $165^\circ, 165^\circ, 15^\circ, 15^\circ$</label>
-        <label class="option"><input type="checkbox" name="q29" value="D"> D. $88^\circ, 88^\circ, 12^\circ, 12^\circ$</label>
-    </div>
-
-    <button onclick="checkQuiz()">Sprawdź wynik</button>
-    <div id="result"></div>
 
     <script>
+        const multiSelectQuestions = new Set(['q21', 'q22', 'q23', 'q24', 'q25']);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('input[name^="q"]').forEach(function (input) {
+                const questionId = input.name;
+                const isMulti = multiSelectQuestions.has(questionId);
+                input.type = isMulti ? 'checkbox' : 'radio';
+            });
+        });
+
         function checkQuiz() {
             const correctAnswers = {
                 q1: ['C'],
@@ -379,22 +521,35 @@
 
             let score = 0;
             let totalQuestions = Object.keys(correctAnswers).length;
+            let details = '';
 
-            for (let q in correctAnswers) {
-                const checkboxes = document.querySelectorAll(`input[name="${q}"]:checked`);
-                const userSelected = Array.from(checkboxes).map(cb => cb.value);
-
-                const isCorrect = correctAnswers[q].length === userSelected.length &&
-                                  correctAnswers[q].every(val => userSelected.includes(val));
+            for (const q in correctAnswers) {
+                const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`)).map(el => el.value);
+                const expected = correctAnswers[q];
+                const isCorrect = expected.length === selected.length && expected.every(val => selected.includes(val));
 
                 if (isCorrect) {
                     score++;
                 }
+
+                const questionText = q.replace('q', 'Pytanie ');
+                details += `<div>${questionText}: ${isCorrect ? '✔' : '✘'}</div>`;
             }
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
+            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!<div class="result-summary">${details}</div>`;
+
+            const allQuestions = Array.from(document.querySelectorAll('.question-card'));
+            allQuestions.forEach(card => {
+                const name = card.querySelector('input')?.name;
+                if (!name) return;
+                const selected = Array.from(card.querySelectorAll(`input[name="${name}"]:checked`));
+                const expected = correctAnswers[name] || [];
+                const isCorrect = expected.length === selected.length && expected.every(val => selected.includes(val));
+                card.style.borderLeftColor = isCorrect ? 'var(--success)' : 'var(--danger)';
+                card.style.background = isCorrect ? '#f3fff8' : '#fff7f7';
+            });
         }
     </script>
 </body>
