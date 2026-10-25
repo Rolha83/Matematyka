@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon - Matematyka Klasa I (Wiosna 2024)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question-card {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        .option {
+            margin: 8px 0;
+            display: block;
+            cursor: pointer;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f8f5;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Leon - Matematyka Klasa I (Wiosna 2024)</h1>
+
+    <!-- Zadanie 1 -->
+    <div class="question-card">
+        <div class="question-title">1. Ile to tygodni i dni? (12 dni)[span_6](start_span)[span_6](end_span)</div>
+        <label class="option"><input type="checkbox" name="q1" value="A"> 1 tydzień i 4 dni[span_7](start_span)[span_7](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="B"> 1 tydzień i 5 dni[span_8](start_span)[span_8](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="C"> 1 tydzień i 6 dni[span_9](start_span)[span_9](end_span)</label>
+        <label class="option"><input type="checkbox" name="q1" value="D"> 2 tygodnie[span_10](start_span)[span_10](end_span)</label>
+    </div>
+
+    <!-- Zadanie 2 -->
+    <div class="question-card">
+        <div class="question-title">2. Asia ma jedenaście lat. Ile lat będzie miała za dziewięć lat?[span_11](start_span)[span_11](end_span)</div>
+        <label class="option"><input type="checkbox" name="q2" value="A"> 19 lat[span_12](start_span)[span_12](end_span)</label>
+        <label class="option"><input type="checkbox" name="q2" value="B"> 20 lat[span_13](start_span)[span_13](end_span)</label>
+        <label class="option"><input type="checkbox" name="q2" value="C"> 18 lat[span_14](start_span)[span_14](end_span)</label>
+        <label class="option"><input type="checkbox" name="q2" value="D"> 11 lat[span_15](start_span)[span_15](end_span)</label>
+    </div>
+
+    <!-- Zadanie 3 -->
+    <div class="question-card">
+        <div class="question-title">3. Jest godzina 19.45. Jaką godzinę wskaże zegar za kwadrans?[span_16](start_span)[span_16](end_span)</div>
+        <label class="option"><input type="checkbox" name="q3" value="A"> 19.30[span_17](start_span)[span_17](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="B"> 20.15[span_18](start_span)[span_18](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="C"> 20.00[span_19](start_span)[span_19](end_span)</label>
+        <label class="option"><input type="checkbox" name="q3" value="D"> 19.15[span_20](start_span)[span_20](end_span)</label>
+    </div>
+
+    <!-- Zadanie 4 -->
+    <div class="question-card">
+        <div class="question-title">4. Wskaż prawidłowe odpowiedzi (Doba, Rok, 1 złoty):[span_21](start_span)[span_21](end_span)</div>
+        <div style="font-size: 14px; color: #666; margin-bottom: 5px;">Zaznacz po jednym prawidłowym zdaniu z każdej grupy w teście oryginalnym, tutaj zaznacz właściwe opcje:</div>
+        <label class="option"><input type="checkbox" name="q4" value="A"> Doba to 24 godziny[span_22](start_span)[span_22](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="B"> Doba to 12 godzin</label>
+        <label class="option"><input type="checkbox" name="q4" value="C"> Rok ma 4 kwartały[span_23](start_span)[span_23](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="D"> Rok ma 2 kwartały[span_24](start_span)[span_24](end_span)</label>
+        <label class="option"><input type="checkbox" name="q4" value="E"> 1 złoty to 100 groszy[span_25](start_span)[span_25](end_span)</label>
+    </div>
+
+    <!-- Zadanie 5 -->
+    <div class="question-card">
+        <div class="question-title">5. Ustal, jakie wartości ukryły się pod motylkami: = 13+6, = 20-8, 17-6=[span_26](start_span)[span_26](end_span)</div>
+        <label class="option"><input type="checkbox" name="q5" value="A"> 19, 12, 11[span_27](start_span)[span_27](end_span)</label>
+        <label class="option"><input type="checkbox" name="q5" value="B"> 18, 11, 10[span_28](start_span)[span_28](end_span)</label>
+        <label class="option"><input type="checkbox" name="q5" value="C"> 20, 13, 12[span_29](start_span)[span_29](end_span)</label>
+    </div>
+
+    <!-- Zadanie 6 -->
+    <div class="question-card">
+        <div class="question-title">6. Jaka liczba ukryła się pod kwiatkiem? ($... + 4 = 18$ lub pokrewne)[span_30](start_span)[span_30](end_span)</div>
+        <label class="option"><input type="checkbox" name="q6" value="A"> 14[span_31](start_span)[span_31](end_span)</label>
+        <label class="option"><input type="checkbox" name="q6" value="B"> 12</label>
+        <label class="option"><input type="checkbox" name="q6" value="C"> 15</label>
+    </div>
+
+    <!-- Zadanie 7 -->
+    <div class="question-card">
+        <div class="question-title">7. Jaka liczba ukryła się pod słoneczkiem? ($8+2+9=20$ / brakująca część)[span_32](start_span)[span_32](end_span)</div>
+        <label class="option"><input type="checkbox" name="q7" value="A"> 19[span_33](start_span)[span_33](end_span)</label>
+        <label class="option"><input type="checkbox" name="q7" value="B"> 10[span_34](start_span)[span_34](end_span)</label>
+        <label class="option"><input type="checkbox" name="q7" value="C"> 1[span_35](start_span)[span_35](end_span)</label>
+    </div>
+
+    <!-- Zadanie 8 -->
+    <div class="question-card">
+        <div class="question-title">8. Ile to miesięcy? 2 kwartały[span_36](start_span)[span_36](end_span)</div>
+        <label class="option"><input type="checkbox" name="q8" value="A"> 3 miesiące[span_37](start_span)[span_37](end_span)</label>
+        <label class="option"><input type="checkbox" name="q8" value="B"> 6 miesięcy[span_38](start_span)[span_38](end_span)</label>
+        <label class="option"><input type="checkbox" name="q8" value="C"> 12 miesięcy[span_39](start_span)[span_39](end_span)</label>
+    </div>
+
+    <!-- Zadanie 9 -->
+    <div class="question-card">
+        <div class="question-title">9. Przedstaw liczbę 15 jako sumę trzech składników[span_40](start_span)[span_40](end_span):</div>
+        <label class="option"><input type="checkbox" name="q9" value="A"> $5+5+5$[span_41](start_span)[span_41](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="B"> $15+0+1$[span_42](start_span)[span_42](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="C"> $10+4+1$[span_43](start_span)[span_43](end_span)</label>
+        <label class="option"><input type="checkbox" name="q9" value="D"> $3+4+8$[span_44](start_span)[span_44](end_span)</label>
+    </div>
+
+    <!-- Zadanie 10 -->
+    <div class="question-card">
+        <div class="question-title">10. Każdy kwiatek zastępuje tę samą liczbę. $12 - ... = 4$. Jaka to liczba?[span_45](start_span)[span_45](end_span)[span_46](start_span)[span_46](end_span)</div>
+        <label class="option"><input type="checkbox" name="q10" value="A"> 3[span_47](start_span)[span_47](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="B"> 5[span_48](start_span)[span_48](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="C"> 8[span_49](start_span)[span_49](end_span)</label>
+        <label class="option"><input type="checkbox" name="q10" value="D"> 4[span_50](start_span)[span_50](end_span)</label>
+    </div>
+
+    <!-- Zadanie 11 -->
+    <div class="question-card">
+        <div class="question-title">11. Wstaw odpowiedni znak: $<, =, >$ dla działań (np. $13+8 \dots 14+9$)[span_51](start_span)[span_51](end_span)</div>
+        <label class="option"><input type="checkbox" name="q11" value="A"> <[span_52](start_span)[span_52](end_span)</label>
+        <label class="option"><input type="checkbox" name="q11" value="B"> =[span_53](start_span)[span_53](end_span)</label>
+        <label class="option"><input type="checkbox" name="q11" value="C"> >[span_54](start_span)[span_54](end_span)</label>
+    </div>
+
+    <!-- Zadanie 12 -->
+    <div class="question-card">
+        <div class="question-title">12. Wskaż dziesiątki sąsiadujące z liczbą 20[span_55](start_span)[span_55](end_span)</div>
+        <label class="option"><input type="checkbox" name="q12" value="A"> 5, 45[span_56](start_span)[span_56](end_span)</label>
+        <label class="option"><input type="checkbox" name="q12" value="B"> 10, 30[span_57](start_span)[span_57](end_span)</label>
+        <label class="option"><input type="checkbox" name="q12" value="C"> 40, 60[span_58](start_span)[span_58](end_span)</label>
+    </div>
+
+    <!-- Zadanie 13 -->
+    <div class="question-card">
+        <div class="question-title">13. Zaznacz prawidłową odpowiedź: $24 : 6 = \dots$[span_59](start_span)[span_59](end_span)</div>
+        <label class="option"><input type="checkbox" name="q13" value="A"> siedem[span_60](start_span)[span_60](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="B"> cztery[span_61](start_span)[span_61](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="C"> trzy[span_62](start_span)[span_62](end_span)</label>
+        <label class="option"><input type="checkbox" name="q13" value="D"> pięć[span_63](start_span)[span_63](end_span)</label>
+    </div>
+
+    <!-- Zadanie 14 -->
+    <div class="question-card">
+        <div class="question-title">14. Jaka to liczba? Sześć jedności i dwie dziesiątki[span_64](start_span)[span_64](end_span)</div>
+        <label class="option"><input type="checkbox" name="q14" value="A"> 62[span_65](start_span)[span_65](end_span)</label>
+        <label class="option"><input type="checkbox" name="q14" value="B"> 26[span_66](start_span)[span_66](end_span)</label>
+        <label class="option"><input type="checkbox" name="q14" value="C"> 61[span_67](start_span)[span_67](end_span)</label>
+    </div>
+
+    <!-- Zadanie 15 -->
+    <div class="question-card">
+        <div class="question-title">15. Wskaż zbiór, w którym znajdują się liczby parzyste[span_68](start_span)[span_68](end_span)</div>
+        <label class="option"><input type="checkbox" name="q15" value="A"> Zbiór z nieparzystymi</label>
+        <label class="option"><input type="checkbox" name="q15" value="B"> Zbiór zawierający np. 4, 6, 0, 8, 2[span_69](start_span)[span_69](end_span)</label>
+    </div>
+
+    <!-- Zadanie 16 -->
+    <div class="question-card">
+        <div class="question-title">16. Liczba 6 jest o 8 mniejsza od liczby:[span_70](start_span)[span_70](end_span)</div>
+        <label class="option"><input type="checkbox" name="q16" value="A"> 2[span_71](start_span)[span_71](end_span)</label>
+        <label class="option"><input type="checkbox" name="q16" value="B"> 14[span_72](start_span)[span_72](end_span)</label>
+        <label class="option"><input type="checkbox" name="q16" value="C"> 16[span_73](start_span)[span_73](end_span)</label>
+    </div>
+
+    <!-- Zadanie 17 -->
+    <div class="question-card">
+        <div class="question-title">17. Zaznacz błędne obliczenie[span_74](start_span)[span_74](end_span)</div>
+        <label class="option"><input type="checkbox" name="q17" value="A"> $19 + 2 = 20$ (błędne)[span_75](start_span)[span_75](end_span)</label>
+        <label class="option"><input type="checkbox" name="q17" value="B"> Inne prawidłowe działania</label>
+    </div>
+
+    <!-- Zadanie 18 -->
+    <div class="question-card">
+        <div class="question-title">18. Jaką liczbę zakryła biedronka? ($13 + \dots = 25$ lub $... + 17 = 31$)[span_76](start_span)[span_76](end_span)</div>
+        <label class="option"><input type="checkbox" name="q18" value="A"> 12[span_77](start_span)[span_77](end_span)</label>
+        <label class="option"><input type="checkbox" name="q18" value="B"> 14[span_78](start_span)[span_78](end_span)</label>
+        <label class="option"><input type="checkbox" name="q18" value="C"> 10[span_79](start_span)[span_79](end_span)</label>
+    </div>
+
+    <!-- Zadanie 19 -->
+    <div class="question-card">
+        <div class="question-title">19. Wskaż sumę i różnicę liczb pasującą do rysunku / treści[span_80](start_span)[span_80](end_span)</div>
+        <label class="option"><input type="checkbox" name="q19" value="A"> $14 + 6 = 20$[span_81](start_span)[span_81](end_span)</label>
+        <label class="option"><input type="checkbox" name="q19" value="B"> $9 + 7$[span_82](start_span)[span_82](end_span)</label>
+    </div>
+
+    <!-- Zadanie 20 -->
+    <div class="question-card">
+        <div class="question-title">20. Dodaj składniki i oblicz sumę (np. $38 + 5$ lub pokrewne)[span_83](start_span)[span_83](end_span)</div>
+        <label class="option"><input type="checkbox" name="q20" value="A"> 43[span_84](start_span)[span_84](end_span)</label>
+        <label class="option"><input type="checkbox" name="q20" value="B"> 385[span_85](start_span)[span_85](end_span)</label>
+    </div>
+
+    <!-- Zadanie 21 -->
+    <div class="question-card">
+        <div class="question-title">21. Wskaż działania, których wyniki są liczbami nieparzystymi[span_86](start_span)[span_86](end_span)</div>
+        <label class="option"><input type="checkbox" name="q21" value="A"> $27 + 16 = \dots$[span_87](start_span)[span_87](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="B"> $33 + 19 = \dots$[span_88](start_span)[span_88](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="C"> $26 + 18 = \dots$[span_89](start_span)[span_89](end_span)</label>
+        <label class="option"><input type="checkbox" name="q21" value="D"> $49 + 16 = \dots$[span_90](start_span)[span_90](end_span)</label>
+    </div>
+
+    <!-- Zadanie 22 -->
+    <div class="question-card">
+        <div class="question-title">22. Ola i Sylwia mają razem 20 lat. Ola jest o 4 lata starsza od Sylwii[span_91](start_span)[span_91](end_span).</div>
+        <label class="option"><input type="checkbox" name="q22" value="A"> Ola ma 12 lat, Sylwia ma 8 lat[span_92](start_span)[span_92](end_span)</label>
+        <label class="option"><input type="checkbox" name="q22" value="B"> Ola ma 14 lat, Sylwia ma 6 lat</label>
+    </div>
+
+    <!-- Zadanie 23 -->
+    <div class="question-card">
+        <div class="question-title">23. Wskaż działanie pasujące do schematu (wynik 17)[span_93](start_span)[span_93](end_span)</div>
+        <label class="option"><input type="checkbox" name="q23" value="A"> $15 - 3 + 5$[span_94](start_span)[span_94](end_span)</label>
+        <label class="option"><input type="checkbox" name="q23" value="B"> $10 - 2 + 9$[span_95](start_span)[span_95](end_span)</label>
+        <label class="option"><input type="checkbox" name="q23" value="C"> $25 - 9 + 1$[span_96](start_span)[span_96](end_span)</label>
+    </div>
+
+    <!-- Zadanie 24 -->
+    <div class="question-card">
+        <div class="question-title">24. Mama Kasi kupiła 7 jabłek, 3 marchewki i 2 banany. Ile razem owoców?[span_97](start_span)[span_97](end_span)</div>
+        <label class="option"><input type="checkbox" name="q24" value="A"> 9[span_98](start_span)[span_98](end_span)</label>
+        <label class="option"><input type="checkbox" name="q24" value="B"> 12[span_99](start_span)[span_99](end_span)</label>
+        <label class="option"><input type="checkbox" name="q24" value="C"> 9 owoców (jabłka + banany = 9)</label>
+    </div>
+
+    <!-- Zadanie 25 -->
+    <div class="question-card">
+        <div class="question-title">25. Jeżeli do liczby 16 dodasz tę liczbę, otrzymasz 25. Jaka to liczba?[span_100](start_span)[span_100](end_span)</div>
+        <label class="option"><input type="checkbox" name="q25" value="A"> 41[span_101](start_span)[span_101](end_span)</label>
+        <label class="option"><input type="checkbox" name="q25" value="B"> 9[span_102](start_span)[span_102](end_span)</label>
+        <label class="option"><input type="checkbox" name="q25" value="C"> 8[span_103](start_span)[span_103](end_span)</label>
+    </div>
+
+    <button onclick="checkQuiz()">Sprawdź wynik</button>
+    <div id="result"></div>
+
+    <script>
+        function checkQuiz() {
+            // Przykładowy słownik poprawnych odpowiedzi (możesz dostosować litery do klucza)
+            const correctAnswers = {
+                q1: ['B'], q2: ['B'], q3: ['C'], q4: ['A', 'C', 'E'], q5: ['A'],
+                q6: ['A'], q7: ['C'], q8: ['B'], q9: ['A'], q10: ['C'],
+                q11: ['A'], q12: ['B'], q13: ['B'], q14: ['B'], q15: ['B'],
+                q16: ['B'], q17: ['A'], q18: ['A'], q19: ['A'], q20: ['A'],
+                q21: ['A'], q22: ['A'], q23: ['B'], q24: ['C'], q25: ['B']
+            };
+
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+
+            for (let q in correctAnswers) {
+                const checkboxes = document.querySelectorAll(`input[name="${q}"]:checked`);
+                const userSelected = Array.from(checkboxes).map(cb => cb.value);
+                
+                const isCorrect = correctAnswers[q].length === userSelected.length && 
+                                  correctAnswers[q].every(val => userSelected.includes(val));
+
+                if (isCorrect) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
+        }
+    </script>
+</body>
+</html>
