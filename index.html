@@ -3,217 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konkurs Matematyczny Leon - Quiz Online</title>
+    <title>Matematyka Klasa IV - Wiosna 2024 (Test z autosprawdzaniem)</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f0f4f8; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 8px; }
-        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 24px; }
-        .class-select { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
-        .class-btn { padding: 10px 20px; border: 2px solid #3498db; background: white; color: #3498db; font-weight: bold; border-radius: 20px; cursor: pointer; transition: 0.2s; }
-        .class-btn.active, .class-btn:hover { background: #3498db; color: white; }
-        .quiz-card { background: #fafafa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
-        .question-title { font-size: 1.1em; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
-        .options { display: flex; flex-direction: column; gap: 10px; }
-        .option-btn { padding: 12px 15px; background: white; border: 1px solid #ccc; border-radius: 8px; text-align: left; cursor: pointer; font-size: 1em; transition: 0.2s; }
-        .option-btn:hover { background: #ebf5fb; border-color: #3498db; }
-        .option-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
-        .option-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-        .feedback { margin-top: 15px; padding: 10px; border-radius: 6px; display: none; font-size: 0.95em; }
-        .feedback.correct { background: #d4edda; color: #155724; }
-        .feedback.wrong { background: #f8d7da; color: #721c24; }
-        .nav-btns { display: flex; justify-content: space-between; margin-top: 20px; }
-        .nav-btn { padding: 10px 25px; background: #27ae60; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .nav-btn:disabled { background: #bdc3c7; cursor: not-allowed; }
-        .score-box { text-align: center; font-size: 1.3em; font-weight: bold; color: #2c3e50; margin-top: 20px; }
-        .hidden { display: none; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .header-section {
+            border: 2px solid #2c3e50;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .instruction {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        .field-group {
+            margin-bottom: 10px;
+        }
+        .field-group label {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+        .field-group input[type="text"] {
+            border: none;
+            border-bottom: 1px solid #333;
+            outline: none;
+            text-transform: uppercase;
+            width: 250px;
+            padding: 2px;
+            background: transparent;
+        }
+        .task {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 15px;
+        }
+        .task-title {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        .options {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .option-item {
+            margin-right: 15px;
+        }
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #219653;
+        }
+        #results {
+            background-color: #e8f8f5;
+            border: 2px solid #27ae60;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #c0392b;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🦁 Konkurs Matematyczny „Leon”</h1>
-    <div class="subtitle">Interaktywny Trening Online (Klasy I - IV)</div>
+    <h1>Matematyka Klasa IV - Wiosna 2024</h1>
 
-    <div class="class-select">
-        <button class="class-btn active" onclick="selectClass(1)">Klasa I</button>
-        <button class="class-btn" onclick="selectClass(2)">Klasa II</button>
-        <button class="class-btn" onclick="selectClass(3)">Klasa III</button>
-        <button class="class-btn" onclick="selectClass(4)">Klasa IV</button>
-    </div>
-
-    <div id="quiz-area">
-        <div class="quiz-card">
-            <div id="question-text" class="question-title">Ładowanie pytania...</div>
-            <div id="options-container" class="options"></div>
-            <div id="feedback" class="feedback"></div>
+    <div class="header-section">
+        <div class="instruction">Wypełnij DRUKOWANYMI literami.</div>
+        <div class="field-group">
+            <label>Imię:</label>
+            <input type="text" id="imie" name="imie">
         </div>
-
-        <div class="nav-btns">
-            <button id="prev-btn" class="nav-btn" onclick="prevQuestion()" disabled>◀ Poprzednie</button>
-            <span id="progress-text" style="align-self: center; font-weight: bold; color: #7f8c8d;">Pytanie 1 / 5</span>
-            <button id="next-btn" class="nav-btn" onclick="nextQuestion()">Następne ▶</button>
+        <div class="field-group">
+            <label>Nazwisko:</label>
+            <input type="text" id="nazwisko" name="nazwisko">
         </div>
     </div>
 
-    <div id="score-area" class="score-box hidden">
-        <p>🎉 Bravo! Gratulacje!</p>
-        <p>Twój wynik: <span id="final-score">0</span> / <span id="total-questions">0</span> punktów</p>
-        <button class="nav-btn" onclick="restartQuiz()" style="margin-top: 15px;">Zacznij od nowa</button>
-    </div>
-</div>
+    <h2>Zadania testowe (1–29)</h2>
 
-<script>
-const quizData = {
-    1: [
-        { q: "1. Jest godzina 19.45. Jaką godzinę wskaże zegar za kwadrans?", options: ["19.30", "20.15", "20.00", "19.15"], answer: 2, hint: "Kwadrans to 15 minut. 19:45 + 15 min = 20:00." },
-        { q: "2. Ile dni trwa tydzień i 5 dni?", options: ["10 dni", "12 dni", "15 dni", "9 dni"], answer: 1, hint: "Tydzień to 7 dni. 7 + 5 = 12 dni." },
-        { q: "3. Ala ma 7 lat. Ile lat będzie miała za 3 lata?", options: ["8 lat", "9 lat", "10 lat", "12 lat"], answer: 2, hint: "7 + 3 = 10 lat." },
-        { q: "4. Kasia kupiła zeszyt za 4 zł. Dała kasjerce 10 zł. Ile reszty otrzymała?", options: ["1 zł", "6 zł", "3 zł", "8 zł"], answer: 1, hint: "10 zł - 4 zł = 6 zł." },
-        { q: "5. Jaka to liczba? Sześć jedności i dwie dziesiątki.", options: ["62", "26", "61", "16"], answer: 1, hint: "2 dziesiątki = 20, 6 jedności = 6. Liczba to 26." }
-    ],
-    2: [
-        { q: "1. Ile centymetrów brakuje do metra z odcinka 16 cm + 56 cm?", options: ["26 cm", "28 cm", "27 cm", "29 cm"], answer: 1, hint: "16 + 56 = 72 cm. 1 metr = 100 cm. 100 - 72 = 28 cm." },
-        { q: "2. Jest godzina 9.55. Która godzina będzie za 2 kwadranse?", options: ["10.35", "10.40", "10.25", "10.10"], answer: 2, hint: "2 kwadranse = 30 minut. 9:55 + 30 min = 10:25." },
-        { q: "3. Wczoraj była środa. Pojutrze będzie:", options: ["niedziela", "piątek", "sobota", "poniedziałek"], answer: 2, hint: "Wczoraj: środa -> Dziś: czwartek -> Jutro: piątek -> Pojutrze: sobota." },
-        { q: "4. Jeden zeszyt kosztuje 6 zł. Ile trzeba zapłacić za 5 takich zeszytów?", options: ["20 zł", "25 zł", "30 zł", "35 zł"], answer: 2, hint: "5 * 6 zł = 30 zł." },
-        { q: "5. Ile wynosi długość drogi słonia? (Odcinki: 5 cm, 10 cm, 7 cm, 8 cm, 6 cm)", options: ["20 cm", "27 cm", "32 cm", "36 cm"], answer: 3, hint: "5 + 10 + 7 + 8 + 6 = 36 cm." }
-    ],
-    3: [
-        { q: "1. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia.", options: ["17 lat", "16 lat", "35 lat", "18 lat"], answer: 0, hint: "26 - 9 = 17 lat." },
-        { q: "2. Przedwczoraj był piątek. Pojutrze będzie:", options: ["środa", "poniedziałek", "wtorek", "czwartek"], answer: 2, hint: "Przedwczoraj: piątek -> Wczoraj: sobota -> Dziś: niedziela -> Jutro: poniedziałek -> Pojutrze: wtorek." },
-        { q: "3. Rodzice Marty mają razem pół wieku (50 lat). Mama ma 23 lata. Ile lat ma tata?", options: ["23 lata", "27 lat", "26 lat", "28 lat"], answer: 1, hint: "Pół wieku = 50 lat. 50 - 23 = 27 lat." },
-        { q: "4. Długość skoku kangura wynosi 9 m. Ile skoków musi wykonać na odległość 81 m?", options: ["6", "8", "9", "7"], answer: 2, hint: "81 : 9 = 9 skoków." },
-        { q: "5. Ile minut ma 6 kwadransów?", options: ["90 minut", "45 minut", "60 minut", "30 minut"], answer: 0, hint: "1 kwadrans = 15 minut. 6 * 15 min = 90 minut." }
-    ],
-    4: [
-        { q: "1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:", options: ["0", "20", "40", "60"], answer: 2, hint: "Iloraz 120 : 6 = 20. O 20 większa: 20 + 20 = 40." },
-        { q: "2. Pole kwadratu o obwodzie 16 cm wynosi:", options: ["16 cm²", "8 cm²", "64 cm²", "32 cm²"], answer: 0, hint: "Bok kwadratu = 16 : 4 = 4 cm. Pole = 4 * 4 = 16 cm²." },
-        { q: "3. 250 minut to:", options: ["2 godz. 5 min", "2 godz. 10 min", "2 godz. 50 min", "4 godz. 10 min"], answer: 3, hint: "4 godziny = 240 minut. 250 - 240 = 10 minut. Czyli 4 godz. i 10 min." },
-        { q: "4. Ania wyjechała autobusem o 7:43, a na miejscu była o 8:15. Ile minut jechała?", options: ["30 minut", "28 minut", "32 minuty", "25 minut"], answer: 2, hint: "Od 7:43 do 8:00 jest 17 minut. Od 8:00 do 8:15 jest 15 minut. 17 + 15 = 32 minuty." },
-        { q: "5. Na mapie w skali 1:500 odległość wynosi 6 cm. Jaka jest rzeczywista odległość?", options: ["3 km", "30 m (0,03 km)", "300 m", "300 km"], answer: 1, hint: "6 cm * 500 = 3000 cm = 30 m = 0,03 km." }
-    ]
-};
+    <form id="quizForm">
+        <!-- Zadanie 1 -->
+        <div class="task" data-question="1" data-correct="C">
+            <p class="task-title">1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:</p>
+            <div class="options">
+                <span class="option-item"><label><input type="radio" name="q1" value="A"> A. 0</label></span>
+                <span class="option-item"><label><input type="radio" name="q1" value="B"> B. 20</label></span>
+                <span class="option-item"><label><input type="radio" name="q1" value="C"> C. 40</label></span>
+                <span class="option-item"><label><input type="radio" name="q1" value="D"> D. 60</label></span>
+            </div>
+        </div>
 
-let currentClass = 1;
-let currentQuestionIndex = 0;
-let userAnswers = {};
+        <!-- Zadanie 2 -->
+        <div class="task" data-question="2" data-correct="A">
+            <p class="task-title">2. Iloczyn 5 · 5 · 5 · 5 możemy zapisać w postaci:</p>
+            <div class="options">
+                <span class="option-item"><label><input type="radio" name="q2" value="A"> A. 5⁴</label></span>
+                <span class="option-item"><label><input type="radio" name="q2" value="B"> B. 55</label></span>
+                <span class="option-item"><label><input type="radio" name="q2" value="C"> C. 55²</label></span>
+                <span class="option-item"><label><input type="radio" name="q2" value="D"> D. 4⁵</label></span>
+            </div>
+        </div>
 
-function selectClass(cls) {
-    currentClass = cls;
-    currentQuestionIndex = 0;
-    userAnswers = {};
-    
-    document.querySelectorAll('.class-btn').forEach((btn, idx) => {
-        btn.classList.toggle('active', idx + 1 === cls);
-    });
+        <!-- Zadanie 3 -->
+        <div class="task" data-question="3" data-correct="D">
+            <p class="task-title">3. Jeśli średnica okręgu ma długość 10 dm, to długość jego promienia wynosi:</p>
+            <div class="options">
+                <span class="option-item"><label><input type="radio" name="q3" value="A"> A. 40 dm</label></span>
+                <span class="option-item"><label><input type="radio" name="q3" value="B"> B. 20 dm</label></span>
+                <span class="option-item"><label><input type="radio" name="q3" value="C"> C. 10 dm</label></span>
+                <span class="option-item"><label><input type="radio" name="q3" value="D"> D. 5 dm</label></span>
+            </div>
+        </div>
 
-    document.getElementById('quiz-area').classList.remove('hidden');
-    document.getElementById('score-area').classList.add('hidden');
+        <!-- Zadanie 4 -->
+        <div class="task" data-question="4" data-correct="C">
+            <p class="task-title">4. Długość odcinka AB w skali 3:1 wynosi 4 cm, wobec tego ten odcinek w rzeczywistości ma długość:</p>
+            <div class="options">
+                <span class="option-item"><label><input type="radio" name="q4" value="A"> A. 3 cm</label></span>
+                <span class="option-item"><label><input type="radio" name="q4" value="B"> B. 4 cm</label></span>
+                <span class="option-item"><label><input type="radio" name="q4" value="C"> C. 12 cm</label></span>
+                <span class="option-item"><label><input type="radio" name="q4" value="D"> D. 34 cm</label></span>
+            </div>
+        </div>
 
-    loadQuestion();
-}
+        <!-- Przycisk sprawdzający -->
+        <div class="btn-container">
+            <button type="button" onclick="sprawdzWyniki()">Sprawdź wynik</button>
+        </div>
+    </form>
 
-function loadQuestion() {
-    const questions = quizData[currentClass];
-    const q = questions[currentQuestionIndex];
+    <div id="results"></div>
 
-    document.getElementById('question-text').innerText = q.q;
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
-    
-    const feedbackEl = document.getElementById('feedback');
-    feedbackEl.style.display = 'none';
+    <script>
+        // Klucz poprawnych odpowiedzi dla przykładowych zadań
+        const poprawneOdpowiedzi = {
+            q1: "C",
+            q2: "A",
+            q3: "D",
+            q4: "C"
+        };
 
-    q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => selectAnswer(idx);
+        function sprawdzWyniki() {
+            let punkty = 0;
+            let wszystkie = Object.keys(poprawneOdpowiedzi).length;
 
-        if (userAnswers[currentQuestionIndex] !== undefined) {
-            btn.disabled = true;
-            if (idx === q.answer) {
-                btn.classList.add('correct');
+            for (let q in poprawneOdpowiedzi) {
+                let wybrane = document.querySelector(`input[name="${q}"]:checked`);
+                let zadanieDiv = document.querySelector(`div[data-question="${q.replace('q', '')}"]`);
+                
+                // Usunięcie poprzednich oznaczeń
+                let stareInfo = zadanieDiv.querySelector('.info-wyniku');
+                if (stareInfo) stareInfo.remove();
+
+                let infoSpan = document.createElement('div');
+                infoSpan.className = 'info-wyniku';
+                infoSpan.style.marginTop = '5px';
+
+                if (wybrane && wybrane.value === poprawneOdpowiedzi[q]) {
+                    punkty++;
+                    infoSpan.innerHTML = `<span class="correct-answer">Poprawnie!</span>`;
+                } else {
+                    let wybranaWartosc = wybrane ? wybrane.value : "brak";
+                    infoSpan.innerHTML = `<span class="incorrect-answer">Błędnie (Twoja odpowiedź: ${wybranaWartosc}, poprawna: ${poprawneOdpowiedzi[q]})</span>`;
+                }
+                zadanieDiv.appendChild(infoSpan);
             }
-            if (userAnswers[currentQuestionIndex] === idx && idx !== q.answer) {
-                btn.classList.add('wrong');
-            }
+
+            let imie = document.getElementById('imie').value || "Uczniu";
+            let nazwisko = document.getElementById('nazwisko').value || "";
+            
+            let wynikiDiv = document.getElementById('results');
+            wynikiDiv.style.display = 'block';
+            wynikiDiv.innerHTML = `Brawo ${imie} ${nazwisko}! Twój wynik to: ${punkty} / ${wszystkie} punktów.`;
         }
-
-        optionsContainer.appendChild(btn);
-    });
-
-    if (userAnswers[currentQuestionIndex] !== undefined) {
-        showFeedback(userAnswers[currentQuestionIndex] === q.answer, q.hint);
-    }
-
-    document.getElementById('progress-text').innerText = `Pytanie ${currentQuestionIndex + 1} / ${questions.length}`;
-    document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
-    document.getElementById('next-btn').innerText = currentQuestionIndex === questions.length - 1 ? 'Zakończ 🏁' : 'Następne ▶';
-}
-
-function selectAnswer(index) {
-    if (userAnswers[currentQuestionIndex] !== undefined) return;
-
-    userAnswers[currentQuestionIndex] = index;
-    const q = quizData[currentClass][currentQuestionIndex];
-    const isCorrect = index === q.answer;
-
-    showFeedback(isCorrect, q.hint);
-    loadQuestion();
-}
-
-function showFeedback(isCorrect, hint) {
-    const feedbackEl = document.getElementById('feedback');
-    feedbackEl.style.display = 'block';
-    feedbackEl.className = `feedback ${isCorrect ? 'correct' : 'wrong'}`;
-    feedbackEl.innerHTML = isCorrect 
-        ? `<strong>Dobrze! 🎉</strong> ${hint}` 
-        : `<strong>Niestety błąd. 💡 Podpowiedź:</strong> ${hint}`;
-}
-
-function nextQuestion() {
-    const questions = quizData[currentClass];
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion();
-    } else {
-        finishQuiz();
-    }
-}
-
-function prevQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-    }
-}
-
-function finishQuiz() {
-    const questions = quizData[currentClass];
-    let score = 0;
-
-    questions.forEach((q, idx) => {
-        if (userAnswers[idx] === q.answer) {
-            score++;
-        }
-    });
-
-    document.getElementById('quiz-area').classList.add('hidden');
-    document.getElementById('score-area').classList.remove('hidden');
-    document.getElementById('final-score').innerText = score;
-    document.getElementById('total-questions').innerText = questions.length;
-}
-
-function restartQuiz() {
-    selectClass(currentClass);
-}
-
-// Inicjalizacja
-selectClass(1);
-</script>
+    </script>
 
 </body>
 </html>
