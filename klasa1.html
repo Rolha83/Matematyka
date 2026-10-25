@@ -1,416 +1,699 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon - Matematyka Klasa I</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matematyka Klasa I | Wiosna 2024</title>
     <style>
         :root {
-            --bg: #eef7f3;
+            --paper: #f8fbf7;
+            --page: #f4f9f4;
+            --ink: #1e2d36;
+            --muted: #5b6d78;
+            --line: #d9e7dc;
+            --green: #2ca67a;
+            --green-deep: #1d7d5c;
+            --blue: #6ca7ff;
+            --pink: #f6b5c7;
+            --yellow: #ffd86b;
+            --orange: #f5b15b;
             --panel: #ffffff;
-            --panel-alt: #f6fbff;
-            --primary: #2f9e7d;
-            --primary-dark: #217a61;
-            --secondary: #3b82f6;
-            --secondary-soft: #dfeeff;
-            --text: #21313d;
-            --muted: #5f6f7a;
-            --border: #dbe7ea;
-            --success: #eafaf3;
-            --success-border: #7cc9a8;
-            --shadow: 0 12px 30px rgba(25, 60, 80, 0.12);
+            --shadow: 0 10px 22px rgba(24, 48, 59, 0.08);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
+            background: linear-gradient(180deg, #edf7f1 0%, #eef5ff 100%);
             font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #f4faf7 0%, #edf5ff 100%);
-            color: var(--text);
-            line-height: 1.6;
-            padding: 24px 16px 60px;
+            color: var(--ink);
+            line-height: 1.5;
+            padding: 12px 16px 40px;
         }
 
-        .container {
+        .sheet {
             max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .top-header {
-            text-align: center;
-            margin-bottom: 28px;
-            padding: 30px 20px 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #effaf5 100%);
-            border: 1px solid var(--border);
-            border-radius: 22px;
+            margin: 0 auto 26px;
+            background: var(--paper);
+            border: 1px solid #d8e5dc;
+            border-radius: 20px;
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 7px 14px;
-            background: var(--secondary-soft);
-            color: var(--secondary);
-            border-radius: 999px;
-            font-weight: bold;
-            letter-spacing: 0.04em;
-            font-size: 12px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
+        .sheet::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #f4d3a0 0 0.8px, transparent 1px);
+            background-size: 16px 16px;
+            opacity: 0.05;
+            pointer-events: none;
         }
 
-        h1 {
-            margin: 0;
-            font-size: clamp(2rem, 3vw, 3rem);
-            color: #1e3a4d;
-        }
-
-        .subtitle {
-            margin-top: 10px;
-            color: var(--muted);
-            font-size: 1rem;
-        }
-
-        .question-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 22px 20px 18px;
-            margin-bottom: 22px;
-            box-shadow: 0 8px 20px rgba(39, 78, 99, 0.06);
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-        }
-
-        .question-card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 22px rgba(39, 78, 99, 0.09);
-        }
-
-        .question-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #264a65;
-            margin-bottom: 14px;
-        }
-
-        .option {
+        .page-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: #f9fbfc;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 14px;
-            margin: 10px 0;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            justify-content: space-between;
+            padding: 18px 22px 12px;
+            border-bottom: 1px solid #dfeae2;
+            font-weight: 700;
+            background: rgba(255,255,255,0.35);
+            position: relative;
+            z-index: 1;
         }
 
-        .option:hover {
-            background: #f2f8ff;
-            border-color: #bfd8ff;
+        .top-left {
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+            color: #2a3d4b;
         }
 
-        .option input {
-            accent-color: var(--primary);
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #73848d;
+            font-size: 0.9rem;
+        }
+
+        .dots {
+            height: 18px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 18px 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2bb679;
+            opacity: 0.9;
+        }
+
+        .dots span:nth-child(2n) { background: #f4c95d; }
+        .dots span:nth-child(3n) { background: #ff7aa8; }
+        .dots span:nth-child(4n) { background: #64c4f7; }
+
+        .content {
+            padding: 18px 28px 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .paper-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 8px 0 18px;
+        }
+
+        .logo {
+            font-size: clamp(2.2rem, 3vw, 3.5rem);
+            font-weight: 800;
+            line-height: 0.9;
+            color: #19a7c8;
+            letter-spacing: 0.02em;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.7);
+        }
+
+        .logo small {
+            display: block;
+            font-size: 1.25rem;
+            color: #ff5c9d;
+            letter-spacing: 0.02em;
+        }
+
+        .paper-subtitle {
+            font-size: clamp(1.15rem, 2vw, 1.75rem);
+            font-weight: 700;
+            color: #1d2d36;
+        }
+
+        .student-fields {
+            display: grid;
+            grid-template-columns: 110px 1fr 150px 1fr;
+            gap: 10px 18px;
+            align-items: center;
+            margin: 18px 0 8px;
+            font-size: 1.05rem;
+            color: #3a4d5d;
+        }
+
+        .student-fields .field {
+            border-bottom: 2px solid #2a3d4b;
+            min-height: 26px;
+            opacity: 0.9;
+        }
+
+        .question {
+            display: grid;
+            grid-template-columns: 32px 1fr 210px;
+            gap: 12px 16px;
+            align-items: start;
+            margin-top: 18px;
+            padding: 6px 0;
+        }
+
+        .question > .num {
+            font-weight: 700;
+            color: #2b475b;
+            margin-top: 3px;
+        }
+
+        .question > .text {
+            font-size: 1.02rem;
+            color: #253747;
+            line-height: 1.5;
+        }
+
+        .options {
+            grid-column: 2 / 4;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(120px, 1fr));
+            gap: 8px 16px;
+            margin-top: 8px;
+            margin-left: 10px;
+        }
+
+        .options.compact { grid-template-columns: repeat(4, minmax(120px, 1fr)); }
+
+        .options label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 44px;
+            gap: 8px;
+            font-size: 1rem;
+            color: #1f2d35;
+            padding: 0 8px 0 0;
+        }
+
+        .options input {
             width: 18px;
             height: 18px;
             margin: 0;
-            transform: scale(1.1);
+            accent-color: var(--green);
+            transform: translateY(-1px);
         }
 
-        .option-text {
-            flex: 1;
-            font-size: 1rem;
-            color: var(--text);
+        .options .box {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #3d4d56;
+            background: transparent;
+            border-radius: 4px;
+            margin-right: 4px;
+            font-size: 0.9rem;
+            color: transparent;
         }
 
-        .option input:checked + .option-text {
+        input[type="checkbox"], input[type="radio"] {
+            accent-color: #2d9f75;
+        }
+
+        .answer-row {
+            grid-column: 2 / 4;
+            margin: 4px 0 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 18px;
             font-weight: 700;
-            color: var(--primary-dark);
         }
 
-        .option:has(input:checked) {
-            background: #edfdf5;
-            border-color: var(--success-border);
-            box-shadow: 0 0 0 3px rgba(85, 188, 139, 0.12);
+        .answer-row span {
+            display: inline-block;
+            min-width: 74px;
+            border-bottom: 2px solid #1e313f;
+            text-align: center;
+            padding-bottom: 2px;
+            min-height: 26px;
+        }
+
+        .side-art {
+            position: absolute;
+            right: 28px;
+            bottom: 22px;
+            width: 180px;
+            height: 140px;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 32px 18px;
+            color: #4a5d69;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-mark {
+            font-weight: 700;
+            letter-spacing: 0.04em;
         }
 
         .submit-wrap {
-            position: sticky;
-            bottom: 12px;
-            z-index: 10;
-            margin-top: 20px;
-            padding-top: 8px;
-            background: linear-gradient(180deg, rgba(238,247,243,0) 0%, rgba(238,247,243,0.9) 28%, rgba(238,247,243,1) 100%);
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 12px 0 0;
         }
 
-        button {
-            display: block;
+        .submit-btn {
             width: 100%;
             border: none;
             border-radius: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, #38b57d 100%);
+            background: linear-gradient(135deg, var(--green) 0%, #48b887 100%);
             color: white;
             padding: 18px 20px;
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 14px 24px rgba(34, 143, 103, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 16px 28px rgba(34, 143, 103, 0.35);
+            box-shadow: 0 12px 24px rgba(31, 122, 86, 0.24);
         }
 
         #result {
-            margin-top: 18px;
-            padding: 18px 20px;
-            border-radius: 16px;
-            background: var(--success);
-            border: 2px solid var(--success-border);
-            color: #1a5d40;
-            font-size: 1.15rem;
-            font-weight: 700;
-            text-align: center;
             display: none;
+            margin-top: 10px;
+            background: #ebfaf2;
+            border: 2px solid #85d0aa;
+            border-radius: 14px;
+            padding: 12px 14px;
+            text-align: center;
+            font-weight: 700;
+            color: #19553d;
         }
 
-        @media (max-width: 700px) {
-            body {
-                padding: 16px 12px 40px;
+        @media (max-width: 760px) {
+            .question {
+                grid-template-columns: 24px 1fr;
             }
 
-            .question-card {
-                padding: 18px 14px 16px;
+            .question > .text {
+                grid-column: 2;
             }
 
-            .option {
-                padding: 11px 12px;
+            .options {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr;
+                margin-left: 0;
+            }
+
+            .student-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .paper-title {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="top-header">
-            <div class="badge">Klasa I</div>
-            <h1>Leon - Matematyka</h1>
-            <div class="subtitle">Test online • Wiosna 2024</div>
-        </header>
-
-        <div class="question-card">
-            <div class="question-title">1. Ile to tygodni i dni? (12 dni)</div>
-            <label class="option"><input type="radio" name="q1" value="A"><span class="option-text">1 tydzień i 4 dni</span></label>
-            <label class="option"><input type="radio" name="q1" value="B"><span class="option-text">1 tydzień i 5 dni</span></label>
-            <label class="option"><input type="radio" name="q1" value="C"><span class="option-text">1 tydzień i 6 dni</span></label>
-            <label class="option"><input type="radio" name="q1" value="D"><span class="option-text">2 tygodnie</span></label>
+    <div class="sheet">
+        <div class="page-header">
+            <div class="top-left">22:24 niedz., 25 paź</div>
+            <div class="top-right">◌ ◌</div>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">2. Asia ma jedenaście lat. Ile lat będzie miała za dziewięć lat?</div>
-            <label class="option"><input type="radio" name="q2" value="A"><span class="option-text">19 lat</span></label>
-            <label class="option"><input type="radio" name="q2" value="B"><span class="option-text">20 lat</span></label>
-            <label class="option"><input type="radio" name="q2" value="C"><span class="option-text">18 lat</span></label>
-            <label class="option"><input type="radio" name="q2" value="D"><span class="option-text">11 lat</span></label>
+        <div class="dots">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">3. Jest godzina 19.45. Jaką godzinę wskaże zegar za kwadrans?</div>
-            <label class="option"><input type="radio" name="q3" value="A"><span class="option-text">19.30</span></label>
-            <label class="option"><input type="radio" name="q3" value="B"><span class="option-text">20.15</span></label>
-            <label class="option"><input type="radio" name="q3" value="C"><span class="option-text">20.00</span></label>
-            <label class="option"><input type="radio" name="q3" value="D"><span class="option-text">19.15</span></label>
+        <div class="content">
+            <div class="paper-title">
+                <div class="logo">Leon<small>Konkursy</small></div>
+                <div class="paper-subtitle">Matematyka klasa I, wiosna 2024</div>
+            </div>
+
+            <div class="student-fields">
+                <div>Imię</div>
+                <div class="field"></div>
+                <div>Nazwisko</div>
+                <div class="field"></div>
+            </div>
+
+            <div class="question">
+                <div class="num">1.</div>
+                <div class="text">Ile to tygodni i dni? (12 dni)</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q1" value="A" /><span>1 tydzień i 4 dni</span></label>
+                    <label><input type="radio" name="q1" value="B" /><span>1 tydzień i 5 dni</span></label>
+                    <label><input type="radio" name="q1" value="C" /><span>1 tydzień i 6 dni</span></label>
+                    <label><input type="radio" name="q1" value="D" /><span>2 tygodnie</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">2.</div>
+                <div class="text">Asia ma jedenaście lat. Ile lat będzie miała za dziewięć lat?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q2" value="A" /><span>19 lat</span></label>
+                    <label><input type="radio" name="q2" value="B" /><span>20 lat</span></label>
+                    <label><input type="radio" name="q2" value="C" /><span>18 lat</span></label>
+                    <label><input type="radio" name="q2" value="D" /><span>11 lat</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">3.</div>
+                <div class="text">Jest godzina 19:45. Jaką godzinę wskaże zegar za kwadrans?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q3" value="A" /><span>19:30</span></label>
+                    <label><input type="radio" name="q3" value="B" /><span>20:15</span></label>
+                    <label><input type="radio" name="q3" value="C" /><span>20:00</span></label>
+                    <label><input type="radio" name="q3" value="D" /><span>19:15</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">4.</div>
+                <div class="text">Wskaż prawidłowe odpowiedzi.</div>
+                <div class="options compact">
+                    <label><input type="checkbox" name="q4" value="A" /><span>Doba to 24 godziny</span></label>
+                    <label><input type="checkbox" name="q4" value="B" /><span>Doba to 12 godzin</span></label>
+                    <label><input type="checkbox" name="q4" value="C" /><span>Rok ma 4 kwartały</span></label>
+                    <label><input type="checkbox" name="q4" value="D" /><span>Rok ma 2 kwartały</span></label>
+                    <label><input type="checkbox" name="q4" value="E" /><span>1 złoty to 100 groszy</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">5.</div>
+                <div class="text">Ustal, jakie wartości ukryły się pod motylkami: 13 + 6, 20 - 8, 17 - 6.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q5" value="A" /><span>19, 12, 11</span></label>
+                    <label><input type="radio" name="q5" value="B" /><span>18, 11, 10</span></label>
+                    <label><input type="radio" name="q5" value="C" /><span>20, 13, 12</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">6.</div>
+                <div class="text">Jaka liczba ukryła się pod kwiatkiem? Liczba plus 4 daje 18.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q6" value="A" /><span>14</span></label>
+                    <label><input type="radio" name="q6" value="B" /><span>12</span></label>
+                    <label><input type="radio" name="q6" value="C" /><span>15</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">7.</div>
+                <div class="text">Jaka liczba ukryła się pod słoneczkiem? 8 + 2 + 9 = ?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q7" value="A" /><span>19</span></label>
+                    <label><input type="radio" name="q7" value="B" /><span>10</span></label>
+                    <label><input type="radio" name="q7" value="C" /><span>20</span></label>
+                    <label><input type="radio" name="q7" value="D" /><span>18</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">8.</div>
+                <div class="text">Ile to miesięcy? 2 kwartały.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q8" value="A" /><span>3</span></label>
+                    <label><input type="radio" name="q8" value="B" /><span>6</span></label>
+                    <label><input type="radio" name="q8" value="C" /><span>12</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">9.</div>
+                <div class="text">Przedstaw liczbę 15 jako sumę trzech składników.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q9" value="A" /><span>5 + 5 + 5</span></label>
+                    <label><input type="radio" name="q9" value="B" /><span>15 + 0 + 1</span></label>
+                    <label><input type="radio" name="q9" value="C" /><span>10 + 4 + 1</span></label>
+                    <label><input type="radio" name="q9" value="D" /><span>3 + 4 + 8</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">10.</div>
+                <div class="text">Każdy kwiatek zastępuje tę samą liczbę. 12 - x = 4. Jaka to liczba?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q10" value="A" /><span>3</span></label>
+                    <label><input type="radio" name="q10" value="B" /><span>5</span></label>
+                    <label><input type="radio" name="q10" value="C" /><span>8</span></label>
+                    <label><input type="radio" name="q10" value="D" /><span>4</span></label>
+                </div>
+            </div>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">4. Wskaż prawidłowe odpowiedzi: doba, rok, 1 złoty.</div>
-            <div style="font-size: 14px; color: #5f6f7a; margin-bottom: 8px;">Zaznacz właściwe odpowiedzi:</div>
-            <label class="option"><input type="checkbox" name="q4" value="A"><span class="option-text">Doba to 24 godziny</span></label>
-            <label class="option"><input type="checkbox" name="q4" value="B"><span class="option-text">Doba to 12 godzin</span></label>
-            <label class="option"><input type="checkbox" name="q4" value="C"><span class="option-text">Rok ma 4 kwartały</span></label>
-            <label class="option"><input type="checkbox" name="q4" value="D"><span class="option-text">Rok ma 2 kwartały</span></label>
-            <label class="option"><input type="checkbox" name="q4" value="E"><span class="option-text">1 złoty to 100 groszy</span></label>
+        <div class="footer">
+            <div class="page-mark">1/2</div>
+            <div> </div>
+        </div>
+    </div>
+
+    <div class="sheet">
+        <div class="page-header">
+            <div class="top-left">22:24 niedz., 25 paź</div>
+            <div class="top-right">◌ ◌</div>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">5. Ustal, jakie wartości ukryły się pod motylkami: 13 + 6, 20 - 8, 17 - 6.</div>
-            <label class="option"><input type="radio" name="q5" value="A"><span class="option-text">19, 12, 11</span></label>
-            <label class="option"><input type="radio" name="q5" value="B"><span class="option-text">18, 11, 10</span></label>
-            <label class="option"><input type="radio" name="q5" value="C"><span class="option-text">20, 13, 12</span></label>
+        <div class="dots">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">6. Jaka liczba ukryła się pod kwiatkiem? Liczba plus 4 daje 18.</div>
-            <label class="option"><input type="radio" name="q6" value="A"><span class="option-text">14</span></label>
-            <label class="option"><input type="radio" name="q6" value="B"><span class="option-text">12</span></label>
-            <label class="option"><input type="radio" name="q6" value="C"><span class="option-text">15</span></label>
+        <div class="content">
+            <div class="paper-title">
+                <div class="logo">Leon<small>Konkursy</small></div>
+                <div class="paper-subtitle">Matematyka klasa I, wiosna 2024</div>
+            </div>
+
+            <div class="question">
+                <div class="num">11.</div>
+                <div class="text">Wstaw odpowiedni znak: 13 + 8 ... 14 + 9.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q11" value="A" /><span>&lt;</span></label>
+                    <label><input type="radio" name="q11" value="B" /><span>=</span></label>
+                    <label><input type="radio" name="q11" value="C" /><span>&gt;</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">12.</div>
+                <div class="text">Wskaż dziesiątki sąsiadujące z liczbą 20.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q12" value="A" /><span>5 i 45</span></label>
+                    <label><input type="radio" name="q12" value="B" /><span>10 i 30</span></label>
+                    <label><input type="radio" name="q12" value="C" /><span>40 i 60</span></label>
+                    <label><input type="radio" name="q12" value="D" /><span>50 i 70</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">13.</div>
+                <div class="text">Zaznacz prawidłową odpowiedź: 24 : 6 = ?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q13" value="A" /><span>siedem</span></label>
+                    <label><input type="radio" name="q13" value="B" /><span>cztery</span></label>
+                    <label><input type="radio" name="q13" value="C" /><span>trzy</span></label>
+                    <label><input type="radio" name="q13" value="D" /><span>pięć</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">14.</div>
+                <div class="text">Jaka to liczba? Sześć jedności i dwie dziesiątki.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q14" value="A" /><span>62</span></label>
+                    <label><input type="radio" name="q14" value="B" /><span>26</span></label>
+                    <label><input type="radio" name="q14" value="C" /><span>61</span></label>
+                    <label><input type="radio" name="q14" value="D" /><span>16</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">15.</div>
+                <div class="text">Wskaż zbiór, w którym znajdują się liczby parzyste.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q15" value="A" /><span>1,3,5,7</span></label>
+                    <label><input type="radio" name="q15" value="B" /><span>2,4,6,8,10</span></label>
+                    <label><input type="radio" name="q15" value="C" /><span>3,6,9,12</span></label>
+                    <label><input type="radio" name="q15" value="D" /><span>1,2,4,7</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">16.</div>
+                <div class="text">Liczba 6 jest o 8 mniejsza od liczby:</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q16" value="A" /><span>2</span></label>
+                    <label><input type="radio" name="q16" value="B" /><span>14</span></label>
+                    <label><input type="radio" name="q16" value="C" /><span>16</span></label>
+                    <label><input type="radio" name="q16" value="D" /><span>15</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">17.</div>
+                <div class="text">Zaznacz błędne obliczenie.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q17" value="A" /><span>19 + 2 = 20</span></label>
+                    <label><input type="radio" name="q17" value="B" /><span>20 - 9 = 10</span></label>
+                    <label><input type="radio" name="q17" value="C" /><span>16 - 9 = 6</span></label>
+                    <label><input type="radio" name="q17" value="D" /><span>14 + 6 = 20</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">18.</div>
+                <div class="text">Jaką liczbę zakryła biedronka? 13 + ? = 25.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q18" value="A" /><span>12</span></label>
+                    <label><input type="radio" name="q18" value="B" /><span>14</span></label>
+                    <label><input type="radio" name="q18" value="C" /><span>10</span></label>
+                    <label><input type="radio" name="q18" value="D" /><span>11</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">19.</div>
+                <div class="text">Wskaż sumę i różnicę liczb pasującą do rysunku.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q19" value="A" /><span>9 + 7</span></label>
+                    <label><input type="radio" name="q19" value="B" /><span>16 - 7</span></label>
+                    <label><input type="radio" name="q19" value="C" /><span>15 - 7</span></label>
+                    <label><input type="radio" name="q19" value="D" /><span>13 + 7</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">20.</div>
+                <div class="text">Dodaj składniki i oblicz sumę: 3 + 8 + 5 = ?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q20" value="A" /><span>13</span></label>
+                    <label><input type="radio" name="q20" value="B" /><span>16</span></label>
+                    <label><input type="radio" name="q20" value="C" /><span>11</span></label>
+                    <label><input type="radio" name="q20" value="D" /><span>385</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">21.</div>
+                <div class="text">Wskaż działania, których wyniki są liczbami nieparzystymi.</div>
+                <div class="options compact">
+                    <label><input type="checkbox" name="q21" value="A" /><span>27 + 16</span></label>
+                    <label><input type="checkbox" name="q21" value="B" /><span>33 + 19</span></label>
+                    <label><input type="checkbox" name="q21" value="C" /><span>26 + 18</span></label>
+                    <label><input type="checkbox" name="q21" value="D" /><span>49 + 16</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">22.</div>
+                <div class="text">Ola i Sylwia mają razem 20 lat. Ola jest o 4 lata starsza od Sylwii.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q22" value="A" /><span>Ola ma 12 lat, Sylwia ma 8 lat</span></label>
+                    <label><input type="radio" name="q22" value="B" /><span>Ola ma 14 lat, Sylwia ma 6 lat</span></label>
+                    <label><input type="radio" name="q22" value="C" /><span>Ola ma 16 lat, Sylwia ma 4 lata</span></label>
+                    <label><input type="radio" name="q22" value="D" /><span>Ola ma 10 lat, Sylwia ma 10 lat</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">23.</div>
+                <div class="text">Wskaż działanie pasujące do schematu, którego wynik to 17.</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q23" value="A" /><span>15 - 3 + 5</span></label>
+                    <label><input type="radio" name="q23" value="B" /><span>10 - 2 + 9</span></label>
+                    <label><input type="radio" name="q23" value="C" /><span>25 - 9 + 1</span></label>
+                    <label><input type="radio" name="q23" value="D" /><span>19 - 2 + 1</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">24.</div>
+                <div class="text">Mama Kasi kupiła 7 jabłek, 3 marchewki i 2 banany. Ile razem owoców?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q24" value="A" /><span>9</span></label>
+                    <label><input type="radio" name="q24" value="B" /><span>12</span></label>
+                    <label><input type="radio" name="q24" value="C" /><span>7</span></label>
+                    <label><input type="radio" name="q24" value="D" /><span>5</span></label>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="num">25.</div>
+                <div class="text">Jeśli do liczby 16 dodasz tę liczbę, otrzymasz 25. Jaka to liczba?</div>
+                <div class="options compact">
+                    <label><input type="radio" name="q25" value="A" /><span>41</span></label>
+                    <label><input type="radio" name="q25" value="B" /><span>9</span></label>
+                    <label><input type="radio" name="q25" value="C" /><span>8</span></label>
+                    <label><input type="radio" name="q25" value="D" /><span>25</span></label>
+                </div>
+            </div>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">7. Jaka liczba ukryła się pod słoneczkiem? 8 + 2 + 9 = 20.</div>
-            <label class="option"><input type="radio" name="q7" value="A"><span class="option-text">19</span></label>
-            <label class="option"><input type="radio" name="q7" value="B"><span class="option-text">10</span></label>
-            <label class="option"><input type="radio" name="q7" value="C"><span class="option-text">1</span></label>
+        <div class="footer">
+            <div class="page-mark">2/2</div>
+            <div></div>
         </div>
+    </div>
 
-        <div class="question-card">
-            <div class="question-title">8. Ile to miesięcy? 2 kwartały.</div>
-            <label class="option"><input type="radio" name="q8" value="A"><span class="option-text">3 miesiące</span></label>
-            <label class="option"><input type="radio" name="q8" value="B"><span class="option-text">6 miesięcy</span></label>
-            <label class="option"><input type="radio" name="q8" value="C"><span class="option-text">12 miesięcy</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">9. Przedstaw liczbę 15 jako sumę trzech składników.</div>
-            <label class="option"><input type="radio" name="q9" value="A"><span class="option-text">5 + 5 + 5</span></label>
-            <label class="option"><input type="radio" name="q9" value="B"><span class="option-text">15 + 0 + 1</span></label>
-            <label class="option"><input type="radio" name="q9" value="C"><span class="option-text">10 + 4 + 1</span></label>
-            <label class="option"><input type="radio" name="q9" value="D"><span class="option-text">3 + 4 + 8</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">10. Każdy kwiatek zastępuje tę samą liczbę. 12 minus x daje 4. Jaka to liczba?</div>
-            <label class="option"><input type="radio" name="q10" value="A"><span class="option-text">3</span></label>
-            <label class="option"><input type="radio" name="q10" value="B"><span class="option-text">5</span></label>
-            <label class="option"><input type="radio" name="q10" value="C"><span class="option-text">8</span></label>
-            <label class="option"><input type="radio" name="q10" value="D"><span class="option-text">4</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">11. Wstaw odpowiedni znak: 13 + 8 ? 14 + 9.</div>
-            <label class="option"><input type="radio" name="q11" value="A"><span class="option-text">&lt;</span></label>
-            <label class="option"><input type="radio" name="q11" value="B"><span class="option-text">=</span></label>
-            <label class="option"><input type="radio" name="q11" value="C"><span class="option-text">&gt;</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">12. Wskaż dziesiątki sąsiadujące z liczbą 20.</div>
-            <label class="option"><input type="radio" name="q12" value="A"><span class="option-text">5 i 45</span></label>
-            <label class="option"><input type="radio" name="q12" value="B"><span class="option-text">10 i 30</span></label>
-            <label class="option"><input type="radio" name="q12" value="C"><span class="option-text">40 i 60</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">13. Zaznacz prawidłową odpowiedź: 24 : 6 = ?</div>
-            <label class="option"><input type="radio" name="q13" value="A"><span class="option-text">siedem</span></label>
-            <label class="option"><input type="radio" name="q13" value="B"><span class="option-text">cztery</span></label>
-            <label class="option"><input type="radio" name="q13" value="C"><span class="option-text">trzy</span></label>
-            <label class="option"><input type="radio" name="q13" value="D"><span class="option-text">pięć</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">14. Jaka to liczba? Sześć jedności i dwie dziesiątki.</div>
-            <label class="option"><input type="radio" name="q14" value="A"><span class="option-text">62</span></label>
-            <label class="option"><input type="radio" name="q14" value="B"><span class="option-text">26</span></label>
-            <label class="option"><input type="radio" name="q14" value="C"><span class="option-text">61</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">15. Wskaż zbiór, w którym znajdują się liczby parzyste.</div>
-            <label class="option"><input type="radio" name="q15" value="A"><span class="option-text">Zbiór z nieparzystymi</span></label>
-            <label class="option"><input type="radio" name="q15" value="B"><span class="option-text">Zbiór zawierający na przykład 4, 6, 0, 8, 2</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">16. Liczba 6 jest o 8 mniejsza od liczby:</div>
-            <label class="option"><input type="radio" name="q16" value="A"><span class="option-text">2</span></label>
-            <label class="option"><input type="radio" name="q16" value="B"><span class="option-text">14</span></label>
-            <label class="option"><input type="radio" name="q16" value="C"><span class="option-text">16</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">17. Zaznacz błędne obliczenie.</div>
-            <label class="option"><input type="radio" name="q17" value="A"><span class="option-text">19 + 2 = 20</span></label>
-            <label class="option"><input type="radio" name="q17" value="B"><span class="option-text">Inne prawidłowe działania</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">18. Jaką liczbę zakryła biedronka? 13 + x = 25.</div>
-            <label class="option"><input type="radio" name="q18" value="A"><span class="option-text">12</span></label>
-            <label class="option"><input type="radio" name="q18" value="B"><span class="option-text">14</span></label>
-            <label class="option"><input type="radio" name="q18" value="C"><span class="option-text">10</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">19. Wskaż sumę i różnicę liczb pasującą do rysunku lub treści.</div>
-            <label class="option"><input type="radio" name="q19" value="A"><span class="option-text">14 + 6 = 20</span></label>
-            <label class="option"><input type="radio" name="q19" value="B"><span class="option-text">9 + 7</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">20. Dodaj składniki i oblicz sumę. Na przykład 38 + 5.</div>
-            <label class="option"><input type="radio" name="q20" value="A"><span class="option-text">43</span></label>
-            <label class="option"><input type="radio" name="q20" value="B"><span class="option-text">385</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">21. Wskaż działania, których wyniki są liczbami nieparzystymi.</div>
-            <label class="option"><input type="checkbox" name="q21" value="A"><span class="option-text">27 + 16</span></label>
-            <label class="option"><input type="checkbox" name="q21" value="B"><span class="option-text">33 + 19</span></label>
-            <label class="option"><input type="checkbox" name="q21" value="C"><span class="option-text">26 + 18</span></label>
-            <label class="option"><input type="checkbox" name="q21" value="D"><span class="option-text">49 + 16</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">22. Ola i Sylwia mają razem 20 lat. Ola jest o 4 lata starsza od Sylwii.</div>
-            <label class="option"><input type="radio" name="q22" value="A"><span class="option-text">Ola ma 12 lat, Sylwia ma 8 lat</span></label>
-            <label class="option"><input type="radio" name="q22" value="B"><span class="option-text">Ola ma 14 lat, Sylwia ma 6 lat</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">23. Wskaż działanie pasujące do schematu, którego wynik to 17.</div>
-            <label class="option"><input type="radio" name="q23" value="A"><span class="option-text">15 - 3 + 5</span></label>
-            <label class="option"><input type="radio" name="q23" value="B"><span class="option-text">10 - 2 + 9</span></label>
-            <label class="option"><input type="radio" name="q23" value="C"><span class="option-text">25 - 9 + 1</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">24. Mama Kasi kupiła 7 jabłek, 3 marchewki i 2 banany. Ile razem owoców?</div>
-            <label class="option"><input type="radio" name="q24" value="A"><span class="option-text">9</span></label>
-            <label class="option"><input type="radio" name="q24" value="B"><span class="option-text">12</span></label>
-            <label class="option"><input type="radio" name="q24" value="C"><span class="option-text">9 owoców, czyli jabłka i banany</span></label>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">25. Jeśli do liczby 16 dodasz tę liczbę, otrzymasz 25. Jaka to liczba?</div>
-            <label class="option"><input type="radio" name="q25" value="A"><span class="option-text">41</span></label>
-            <label class="option"><input type="radio" name="q25" value="B"><span class="option-text">9</span></label>
-            <label class="option"><input type="radio" name="q25" value="C"><span class="option-text">8</span></label>
-        </div>
-
-        <div class="submit-wrap">
-            <button onclick="checkQuiz()">Sprawdź wynik</button>
-            <div id="result"></div>
-        </div>
+    <div class="submit-wrap">
+        <button class="submit-btn" onclick="checkQuiz()">Sprawdź wynik</button>
+        <div id="result"></div>
     </div>
 
     <script>
         function checkQuiz() {
             const correctAnswers = {
-                q1: ['B'], q2: ['B'], q3: ['C'], q4: ['A', 'C', 'E'], q5: ['A'],
-                q6: ['A'], q7: ['C'], q8: ['B'], q9: ['A'], q10: ['C'],
-                q11: ['A'], q12: ['B'], q13: ['B'], q14: ['B'], q15: ['B'],
-                q16: ['B'], q17: ['A'], q18: ['A'], q19: ['A'], q20: ['A'],
-                q21: ['A', 'D'], q22: ['A'], q23: ['B'], q24: ['C'], q25: ['B']
+                q1: ['B'],
+                q2: ['B'],
+                q3: ['C'],
+                q4: ['A', 'C', 'E'],
+                q5: ['A'],
+                q6: ['A'],
+                q7: ['A'],
+                q8: ['B'],
+                q9: ['A'],
+                q10: ['C'],
+                q11: ['A'],
+                q12: ['B'],
+                q13: ['B'],
+                q14: ['B'],
+                q15: ['B'],
+                q16: ['B'],
+                q17: ['A'],
+                q18: ['A'],
+                q19: ['A'],
+                q20: ['A'],
+                q21: ['A', 'D'],
+                q22: ['A'],
+                q23: ['B'],
+                q24: ['A'],
+                q25: ['B']
             };
 
             let score = 0;
-            let totalQuestions = Object.keys(correctAnswers).length;
+            const totalQuestions = Object.keys(correctAnswers).length;
 
-            for (let q in correctAnswers) {
-                const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`))
-                    .map(cb => cb.value);
-                const expected = correctAnswers[q];
-
-                const isCorrect = expected.length === selected.length &&
-                    expected.every(value => selected.includes(value));
-
+            for (const [q, expected] of Object.entries(correctAnswers)) {
+                const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`)).map(el => el.value);
+                const isCorrect = expected.length === selected.length && expected.every(value => selected.includes(value));
                 if (isCorrect) {
                     score++;
                 }
@@ -418,7 +701,7 @@
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
+            resultDiv.textContent = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
         }
     </script>
 </body>
