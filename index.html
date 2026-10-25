@@ -1,11 +1,20 @@
-<!DOCTYPE html>
+import os
+
+# Define the HTML content for each file based on sources in notebook
+# Source files:
+# 1. MATEMATYKA Klasa I Wiosna 2024
+# 2. MATEMATYKA Klasa II Wiosna 2024
+# 3. MATEMATYKA Klasa III Wiosna 2024
+# 4. MATEMATYKA Klasa IV Wiosna 2024
+
+html_head = """<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matematyka Klasa IV - Wiosna 2024 (Test z autosprawdzaniem)</title>
+    <title>{title}</title>
     <style>
-        body {
+        body {{
             font-family: Arial, sans-serif;
             margin: 20px;
             line-height: 1.6;
@@ -13,34 +22,34 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-        }
-        h1, h2 {
+        }}
+        h1, h2 {{
             text-align: center;
             color: #2c3e50;
-        }
-        .header-section {
+        }}
+        .header-section {{
             border: 2px solid #2c3e50;
             padding: 15px;
             margin-bottom: 20px;
             background-color: #f8f9fa;
             border-radius: 5px;
-        }
-        .instruction {
+        }}
+        .instruction {{
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.85em;
             color: #e74c3c;
             margin-bottom: 5px;
-        }
-        .field-group {
+        }}
+        .field-group {{
             margin-bottom: 10px;
-        }
-        .field-group label {
+        }}
+        .field-group label {{
             font-weight: bold;
             display: inline-block;
             width: 100px;
-        }
-        .field-group input[type="text"] {
+        }}
+        .field-group input[type="text"] {{
             border: none;
             border-bottom: 1px solid #333;
             outline: none;
@@ -48,176 +57,1278 @@
             width: 250px;
             padding: 2px;
             background: transparent;
-        }
-        .task {
+        }}
+        .checkbox-grid {{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }}
+        .checkbox-grid th, .checkbox-grid td {{
+            border: 1px solid #bdc3c7;
+            text-align: center;
+            padding: 6px;
+        }}
+        .checkbox-grid th {{
+            background-color: #ecf0f1;
+        }}
+        .task {{
             margin-bottom: 20px;
             border-bottom: 1px dashed #ccc;
             padding-bottom: 15px;
-        }
-        .task-title {
+        }}
+        .task-title {{
             font-weight: bold;
             font-size: 1.05em;
-        }
-        .options {
+        }}
+        .options {{
             margin-top: 8px;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-        }
-        .option-item {
+        }}
+        .option-item {{
             margin-right: 15px;
-        }
-        .btn-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-        button {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.1em;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #219653;
-        }
-        #results {
-            background-color: #e8f8f5;
-            border: 2px solid #27ae60;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-            display: none;
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .correct-answer {
-            color: #27ae60;
-            font-weight: bold;
-        }
-        .incorrect-answer {
-            color: #c0392b;
-            font-weight: bold;
-        }
+        }}
+        .sub-group {{
+            margin-left: 15px;
+            margin-top: 5px;
+        }}
     </style>
 </head>
 <body>
 
-    <h1>Matematyka Klasa IV - Wiosna 2024</h1>
+    <h1>{title}</h1>
 
     <div class="header-section">
         <div class="instruction">Wypełnij DRUKOWANYMI literami.</div>
         <div class="field-group">
             <label>Imię:</label>
-            <input type="text" id="imie" name="imie">
+            <input type="text" name="imie">
         </div>
         <div class="field-group">
             <label>Nazwisko:</label>
-            <input type="text" id="nazwisko" name="nazwisko">
+            <input type="text" name="nazwisko">
+        </div>
+    </div>
+"""
+
+html_foot = """
+</body>
+</html>
+"""
+
+# KLASA 1
+k1_content = html_head.format(title="Matematyka Klasa I - Wiosna 2024") + """
+    <h2>Zadania testowe (1–25)</h2>
+
+    <div class="task">
+        <p class="task-title">1. Ile to tygodni i dni? 12 dni</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 1 tydzień i 4 dni</span>
+            <span class="option-item"><input type="checkbox"> 1 tydzień i 5 dni</span>
+            <span class="option-item"><input type="checkbox"> 1 tydzień i 6 dni</span>
+            <span class="option-item"><input type="checkbox"> 2 tygodnie</span>
         </div>
     </div>
 
+    <div class="task">
+        <p class="task-title">2. Asia ma jedenaście lat. Ile lat będzie miała za dziewięć lat?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 19 lat</span>
+            <span class="option-item"><input type="checkbox"> 20 lat</span>
+            <span class="option-item"><input type="checkbox"> 18 lat</span>
+            <span class="option-item"><input type="checkbox"> 11 lat</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">3. Jest godzina 19.45. Jaką godzinę wskaże zegar za kwadrans?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 19.30</span>
+            <span class="option-item"><input type="checkbox"> 20.15</span>
+            <span class="option-item"><input type="checkbox"> 20.00</span>
+            <span class="option-item"><input type="checkbox"> 19.15</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">4. Wskaż prawidłowe odpowiedzi.</p>
+        <p>Doba to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 24 godziny</span>
+            <span class="option-item"><input type="checkbox"> 12 godziny</span>
+            <span class="option-item"><input type="checkbox"> 6 godziny</span>
+            <span class="option-item"><input type="checkbox"> 30 godziny</span>
+        </div>
+        <p>Rok ma:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 3 kwartały</span>
+            <span class="option-item"><input type="checkbox"> 4 kwartały</span>
+            <span class="option-item"><input type="checkbox"> 1 kwartał</span>
+            <span class="option-item"><input type="checkbox"> 2 kwartały</span>
+        </div>
+        <p>1 złoty to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 1000 groszy</span>
+            <span class="option-item"><input type="checkbox"> 1 grosz</span>
+            <span class="option-item"><input type="checkbox"> 100 groszy</span>
+            <span class="option-item"><input type="checkbox"> 10 groszy</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">5. Ustal, jakie wartości ukryły się pod motylkami.</p>
+        <p>🦋 = 13 + 6:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 12</span>
+            <span class="option-item"><input type="checkbox"> 18</span>
+            <span class="option-item"><input type="checkbox"> 19</span>
+            <span class="option-item"><input type="checkbox"> 10</span>
+        </div>
+        <p>🦋 = 20 - 8:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 28</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+            <span class="option-item"><input type="checkbox"> 20</span>
+            <span class="option-item"><input type="checkbox"> 12</span>
+        </div>
+        <p>17 - 6 = 🦋:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 11</span>
+            <span class="option-item"><input type="checkbox"> 13</span>
+            <span class="option-item"><input type="checkbox"> 23</span>
+            <span class="option-item"><input type="checkbox"> 11</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">6. Jaka liczba ukryła się pod kwiatkiem? 🌸 + 12 = 18</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 4</span>
+            <span class="option-item"><input type="checkbox"> 6</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">7. Jaka liczba ukryła się pod słoneczkiem? 8 + 2 + ☀️ = 20</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 19</span>
+            <span class="option-item"><input type="checkbox"> 10</span>
+            <span class="option-item"><input type="checkbox"> 20</span>
+            <span class="option-item"><input type="checkbox"> 18</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">8. Ile to miesięcy? 2 kwartały</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 3</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+            <span class="option-item"><input type="checkbox"> 4</span>
+            <span class="option-item"><input type="checkbox"> 6</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">9. Przedstaw liczbę 15 jako sumę trzech składników.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 5 + 5 + 5</span>
+            <span class="option-item"><input type="checkbox"> 15 + 0 + 1</span>
+            <span class="option-item"><input type="checkbox"> 10 + 4 + 1</span>
+            <span class="option-item"><input type="checkbox"> 3 + 4 + 8</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">10. Każdy kwiatek zastępuje tę samą liczbę. Jaka to liczba? 🌸 + 🌸 + 🌸 = 12, 12 - 🌸 = 4</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 3</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+            <span class="option-item"><input type="checkbox"> 4</span>
+            <span class="option-item"><input type="checkbox"> 2</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">11. Wstaw odpowiedni znak: &lt;, =, &gt;.</p>
+        <p>13 + 8 ... 14 + 9</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+        </div>
+        <p>20 - 6 ... 6 + 7</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+        </div>
+        <p>25 - 8 ... 8 + 9</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">12. Wskaż dziesiątki sąsiadujące z liczbą 20.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 5, 45</span>
+            <span class="option-item"><input type="checkbox"> 10, 30</span>
+            <span class="option-item"><input type="checkbox"> 40, 60</span>
+            <span class="option-item"><input type="checkbox"> 50, 70</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">13. Zaznacz prawidłową odpowiedź. 24 : 6 = ...</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> siedem</span>
+            <span class="option-item"><input type="checkbox"> cztery</span>
+            <span class="option-item"><input type="checkbox"> trzy</span>
+            <span class="option-item"><input type="checkbox"> pięć</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">14. Jaka to liczba? Sześć jedności i dwie dziesiątki.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 62</span>
+            <span class="option-item"><input type="checkbox"> 61</span>
+            <span class="option-item"><input type="checkbox"> 26</span>
+            <span class="option-item"><input type="checkbox"> 16</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">15. Wskaż zbiór, w którym znajdują się liczby parzyste.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> {3, 7, 3, 1, 5, 9}</span>
+            <span class="option-item"><input type="checkbox"> {2, 6, 4, 1, 4, 5}</span>
+            <span class="option-item"><input type="checkbox"> {6, 0, 2, 8, 0, 10}</span>
+            <span class="option-item"><input type="checkbox"> {8, 2}</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">16. Liczba 6 jest o 8 mniejsza od liczby:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 2</span>
+            <span class="option-item"><input type="checkbox"> 16</span>
+            <span class="option-item"><input type="checkbox"> 14</span>
+            <span class="option-item"><input type="checkbox"> 15</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">17. Zaznacz błędne obliczenie.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 19 + 2 = 20</span>
+            <span class="option-item"><input type="checkbox"> 20 - 9 - 10</span>
+            <span class="option-item"><input type="checkbox"> 16 - 9 - 6</span>
+            <span class="option-item"><input type="checkbox"> 14 + 6 = 20</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">18. Jaką liczbę zakryła biedronka?</p>
+        <p>13 + 🐞 = 25:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 10</span>
+            <span class="option-item"><input type="checkbox"> 12</span>
+            <span class="option-item"><input type="checkbox"> 11</span>
+            <span class="option-item"><input type="checkbox"> 13</span>
+        </div>
+        <p>🐞 + 17 = 31:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 12</span>
+            <span class="option-item"><input type="checkbox"> 13</span>
+            <span class="option-item"><input type="checkbox"> 10</span>
+            <span class="option-item"><input type="checkbox"> 14</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">19. Wskaż sumę i różnicę liczb pasującą do poniższego rysunku.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 9 + 7, 16 - 7</span>
+            <span class="option-item"><input type="checkbox"> 7 + 8, 15 - 7</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">20. Dodaj składniki i oblicz sumę: 3, 8, 5</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 13</span>
+            <span class="option-item"><input type="checkbox"> 16</span>
+            <span class="option-item"><input type="checkbox"> 11</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">21. Wskaż działania, których wyniki są liczbami nieparzystymi.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 27 + 16 = ...</span>
+            <span class="option-item"><input type="checkbox"> 33 + 19 = ...</span>
+            <span class="option-item"><input type="checkbox"> 26 + 18 = ...</span>
+            <span class="option-item"><input type="checkbox"> 49 + 16 = ...</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">22. Ola i jej siostra Sylwia mają razem 20 lat. Ile lat ma Ola, a ile Sylwia, jeśli Ola jest o 4 lata starsza od Sylwii?</p>
+        <p>Ola ma:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 4 lata</span>
+            <span class="option-item"><input type="checkbox"> 12 lat</span>
+            <span class="option-item"><input type="checkbox"> 20 lat</span>
+            <span class="option-item"><input type="checkbox"> 14 lat</span>
+        </div>
+        <p>Sylwia ma:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 20 lat</span>
+            <span class="option-item"><input type="checkbox"> 16 lat</span>
+            <span class="option-item"><input type="checkbox"> 12 lat</span>
+            <span class="option-item"><input type="checkbox"> 8 lat</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">23. Wskaż działanie pasujące do schematu:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 200 + 0 = 17</span>
+            <span class="option-item"><input type="checkbox"> 15 - 3 + 5</span>
+            <span class="option-item"><input type="checkbox"> 10 - 2 + 9</span>
+            <span class="option-item"><input type="checkbox"> 25 - 9 + 1</span>
+            <span class="option-item"><input type="checkbox"> 19 - 2 + 1</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">24. Mama Kasi kupiła 7 jabłek, 3 marchewki i 2 banany. Ile razem owoców kupiła mama Kasi?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 12</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">25. Jeżeli do liczby 16 dodasz tę liczbę, otrzymasz 25. Jaka to liczba?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 41</span>
+            <span class="option-item"><input type="checkbox"> 8</span>
+            <span class="option-item"><input type="checkbox"> 25</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+        </div>
+    </div>
+""" + html_foot
+
+# KLASA 2
+k2_content = html_head.format(title="Matematyka Klasa II - Wiosna 2024") + """
+    <h2>Zadania testowe (1–25)</h2>
+
+    <div class="task">
+        <p class="task-title">1. Ile centymetrów brakuje do metra?</p>
+        <p>16 cm + 56 cm:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 26 cm</span>
+            <span class="option-item"><input type="checkbox"> 28 cm</span>
+            <span class="option-item"><input type="checkbox"> 27 cm</span>
+            <span class="option-item"><input type="checkbox"> 29 cm</span>
+        </div>
+        <p>11 cm + 48 cm:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 43 cm</span>
+            <span class="option-item"><input type="checkbox"> 42 cm</span>
+            <span class="option-item"><input type="checkbox"> 40 cm</span>
+            <span class="option-item"><input type="checkbox"> 41 cm</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">2. Patryk ma 16 lat, a Adaś 7. Oblicz, o ile lat Adaś jest młodszy od Patryka.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 7 lat</span>
+            <span class="option-item"><input type="checkbox"> 9 lat</span>
+            <span class="option-item"><input type="checkbox"> 8 lat</span>
+            <span class="option-item"><input type="checkbox"> 10 lat</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">3. Jest godzina 9.55. Która godzina będzie za 2 kwadranse?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 10.35</span>
+            <span class="option-item"><input type="checkbox"> 10.40</span>
+            <span class="option-item"><input type="checkbox"> 10.25</span>
+            <span class="option-item"><input type="checkbox"> 10.10</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">4. Wskaż prawidłowe odpowiedzi.</p>
+        <p>Kwadrans:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 15 min</span>
+            <span class="option-item"><input type="checkbox"> 60 min</span>
+            <span class="option-item"><input type="checkbox"> 45 min</span>
+            <span class="option-item"><input type="checkbox"> 30 min</span>
+        </div>
+        <p>Pół kilograma:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 500 dag</span>
+            <span class="option-item"><input type="checkbox"> 50 dag</span>
+            <span class="option-item"><input type="checkbox"> 5 dag</span>
+            <span class="option-item"><input type="checkbox"> 0,5 dag</span>
+        </div>
+        <p>Półtorej metra:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 1500 cm</span>
+            <span class="option-item"><input type="checkbox"> 15 cm</span>
+            <span class="option-item"><input type="checkbox"> 150 cm</span>
+            <span class="option-item"><input type="checkbox"> 100 cm</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">5. Ustal, jakie wartości mogły się ukryć pod motylkami.</p>
+        <p>🦋 &gt; 3 · 8:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 27</span>
+            <span class="option-item"><input type="checkbox"> 21</span>
+            <span class="option-item"><input type="checkbox"> 32</span>
+            <span class="option-item"><input type="checkbox"> 15</span>
+        </div>
+        <p>🦋 = 7 · 8:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 25</span>
+            <span class="option-item"><input type="checkbox"> 56</span>
+            <span class="option-item"><input type="checkbox"> 63</span>
+            <span class="option-item"><input type="checkbox"> 46</span>
+        </div>
+        <p>42 : 6 &lt; 🦋:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 8</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 6</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">6. Oblicz różnicę liczb: 63 i 29.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 35</span>
+            <span class="option-item"><input type="checkbox"> 92</span>
+            <span class="option-item"><input type="checkbox"> 36</span>
+            <span class="option-item"><input type="checkbox"> 34</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">7. Wczoraj była środa. Pojutrze będzie:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> niedziela</span>
+            <span class="option-item"><input type="checkbox"> piątek</span>
+            <span class="option-item"><input type="checkbox"> sobota</span>
+            <span class="option-item"><input type="checkbox"> poniedziałek</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">8. Marta ma kilka patyczków jednakowej długości. Z ilu patyczków może zbudować 2 trójkąty?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 3</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+            <span class="option-item"><input type="checkbox"> 1</span>
+            <span class="option-item"><input type="checkbox"> brak odpowiedzi</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">9. Wskaż liczbę, która ma więcej jedności niż dziesiątek.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 89</span>
+            <span class="option-item"><input type="checkbox"> 98</span>
+            <span class="option-item"><input type="checkbox"> 75</span>
+            <span class="option-item"><input type="checkbox"> 36</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">10. Każdy kwiatek zastępuje tę samą liczbę. Jaka to liczba? 45 : 🌸 = 30</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 15</span>
+            <span class="option-item"><input type="checkbox"> 6</span>
+            <span class="option-item"><input type="checkbox"> 5</span>
+            <span class="option-item"><input type="checkbox"> 4</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">11. Ile to miesięcy? 3 kwartały</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 3</span>
+            <span class="option-item"><input type="checkbox"> 12</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 6</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">12. Od godziny 20.10 do godziny 21.05 minęło?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 60 minut</span>
+            <span class="option-item"><input type="checkbox"> 45 minut</span>
+            <span class="option-item"><input type="checkbox"> 55 minut</span>
+            <span class="option-item"><input type="checkbox"> 50 minut</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">13. Wstaw odpowiedni znak: &lt;, =, &gt;.</p>
+        <p>8 zł ... 5 zł + 2 zł + 2 zł + 1 zł</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+        </div>
+        <p>25 zł ... 5 zł + 5 zł + 5 zł + 5 zł + 2 zł + 1 zł</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+        </div>
+        <p>16 zł ... 5 zł + 5 zł + 2 zł + 2 zł + 1 zł + 1 zł + 1 zł</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">14. Wskaż składniki sumy równej 20.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 12 + 3 + 5</span>
+            <span class="option-item"><input type="checkbox"> 14 + 6</span>
+            <span class="option-item"><input type="checkbox"> 11 + 6 + 2</span>
+            <span class="option-item"><input type="checkbox"> 3 + 4 + 3</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">15. Zaznacz błędne obliczenie.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 73 + 8 = 82</span>
+            <span class="option-item"><input type="checkbox"> 5 + 9 = 45</span>
+            <span class="option-item"><input type="checkbox"> 35 + 7 = 93</span>
+            <span class="option-item"><input type="checkbox"> 42 + 8 = 50</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">16. Wstążka ma długość 20 cm. Ile centymetrów długości będzie miała każda część wstążki, jeśli rozetniesz ją na cztery równe części?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 4 cm</span>
+            <span class="option-item"><input type="checkbox"> 5 cm</span>
+            <span class="option-item"><input type="checkbox"> 3 cm</span>
+            <span class="option-item"><input type="checkbox"> 6 cm</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">17. Wskaż rzeczy, które występują zawsze w parach.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> szaliki</span>
+            <span class="option-item"><input type="checkbox"> buty</span>
+            <span class="option-item"><input type="checkbox"> skarpetki</span>
+            <span class="option-item"><input type="checkbox"> rękawiczki</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">18. Jedna biedronka siedmiokropka ma 7 kropek. Ile kropek mają cztery takie biedronki?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 28</span>
+            <span class="option-item"><input type="checkbox"> 35</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+            <span class="option-item"><input type="checkbox"> 21</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">19. Karol spędził tydzień ferii zimowych nad morzem, a kolejne trzy dni w górach. Ile to dni?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 14 dni</span>
+            <span class="option-item"><input type="checkbox"> 3 dni</span>
+            <span class="option-item"><input type="checkbox"> 10 dni</span>
+            <span class="option-item"><input type="checkbox"> 7 dni</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">20. Wskaż liczby parzyste większe od 20, ale mniejsze od 30.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 20</span>
+            <span class="option-item"><input type="checkbox"> 30</span>
+            <span class="option-item"><input type="checkbox"> 26</span>
+            <span class="option-item"><input type="checkbox"> 28</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">21. Porównaj sumy i różnice. Wstaw odpowiedni znak: &lt;, =, &gt;.</p>
+        <p>49 - 9 ... 50 - 10</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+        </div>
+        <p>85 + 5 ... 85 - 5</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+            <span class="option-item"><input type="checkbox"> =</span>
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+        </div>
+        <p>98 - 18 ... 33 + 48</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> &gt;</span>
+            <span class="option-item"><input type="checkbox"> &lt;</span>
+            <span class="option-item"><input type="checkbox"> =</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">22. Worek z mąką waży 25 kg. Pusty worek jest o 23 kg lżejszy niż mąka. Ile waży mąka, a ile worek?</p>
+        <p>Waga mąki:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 2 kg</span>
+            <span class="option-item"><input type="checkbox"> 25 kg</span>
+            <span class="option-item"><input type="checkbox"> 23 kg</span>
+            <span class="option-item"><input type="checkbox"> 24 kg</span>
+        </div>
+        <p>Waga worka:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 23 kg</span>
+            <span class="option-item"><input type="checkbox"> 2 kg</span>
+            <span class="option-item"><input type="checkbox"> 25 kg</span>
+            <span class="option-item"><input type="checkbox"> 1 kg</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">23. Wskaż iloczyny, które mają takie same wyniki.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 2 · 2</span>
+            <span class="option-item"><input type="checkbox"> 4 · 1</span>
+            <span class="option-item"><input type="checkbox"> 3 · 0</span>
+            <span class="option-item"><input type="checkbox"> 2 · 3</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">24. Oblicz sumę liczb: dwadzieścia osiem i dziewięć.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 37</span>
+            <span class="option-item"><input type="checkbox"> 28</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 19</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">25. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> trzydzieści, sześćdziesiąt, osiemdziesiąt</span>
+            <span class="option-item"><input type="checkbox"> dziesięć, pięćdziesiąt, dziewięćdziesiąt</span>
+            <span class="option-item"><input type="checkbox"> czterdzieści, trzydzieści, siedemdziesiąt</span>
+            <span class="option-item"><input type="checkbox"> dwadzieścia, sto, sześćdziesiąt</span>
+        </div>
+    </div>
+""" + html_foot
+
+# KLASA 3
+k3_content = html_head.format(title="Matematyka Klasa III - Wiosna 2024") + """
+    <h2>Zadania testowe (1–25)</h2>
+
+    <div class="task">
+        <p class="task-title">1. Wskaż równość prawdziwą.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 36 : 9 = 28 : 7</span>
+            <span class="option-item"><input type="checkbox"> 4 : 4 = 54 : 8</span>
+            <span class="option-item"><input type="checkbox"> 63 : 7 = 27 : 3</span>
+            <span class="option-item"><input type="checkbox"> 48 : 6 = 4 · 2</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">2. Wskaż zamalowaną ćwierć kwadratu.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> Opcja A</span>
+            <span class="option-item"><input type="checkbox"> Opcja B</span>
+            <span class="option-item"><input type="checkbox"> Opcja C</span>
+            <span class="option-item"><input type="checkbox"> Opcja D</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">3. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 17 lat</span>
+            <span class="option-item"><input type="checkbox"> 16 lat</span>
+            <span class="option-item"><input type="checkbox"> 35 lat</span>
+            <span class="option-item"><input type="checkbox"> 18 lat</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">4. Wskaż działanie niewykonalne.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 0 : 5</span>
+            <span class="option-item"><input type="checkbox"> 5 : 0</span>
+            <span class="option-item"><input type="checkbox"> 5 · 0</span>
+            <span class="option-item"><input type="checkbox"> 0 · 5</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">5. Ustal, jakie wartości kryją się pod motylkami.</p>
+        <p>37 + 🦋 = 100:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 64</span>
+            <span class="option-item"><input type="checkbox"> 63</span>
+            <span class="option-item"><input type="checkbox"> 65</span>
+            <span class="option-item"><input type="checkbox"> 62</span>
+        </div>
+        <p>🦋 - 48 = 27:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 75</span>
+            <span class="option-item"><input type="checkbox"> 74</span>
+            <span class="option-item"><input type="checkbox"> 76</span>
+            <span class="option-item"><input type="checkbox"> 77</span>
+        </div>
+        <p>49 + 35 = 🦋:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 85</span>
+            <span class="option-item"><input type="checkbox"> 87</span>
+            <span class="option-item"><input type="checkbox"> 84</span>
+            <span class="option-item"><input type="checkbox"> 86</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">6. Miesiąc IX ma:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 30 dni</span>
+            <span class="option-item"><input type="checkbox"> 28 dni</span>
+            <span class="option-item"><input type="checkbox"> 29 dni</span>
+            <span class="option-item"><input type="checkbox"> 31 dni</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">7. Jest godzina 8.45. Która godzina będzie za półtorej godziny?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 9.45</span>
+            <span class="option-item"><input type="checkbox"> 10.45</span>
+            <span class="option-item"><input type="checkbox"> 10.15</span>
+            <span class="option-item"><input type="checkbox"> 10.30</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">8. Przedwczoraj był piątek. Pojutrze będzie:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> środa</span>
+            <span class="option-item"><input type="checkbox"> poniedziałek</span>
+            <span class="option-item"><input type="checkbox"> wtorek</span>
+            <span class="option-item"><input type="checkbox"> czwartek</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">9. Wskaż liczbę złożoną z 4 setek, 3 dziesiątek i 8 jedności.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 438</span>
+            <span class="option-item"><input type="checkbox"> 834</span>
+            <span class="option-item"><input type="checkbox"> 483</span>
+            <span class="option-item"><input type="checkbox"> 348</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">10. Wskaż iloczyny, które mają takie same wyniki.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 2 · 9</span>
+            <span class="option-item"><input type="checkbox"> 3 · 6</span>
+            <span class="option-item"><input type="checkbox"> 7 · 3</span>
+            <span class="option-item"><input type="checkbox"> 5 · 4</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">11. Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile złotych zostało Markowi?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 33 zł</span>
+            <span class="option-item"><input type="checkbox"> 9 zł</span>
+            <span class="option-item"><input type="checkbox"> 13 zł</span>
+            <span class="option-item"><input type="checkbox"> 26 zł</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">12. Oblicz i wskaż działania z takimi samymi wynikami.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 100 : 2</span>
+            <span class="option-item"><input type="checkbox"> 23 + 27</span>
+            <span class="option-item"><input type="checkbox"> 80 - 30</span>
+            <span class="option-item"><input type="checkbox"> 75 - 26</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">13. Zmniejszyć liczbę 24 trzy razy, to znaczy:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> pomnożyć ją przez 3</span>
+            <span class="option-item"><input type="checkbox"> podzielić ją przez 3</span>
+            <span class="option-item"><input type="checkbox"> odjąć od niej 3</span>
+            <span class="option-item"><input type="checkbox"> dodać do niej 3</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">14. Jaka liczba ukryła się pod kwiatkiem? 🌸 : 9 = 3</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 27</span>
+            <span class="option-item"><input type="checkbox"> 36</span>
+            <span class="option-item"><input type="checkbox"> 28</span>
+            <span class="option-item"><input type="checkbox"> 24</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">15. Rodzice Marty mają razem pół wieku. Mama Marty jest młodsza od taty i ma 23 lata. Ile lat ma tata Marty?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 23 lata</span>
+            <span class="option-item"><input type="checkbox"> 27 lat</span>
+            <span class="option-item"><input type="checkbox"> 26 lat</span>
+            <span class="option-item"><input type="checkbox"> 28 lat</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">16. Ma początek, ale nie ma końca.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> półprosta</span>
+            <span class="option-item"><input type="checkbox"> odcinek</span>
+            <span class="option-item"><input type="checkbox"> prosta</span>
+            <span class="option-item"><input type="checkbox"> punkt</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">17. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 12 434, 9 872, 71 602, 38 432</span>
+            <span class="option-item"><input type="checkbox"> 8 574, 45 678, 76 521, 10 736</span>
+            <span class="option-item"><input type="checkbox"> 5 864, 13 897, 38 655, 79 321</span>
+            <span class="option-item"><input type="checkbox"> 7 321, 8 933, 13 762, 2 345</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">18. Jak można podzielić 36 ciastek między sześcioro dzieci?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 1 + 3 + 5 + 7 + 9 + 11</span>
+            <span class="option-item"><input type="checkbox"> 2 + 4 + 6 + 8 + 10 + 12</span>
+            <span class="option-item"><input type="checkbox"> 6 · 6</span>
+            <span class="option-item"><input type="checkbox"> 2 + 3 + 7 + 8 + 6 + 9</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">19. Wskaż liczby, których połowa jest liczbą parzystą.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 72</span>
+            <span class="option-item"><input type="checkbox"> 66</span>
+            <span class="option-item"><input type="checkbox"> 50</span>
+            <span class="option-item"><input type="checkbox"> 84</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">20. Długość skoku kangura wynosi dziewięć metrów. Ile takich skoków musi wykonać kangur, żeby pokonać odległość 81 metrów?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 6</span>
+            <span class="option-item"><input type="checkbox"> 8</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 7</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">21. Od iloczynu liczb 6 i 8 odejmij ich sumę.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 14</span>
+            <span class="option-item"><input type="checkbox"> 42</span>
+            <span class="option-item"><input type="checkbox"> 40</span>
+            <span class="option-item"><input type="checkbox"> 34</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">22. Wskaż liczby trzycyfrowe parzyste, w których rząd setek to dziewięć, a rząd jedności to osiem.</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 998</span>
+            <span class="option-item"><input type="checkbox"> 989</span>
+            <span class="option-item"><input type="checkbox"> 898</span>
+            <span class="option-item"><input type="checkbox"> 908</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">23. Ile razem nóg mają 3 tygrysy, 4 lwy i 2 papugi?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 32</span>
+            <span class="option-item"><input type="checkbox"> 16</span>
+            <span class="option-item"><input type="checkbox"> 9</span>
+            <span class="option-item"><input type="checkbox"> 22</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">24. Zosia spędziła dwa tygodnie ferii zimowych u babci na wsi. Ile to dni?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 28 dni</span>
+            <span class="option-item"><input type="checkbox"> 21 dni</span>
+            <span class="option-item"><input type="checkbox"> 7 dni</span>
+            <span class="option-item"><input type="checkbox"> 14 dni</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">25. Ile wynosi długość drogi liska? Oblicz i zaznacz prawidłową odpowiedź. (Odcinki: 27 cm, 25 cm, 9 cm, 12 cm, 6 cm)</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> 80 cm</span>
+            <span class="option-item"><input type="checkbox"> 78 cm</span>
+            <span class="option-item"><input type="checkbox"> 79 cm</span>
+            <span class="option-item"><input type="checkbox"> 77 cm</span>
+        </div>
+    </div>
+""" + html_foot
+
+# KLASA 4
+k4_content = html_head.format(title="Matematyka Klasa IV - Wiosna 2024") + """
     <h2>Zadania testowe (1–29)</h2>
 
-    <form id="quizForm">
-        <!-- Zadanie 1 -->
-        <div class="task" data-question="1" data-correct="C">
-            <p class="task-title">1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:</p>
-            <div class="options">
-                <span class="option-item"><label><input type="radio" name="q1" value="A"> A. 0</label></span>
-                <span class="option-item"><label><input type="radio" name="q1" value="B"> B. 20</label></span>
-                <span class="option-item"><label><input type="radio" name="q1" value="C"> C. 40</label></span>
-                <span class="option-item"><label><input type="radio" name="q1" value="D"> D. 60</label></span>
-            </div>
+    <div class="task">
+        <p class="task-title">1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 0</span>
+            <span class="option-item"><input type="checkbox"> B. 20</span>
+            <span class="option-item"><input type="checkbox"> C. 40</span>
+            <span class="option-item"><input type="checkbox"> D. 60</span>
         </div>
+    </div>
 
-        <!-- Zadanie 2 -->
-        <div class="task" data-question="2" data-correct="A">
-            <p class="task-title">2. Iloczyn 5 · 5 · 5 · 5 możemy zapisać w postaci:</p>
-            <div class="options">
-                <span class="option-item"><label><input type="radio" name="q2" value="A"> A. 5⁴</label></span>
-                <span class="option-item"><label><input type="radio" name="q2" value="B"> B. 55</label></span>
-                <span class="option-item"><label><input type="radio" name="q2" value="C"> C. 55²</label></span>
-                <span class="option-item"><label><input type="radio" name="q2" value="D"> D. 4⁵</label></span>
-            </div>
+    <div class="task">
+        <p class="task-title">2. Iloczyn 5 · 5 · 5 · 5 możemy zapisać w postaci:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 5⁴</span>
+            <span class="option-item"><input type="checkbox"> B. 55</span>
+            <span class="option-item"><input type="checkbox"> C. 55²</span>
+            <span class="option-item"><input type="checkbox"> D. 4⁵</span>
         </div>
+    </div>
 
-        <!-- Zadanie 3 -->
-        <div class="task" data-question="3" data-correct="D">
-            <p class="task-title">3. Jeśli średnica okręgu ma długość 10 dm, to długość jego promienia wynosi:</p>
-            <div class="options">
-                <span class="option-item"><label><input type="radio" name="q3" value="A"> A. 40 dm</label></span>
-                <span class="option-item"><label><input type="radio" name="q3" value="B"> B. 20 dm</label></span>
-                <span class="option-item"><label><input type="radio" name="q3" value="C"> C. 10 dm</label></span>
-                <span class="option-item"><label><input type="radio" name="q3" value="D"> D. 5 dm</label></span>
-            </div>
+    <div class="task">
+        <p class="task-title">3. Jeśli średnica okręgu ma długość 10 dm, to długość jego promienia wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 40 dm</span>
+            <span class="option-item"><input type="checkbox"> B. 20 dm</span>
+            <span class="option-item"><input type="checkbox"> C. 10 dm</span>
+            <span class="option-item"><input type="checkbox"> D. 5 dm</span>
         </div>
+    </div>
 
-        <!-- Zadanie 4 -->
-        <div class="task" data-question="4" data-correct="C">
-            <p class="task-title">4. Długość odcinka AB w skali 3:1 wynosi 4 cm, wobec tego ten odcinek w rzeczywistości ma długość:</p>
-            <div class="options">
-                <span class="option-item"><label><input type="radio" name="q4" value="A"> A. 3 cm</label></span>
-                <span class="option-item"><label><input type="radio" name="q4" value="B"> B. 4 cm</label></span>
-                <span class="option-item"><label><input type="radio" name="q4" value="C"> C. 12 cm</label></span>
-                <span class="option-item"><label><input type="radio" name="q4" value="D"> D. 34 cm</label></span>
-            </div>
+    <div class="task">
+        <p class="task-title">4. Długość odcinka AB w skali 3:1 wynosi 4 cm, wobec tego ten odcinek ma długość:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 3 cm</span>
+            <span class="option-item"><input type="checkbox"> B. 4 cm</span>
+            <span class="option-item"><input type="checkbox"> C. 12 cm</span>
+            <span class="option-item"><input type="checkbox"> D. 34 cm</span>
         </div>
+    </div>
 
-        <!-- Przycisk sprawdzający -->
-        <div class="btn-container">
-            <button type="button" onclick="sprawdzWyniki()">Sprawdź wynik</button>
+    <div class="task">
+        <p class="task-title">5. Obwód narysowanego trójkąta wynosi (boki: 6 cm, 8 cm, 1 dm):</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 14 cm</span>
+            <span class="option-item"><input type="checkbox"> B. 15 cm</span>
+            <span class="option-item"><input type="checkbox"> C. 24 cm</span>
+            <span class="option-item"><input type="checkbox"> D. 48 cm</span>
         </div>
-    </form>
+    </div>
 
-    <div id="results"></div>
+    <div class="task">
+        <p class="task-title">6. Kąt o mierze 89° jest:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. kątem ostrym</span>
+            <span class="option-item"><input type="checkbox"> B. kątem prostym</span>
+            <span class="option-item"><input type="checkbox"> C. kątem rozwartym</span>
+            <span class="option-item"><input type="checkbox"> D. kątem półpełnym</span>
+        </div>
+    </div>
 
-    <script>
-        // Klucz poprawnych odpowiedzi dla przykładowych zadań
-        const poprawneOdpowiedzi = {
-            q1: "C",
-            q2: "A",
-            q3: "D",
-            q4: "C"
-        };
+    <div class="task">
+        <p class="task-title">7. Pole kwadratu o obwodzie 16 cm wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 16 cm²</span>
+            <span class="option-item"><input type="checkbox"> B. 8 cm²</span>
+            <span class="option-item"><input type="checkbox"> C. 64 cm²</span>
+            <span class="option-item"><input type="checkbox"> D. 32 cm²</span>
+        </div>
+    </div>
 
-        function sprawdzWyniki() {
-            let punkty = 0;
-            let wszystkie = Object.keys(poprawneOdpowiedzi).length;
+    <div class="task">
+        <p class="task-title">8. Odległość w rzeczywistości wynosi 2000 cm, w skali 1:100 ta odległość będzie miała długość:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 2 cm</span>
+            <span class="option-item"><input type="checkbox"> B. 20 cm</span>
+            <span class="option-item"><input type="checkbox"> C. 2000 cm</span>
+            <span class="option-item"><input type="checkbox"> D. 200000 cm</span>
+        </div>
+    </div>
 
-            for (let q in poprawneOdpowiedzi) {
-                let wybrane = document.querySelector(`input[name="${q}"]:checked`);
-                let zadanieDiv = document.querySelector(`div[data-question="${q.replace('q', '')}"]`);
-                
-                // Usunięcie poprzednich oznaczeń
-                let stareInfo = zadanieDiv.querySelector('.info-wyniku');
-                if (stareInfo) stareInfo.remove();
+    <div class="task">
+        <p class="task-title">9. 250 minut to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 2 godziny i 5 minut</span>
+            <span class="option-item"><input type="checkbox"> B. 2 godziny i 10 minut</span>
+            <span class="option-item"><input type="checkbox"> C. 2 godziny i 50 minut</span>
+            <span class="option-item"><input type="checkbox"> D. 4 godziny i 10 minut</span>
+        </div>
+    </div>
 
-                let infoSpan = document.createElement('div');
-                infoSpan.className = 'info-wyniku';
-                infoSpan.style.marginTop = '5px';
+    <div class="task">
+        <p class="task-title">10. Liczba 5 razy mniejsza od 555 to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 500</span>
+            <span class="option-item"><input type="checkbox"> B. 111</span>
+            <span class="option-item"><input type="checkbox"> C. 155</span>
+            <span class="option-item"><input type="checkbox"> D. 550</span>
+        </div>
+    </div>
 
-                if (wybrane && wybrane.value === poprawneOdpowiedzi[q]) {
-                    punkty++;
-                    infoSpan.innerHTML = `<span class="correct-answer">Poprawnie!</span>`;
-                } else {
-                    let wybranaWartosc = wybrane ? wybrane.value : "brak";
-                    infoSpan.innerHTML = `<span class="incorrect-answer">Błędnie (Twoja odpowiedź: ${wybranaWartosc}, poprawna: ${poprawneOdpowiedzi[q]})</span>`;
-                }
-                zadanieDiv.appendChild(infoSpan);
-            }
+    <div class="task">
+        <p class="task-title">11. Różnica największej dwucyfrowej liczby i najmniejszej dwucyfrowej wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 89</span>
+            <span class="option-item"><input type="checkbox"> B. 100</span>
+            <span class="option-item"><input type="checkbox"> C. 110</span>
+            <span class="option-item"><input type="checkbox"> D. 989</span>
+        </div>
+    </div>
 
-            let imie = document.getElementById('imie').value || "Uczniu";
-            let nazwisko = document.getElementById('nazwisko').value || "";
-            
-            let wynikiDiv = document.getElementById('results');
-            wynikiDiv.style.display = 'block';
-            wynikiDiv.innerHTML = `Brawo ${imie} ${nazwisko}! Twój wynik to: ${punkty} / ${wszystkie} punktów.`;
-        }
-    </script>
+    <div class="task">
+        <p class="task-title">12. Kwadrat liczby 9 pomniejszony o 9 wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 0</span>
+            <span class="option-item"><input type="checkbox"> B. 9</span>
+            <span class="option-item"><input type="checkbox"> C. 72</span>
+            <span class="option-item"><input type="checkbox"> D. 81</span>
+        </div>
+    </div>
 
-</body>
-</html>
+    <div class="task">
+        <p class="task-title">13. Wynik działania 1 2/17 - 2 3/4 wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 1 1/68</span>
+            <span class="option-item"><input type="checkbox"> B. 1 1/13</span>
+            <span class="option-item"><input type="checkbox"> C. 13</span>
+            <span class="option-item"><input type="checkbox"> D. Inny wynik</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">14. Wspólną wielokrotnością liczb 2, 3 oraz 8 jest:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 238</span>
+            <span class="option-item"><input type="checkbox"> B. 13</span>
+            <span class="option-item"><input type="checkbox"> C. 24</span>
+            <span class="option-item"><input type="checkbox"> D. 832</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">15. Iloraz liczb 250 i 50 wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 50</span>
+            <span class="option-item"><input type="checkbox"> B. 5</span>
+            <span class="option-item"><input type="checkbox"> C. 300</span>
+            <span class="option-item"><input type="checkbox"> D. 750</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">16. Obwód podanego trójkąta (boki: 25 cm, 25 cm, 13 cm) wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 38 cm</span>
+            <span class="option-item"><input type="checkbox"> B. 50 cm</span>
+            <span class="option-item"><input type="checkbox"> C. 63 cm</span>
+            <span class="option-item"><input type="checkbox"> D. 75 cm</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">17. Liczba setek w sumie liczb 187 i 113 wynosi:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 1</span>
+            <span class="option-item"><input type="checkbox"> B. 2</span>
+            <span class="option-item"><input type="checkbox"> C. 3</span>
+            <span class="option-item"><input type="checkbox"> D. 4</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">18. Wynikiem działania 10 - 4 : 2 jest liczba:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 3</span>
+            <span class="option-item"><input type="checkbox"> B. 6</span>
+            <span class="option-item"><input type="checkbox"> C. 8</span>
+            <span class="option-item"><input type="checkbox"> D. 10</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">19. W sali kinowej jest dziesięć rzędów po 12 miejsc w każdym i 5 miejsc specjalnych. W tej sali jest:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 125 miejsc</span>
+            <span class="option-item"><input type="checkbox"> B. 120 miejsc</span>
+            <span class="option-item"><input type="checkbox"> C. 60 miejsc</span>
+            <span class="option-item"><input type="checkbox"> D. 12 miejsc</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">20. Osiem kwadransów to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 80 minut</span>
+            <span class="option-item"><input type="checkbox"> B. 100 minut</span>
+            <span class="option-item"><input type="checkbox"> C. 120 minut</span>
+            <span class="option-item"><input type="checkbox"> D. 800 minut</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">21. Liczby większe od 47 to:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. XXVIII</span>
+            <span class="option-item"><input type="checkbox"> B. L</span>
+            <span class="option-item"><input type="checkbox"> C. XLIX</span>
+            <span class="option-item"><input type="checkbox"> D. XXIII</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">22. Które nierówności są prawidłowe?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 1548 - 500 &gt; 1000</span>
+            <span class="option-item"><input type="checkbox"> B. 2400 : 600 &gt; 5</span>
+            <span class="option-item"><input type="checkbox"> C. 4874 - 800 &gt; 5000</span>
+            <span class="option-item"><input type="checkbox"> D. 250 : 50 &lt; 60</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">23. Które liczby są większe od 0,4?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 0,397</span>
+            <span class="option-item"><input type="checkbox"> B. 0,401</span>
+            <span class="option-item"><input type="checkbox"> C. 0,098</span>
+            <span class="option-item"><input type="checkbox"> D. 0,674</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">24. Które działania dają wynik 25?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 1600 : 64</span>
+            <span class="option-item"><input type="checkbox"> B. 5²</span>
+            <span class="option-item"><input type="checkbox"> C. 125 : 25</span>
+            <span class="option-item"><input type="checkbox"> D. 625 - 500</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">25. Ćwierć kilograma to inaczej:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 250 g</span>
+            <span class="option-item"><input type="checkbox"> B. 25 dag</span>
+            <span class="option-item"><input type="checkbox"> C. 0,25 kg</span>
+            <span class="option-item"><input type="checkbox"> D. 2,5 kg</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">26. Które lata były w XIV wieku?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 1300</span>
+            <span class="option-item"><input type="checkbox"> B. 1301</span>
+            <span class="option-item"><input type="checkbox"> C. 1299</span>
+            <span class="option-item"><input type="checkbox"> D. 1400</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">27. Nieparzyste wyniki dają działania:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 444 : 44</span>
+            <span class="option-item"><input type="checkbox"> B. 150 : 150</span>
+            <span class="option-item"><input type="checkbox"> C. 24 : 4</span>
+            <span class="option-item"><input type="checkbox"> D. 400 : 50</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">28. Odcinek o długości 2 cm narysowany w skali 100:1 będzie miał długość:</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 120 cm</span>
+            <span class="option-item"><input type="checkbox"> B. 1,2 m</span>
+            <span class="option-item"><input type="checkbox"> C. 200 cm</span>
+            <span class="option-item"><input type="checkbox"> D. 2 m</span>
+        </div>
+    </div>
+
+    <div class="task">
+        <p class="task-title">29. Które kąty mogą być kątami równoległoboku?</p>
+        <div class="options">
+            <span class="option-item"><input type="checkbox"> A. 100°, 100°, 20°, 20°</span>
+            <span class="option-item"><input type="checkbox"> B. 135°, 135°, 45°, 45°</span>
+            <span class="option-item"><input type="checkbox"> C. 165°, 165°, 15°, 15°</span>
+            <span class="option-item"><input type="checkbox"> D. 88°, 88°, 12°, 12°</span>
+        </div>
+    </div>
+""" + html_foot
+
+files = {
+    "matematyka_klasa_1.html": k1_content,
+    "matematyka_klasa_2.html": k2_content,
+    "matematyka_klasa_3.html": k3_content,
+    "matematyka_klasa_4.html": k4_content
+}
+
+for filename, content in files.items():
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+
+print("Wygenerowano pliki:", list(files.keys()))
+
