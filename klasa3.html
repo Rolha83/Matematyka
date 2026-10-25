@@ -1,351 +1,374 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon - Matematyka Klasa III (Wiosna 2024)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .question-card {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .question-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2980b9;
-        }
-        .sub-group {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #555;
-        }
-        .option {
-            margin: 8px 0;
-            display: block;
-            cursor: pointer;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #219150;
-        }
-        #result {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e8f8f5;
-            border: 2px solid #27ae60;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematyka - Klasa III</title>
+  <style>
+    :root {
+      --bg: #f9f3ff;
+      --card: #ffffff;
+      --primary: #a855f7;
+      --primary-dark: #6d28d9;
+      --text: #1f2d3d;
+      --muted: #5a6d7b;
+      --line: #f0e7ff;
+      --good: #2d9c72;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #f9f3ff 0%, #f1faff 100%);
+      color: var(--text);
+      padding: 28px 16px;
+    }
+    .quiz {
+      max-width: 980px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.82);
+      border-radius: 18px;
+      padding: 24px 20px 32px;
+      box-shadow: 0 10px 30px rgba(31,45,61,0.08);
+    }
+    h1 {
+      margin: 0 0 24px;
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+    }
+    .question-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--primary);
+      border-radius: 14px;
+      padding: 18px 16px 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(31,45,61,0.04);
+    }
+    .question-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+      line-height: 1.5;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      margin: 6px 0;
+      border-radius: 10px;
+      transition: background 0.15s ease;
+    }
+    .option:hover { background: #faf4ff; }
+    .option input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--good);
+    }
+    .answer-label { flex: 1; }
+    button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 16px 18px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 1.08rem;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 18px;
+      padding: 16px 18px;
+      display: none;
+      border-radius: 12px;
+      text-align: center;
+      background: #ebfaf2;
+      border: 2px solid #a5e3c0;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    @media (max-width: 640px) {
+      .quiz { padding: 18px 12px 24px; }
+      .question-card { padding: 16px 12px; }
+    }
+  </style>
 </head>
 <body>
+  <div class="quiz">
+    <h1>Matematyka - Klasa III</h1>
 
-    <h1>Leon - Matematyka Klasa III (Wiosna 2024)</h1>
-
-    <!-- Zadanie 1 -->
     <div class="question-card">
-        <div class="question-title">1. Wskaż równość prawdziwą.</div>
-        <label class="option"><input type="checkbox" name="q1" value="A"> 36 : 9 = 28 : 7</label>
-        <label class="option"><input type="checkbox" name="q1" value="B"> 4 : 4 = 54 : 8</label>
-        <label class="option"><input type="checkbox" name="q1" value="C"> 63 : 7 = 27 : 3</label>
-        <label class="option"><input type="checkbox" name="q1" value="D"> 48 : 6 = 4 · 2</label>
+      <div class="question-title">1. Wskaż równość prawdziwą: 36 : 9 = ?</div>
+      <label class="option"><input type="radio" name="q1" value="A"><span class="answer-label">A. 4</span></label>
+      <label class="option"><input type="radio" name="q1" value="B"><span class="answer-label">B. 5</span></label>
+      <label class="option"><input type="radio" name="q1" value="C"><span class="answer-label">C. 6</span></label>
+      <label class="option"><input type="radio" name="q1" value="D"><span class="answer-label">D. 3</span></label>
     </div>
 
-    <!-- Zadanie 2 -->
     <div class="question-card">
-        <div class="question-title">2. Wskaż zamalowaną ćwierć kwadratu.</div>
-        <label class="option"><input type="checkbox" name="q2" value="A"> Opcja z 1/4 częścią</label>
-        <label class="option"><input type="checkbox" name="q2" value="B"> Inna opcja</label>
+      <div class="question-title">2. Ile to: 7 × 8?</div>
+      <label class="option"><input type="radio" name="q2" value="A"><span class="answer-label">A. 54</span></label>
+      <label class="option"><input type="radio" name="q2" value="B"><span class="answer-label">B. 56</span></label>
+      <label class="option"><input type="radio" name="q2" value="C"><span class="answer-label">C. 58</span></label>
+      <label class="option"><input type="radio" name="q2" value="D"><span class="answer-label">D. 64</span></label>
     </div>
 
-    <!-- Zadanie 3 -->
     <div class="question-card">
-        <div class="question-title">3. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia.</div>
-        <label class="option"><input type="checkbox" name="q3" value="A"> 17 lat</label>
-        <label class="option"><input type="checkbox" name="q3" value="B"> 16 lat</label>
-        <label class="option"><input type="checkbox" name="q3" value="C"> 35 lat</label>
-        <label class="option"><input type="checkbox" name="q3" value="D"> 18 lat</label>
+      <div class="question-title">3. Oblicz: 63 - 27.</div>
+      <label class="option"><input type="radio" name="q3" value="A"><span class="answer-label">A. 36</span></label>
+      <label class="option"><input type="radio" name="q3" value="B"><span class="answer-label">B. 34</span></label>
+      <label class="option"><input type="radio" name="q3" value="C"><span class="answer-label">C. 30</span></label>
+      <label class="option"><input type="radio" name="q3" value="D"><span class="answer-label">D. 38</span></label>
     </div>
 
-    <!-- Zadanie 4 -->
     <div class="question-card">
-        <div class="question-title">4. Wskaż działanie niewykonalne.</div>
-        <label class="option"><input type="checkbox" name="q4" value="A"> 0 : 5</label>
-        <label class="option"><input type="checkbox" name="q4" value="B"> 5 : 0</label>
-        <label class="option"><input type="checkbox" name="q4" value="C"> 5 · 0</label>
-        <label class="option"><input type="checkbox" name="q4" value="D"> 0 · 5</label>
+      <div class="question-title">4. Ile to: 72 : 9?</div>
+      <label class="option"><input type="radio" name="q4" value="A"><span class="answer-label">A. 6</span></label>
+      <label class="option"><input type="radio" name="q4" value="B"><span class="answer-label">B. 7</span></label>
+      <label class="option"><input type="radio" name="q4" value="C"><span class="answer-label">C. 8</span></label>
+      <label class="option"><input type="radio" name="q4" value="D"><span class="answer-label">D. 9</span></label>
     </div>
 
-    <!-- Zadanie 5 -->
     <div class="question-card">
-        <div class="question-title">5. Ustal, jakie wartości kryją się pod motylkami.</div>
-        <div class="sub-group">37 + 🦋 = 100:</div>
-        <label class="option"><input type="checkbox" name="q5" value="A"> 63</label>
-        <label class="option"><input type="checkbox" name="q5" value="B"> 64</label>
-        <label class="option"><input type="checkbox" name="q5" value="C"> 65</label>
+      <div class="question-title">5. Która liczba jest liczbą złożoną?</div>
+      <label class="option"><input type="radio" name="q5" value="A"><span class="answer-label">A. 13</span></label>
+      <label class="option"><input type="radio" name="q5" value="B"><span class="answer-label">B. 17</span></label>
+      <label class="option"><input type="radio" name="q5" value="C"><span class="answer-label">C. 19</span></label>
+      <label class="option"><input type="radio" name="q5" value="D"><span class="answer-label">D. 21</span></label>
     </div>
 
-    <!-- Zadanie 6 -->
     <div class="question-card">
-        <div class="question-title">6. Miesiąc IX (wrzesień) ma:</div>
-        <label class="option"><input type="checkbox" name="q6" value="A"> 30 dni</label>
-        <label class="option"><input type="checkbox" name="q6" value="B"> 28 dni</label>
-        <label class="option"><input type="checkbox" name="q6" value="C"> 29 dni</label>
-        <label class="option"><input type="checkbox" name="q6" value="D"> 31 dni</label>
+      <div class="question-title">6. Oblicz: 4 × 9 + 6.</div>
+      <label class="option"><input type="radio" name="q6" value="A"><span class="answer-label">A. 40</span></label>
+      <label class="option"><input type="radio" name="q6" value="B"><span class="answer-label">B. 42</span></label>
+      <label class="option"><input type="radio" name="q6" value="C"><span class="answer-label">C. 44</span></label>
+      <label class="option"><input type="radio" name="q6" value="D"><span class="answer-label">D. 46</span></label>
     </div>
 
-    <!-- Zadanie 7 -->
     <div class="question-card">
-        <div class="question-title">7. Jest godzina 8.45. Która godzina będzie za półtorej godziny?</div>
-        <label class="option"><input type="checkbox" name="q7" value="A"> 9.45</label>
-        <label class="option"><input type="checkbox" name="q7" value="B"> 10.45</label>
-        <label class="option"><input type="checkbox" name="q7" value="C"> 10.15</label>
-        <label class="option"><input type="checkbox" name="q7" value="D"> 10.30</label>
+      <div class="question-title">7. Ile to: 120 - 45?</div>
+      <label class="option"><input type="radio" name="q7" value="A"><span class="answer-label">A. 75</span></label>
+      <label class="option"><input type="radio" name="q7" value="B"><span class="answer-label">B. 76</span></label>
+      <label class="option"><input type="radio" name="q7" value="C"><span class="answer-label">C. 74</span></label>
+      <label class="option"><input type="radio" name="q7" value="D"><span class="answer-label">D. 80</span></label>
     </div>
 
-    <!-- Zadanie 8 -->
     <div class="question-card">
-        <div class="question-title">8. Przedwczoraj był piątek. Pojutrze będzie:</div>
-        <label class="option"><input type="checkbox" name="q8" value="A"> środa</label>
-        <label class="option"><input type="checkbox" name="q8" value="B"> poniedziałek</label>
-        <label class="option"><input type="checkbox" name="q8" value="C"> wtorek</label>
-        <label class="option"><input type="checkbox" name="q8" value="D"> czwartek</label>
+      <div class="question-title">8. Co jest większe: 3/4 czy 1/2?</div>
+      <label class="option"><input type="radio" name="q8" value="A"><span class="answer-label">A. 1/2</span></label>
+      <label class="option"><input type="radio" name="q8" value="B"><span class="answer-label">B. 3/4</span></label>
+      <label class="option"><input type="radio" name="q8" value="C"><span class="answer-label">C. są równe</span></label>
+      <label class="option"><input type="radio" name="q8" value="D"><span class="answer-label">D. nic z tego</span></label>
     </div>
 
-    <!-- Zadanie 9 -->
     <div class="question-card">
-        <div class="question-title">9. Wskaż liczbę złożoną z 4 setek, 3 dziesiątek i 8 jedności.</div>
-        <label class="option"><input type="checkbox" name="q9" value="A"> 438</label>
-        <label class="option"><input type="checkbox" name="q9" value="B"> 834</label>
-        <label class="option"><input type="checkbox" name="q9" value="C"> 483</label>
-        <label class="option"><input type="checkbox" name="q9" value="D"> 348</label>
+      <div class="question-title">9. Oblicz 3/4 z 20.</div>
+      <label class="option"><input type="radio" name="q9" value="A"><span class="answer-label">A. 12</span></label>
+      <label class="option"><input type="radio" name="q9" value="B"><span class="answer-label">B. 15</span></label>
+      <label class="option"><input type="radio" name="q9" value="C"><span class="answer-label">C. 18</span></label>
+      <label class="option"><input type="radio" name="q9" value="D"><span class="answer-label">D. 20</span></label>
     </div>
 
-    <!-- Zadanie 10 -->
     <div class="question-card">
-        <div class="question-title">10. Wskaż iloczyny, które mają takie same wyniki.</div>
-        <label class="option"><input type="checkbox" name="q10" value="A"> 2 · 9</label>
-        <label class="option"><input type="checkbox" name="q10" value="B"> 3 · 6</label>
-        <label class="option"><input type="checkbox" name="q10" value="C"> 7 · 3</label>
-        <label class="option"><input type="checkbox" name="q10" value="D"> 5 · 4</label>
+      <div class="question-title">10. Ile wynosi obwód prostokąta o bokach 5 cm i 3 cm?</div>
+      <label class="option"><input type="radio" name="q10" value="A"><span class="answer-label">A. 14 cm</span></label>
+      <label class="option"><input type="radio" name="q10" value="B"><span class="answer-label">B. 16 cm</span></label>
+      <label class="option"><input type="radio" name="q10" value="C"><span class="answer-label">C. 15 cm</span></label>
+      <label class="option"><input type="radio" name="q10" value="D"><span class="answer-label">D. 18 cm</span></label>
     </div>
 
-    <!-- Zadanie 11 -->
     <div class="question-card">
-        <div class="question-title">11. Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile złotych zostało Markowi?</div>
-        <label class="option"><input type="checkbox" name="q11" value="A"> 33 zł</label>
-        <label class="option"><input type="checkbox" name="q11" value="B"> 9 zł</label>
-        <label class="option"><input type="checkbox" name="q11" value="C"> 13 zł</label>
-        <label class="option"><input type="checkbox" name="q11" value="D"> 26 zł</label>
+      <div class="question-title">11. Ile wynosi 25% z 80?</div>
+      <label class="option"><input type="radio" name="q11" value="A"><span class="answer-label">A. 15</span></label>
+      <label class="option"><input type="radio" name="q11" value="B"><span class="answer-label">B. 20</span></label>
+      <label class="option"><input type="radio" name="q11" value="C"><span class="answer-label">C. 25</span></label>
+      <label class="option"><input type="radio" name="q11" value="D"><span class="answer-label">D. 30</span></label>
     </div>
 
-    <!-- Zadanie 12 -->
     <div class="question-card">
-        <div class="question-title">12. Oblicz i wskaż działania z takimi samymi wynikami.</div>
-        <label class="option"><input type="checkbox" name="q12" value="A"> 100 : 2</label>
-        <label class="option"><input type="checkbox" name="q12" value="B"> 23 + 27</label>
-        <label class="option"><input type="checkbox" name="q12" value="C"> 80 - 30</label>
-        <label class="option"><input type="checkbox" name="q12" value="D"> 75 - 26</label>
+      <div class="question-title">12. Które liczby mają wspólny dzielnik 6?</div>
+      <label class="option"><input type="radio" name="q12" value="A"><span class="answer-label">A. 12 i 15</span></label>
+      <label class="option"><input type="radio" name="q12" value="B"><span class="answer-label">B. 12 i 18</span></label>
+      <label class="option"><input type="radio" name="q12" value="C"><span class="answer-label">C. 14 i 15</span></label>
+      <label class="option"><input type="radio" name="q12" value="D"><span class="answer-label">D. 10 i 18</span></label>
     </div>
 
-    <!-- Zadanie 13 -->
     <div class="question-card">
-        <div class="question-title">13. Zmniejszyć liczbę 24 trzy razy, to znaczy:</div>
-        <label class="option"><input type="checkbox" name="q13" value="A"> pomnożyć ją przez 3</label>
-        <label class="option"><input type="checkbox" name="q13" value="B"> podzielić ją przez 3</label>
-        <label class="option"><input type="checkbox" name="q13" value="C"> odjąć od niej 3</label>
-        <label class="option"><input type="checkbox" name="q13" value="D"> dodać do niej 3</label>
+      <div class="question-title">13. Jaka jest suma 37 i 63?</div>
+      <label class="option"><input type="radio" name="q13" value="A"><span class="answer-label">A. 90</span></label>
+      <label class="option"><input type="radio" name="q13" value="B"><span class="answer-label">B. 100</span></label>
+      <label class="option"><input type="radio" name="q13" value="C"><span class="answer-label">C. 110</span></label>
+      <label class="option"><input type="radio" name="q13" value="D"><span class="answer-label">D. 95</span></label>
     </div>
 
-    <!-- Zadanie 14 -->
     <div class="question-card">
-        <div class="question-title">14. Jaka liczba ukryła się pod kwiatkiem?</div>
-        <label class="option"><input type="checkbox" name="q14" value="A"> 27</label>
-        <label class="option"><input type="checkbox" name="q14" value="B"> 36</label>
-        <label class="option"><input type="checkbox" name="q14" value="C"> 28</label>
-        <label class="option"><input type="checkbox" name="q14" value="D"> 24</label>
+      <div class="question-title">14. Ile to: 6 × 7 - 5?</div>
+      <label class="option"><input type="radio" name="q14" value="A"><span class="answer-label">A. 36</span></label>
+      <label class="option"><input type="radio" name="q14" value="B"><span class="answer-label">B. 37</span></label>
+      <label class="option"><input type="radio" name="q14" value="C"><span class="answer-label">C. 38</span></label>
+      <label class="option"><input type="radio" name="q14" value="D"><span class="answer-label">D. 39</span></label>
     </div>
 
-    <!-- Zadanie 15 -->
     <div class="question-card">
-        <div class="question-title">15. Rodzice Marty mają razem pół wieku (50 lat). Mama Marty jest młodsza od taty i ma 23 lata. Ile lat ma tata Marty?</div>
-        <label class="option"><input type="checkbox" name="q15" value="A"> 23 lata</label>
-        <label class="option"><input type="checkbox" name="q15" value="B"> 27 lat</label>
-        <label class="option"><input type="checkbox" name="q15" value="C"> 26 lat</label>
-        <label class="option"><input type="checkbox" name="q15" value="D"> 28 lat</label>
+      <div class="question-title">15. Wskaż liczbę parzystą.</div>
+      <label class="option"><input type="radio" name="q15" value="A"><span class="answer-label">A. 35</span></label>
+      <label class="option"><input type="radio" name="q15" value="B"><span class="answer-label">B. 42</span></label>
+      <label class="option"><input type="radio" name="q15" value="C"><span class="answer-label">C. 47</span></label>
+      <label class="option"><input type="radio" name="q15" value="D"><span class="answer-label">D. 51</span></label>
     </div>
 
-    <!-- Zadanie 16 -->
     <div class="question-card">
-        <div class="question-title">16. Ma początek, ale nie ma końca.</div>
-        <label class="option"><input type="checkbox" name="q16" value="A"> półprosta</label>
-        <label class="option"><input type="checkbox" name="q16" value="B"> odcinek</label>
-        <label class="option"><input type="checkbox" name="q16" value="C"> prosta</label>
-        <label class="option"><input type="checkbox" name="q16" value="D"> punkt</label>
+      <div class="question-title">16. Oblicz: 5 × 12.</div>
+      <label class="option"><input type="radio" name="q16" value="A"><span class="answer-label">A. 50</span></label>
+      <label class="option"><input type="radio" name="q16" value="B"><span class="answer-label">B. 60</span></label>
+      <label class="option"><input type="radio" name="q16" value="C"><span class="answer-label">C. 70</span></label>
+      <label class="option"><input type="radio" name="q16" value="D"><span class="answer-label">D. 72</span></label>
     </div>
 
-    <!-- Zadanie 17 -->
     <div class="question-card">
-        <div class="question-title">17. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej.</div>
-        <label class="option"><input type="checkbox" name="q17" value="A"> 12 434, 9 872, 71 602, 38 432</label>
-        <label class="option"><input type="checkbox" name="q17" value="B"> 8 574, 45 678, 76 521, 10 736</label>
-        <label class="option"><input type="checkbox" name="q17" value="C"> 5 864, 13 897, 38 655, 79 321</label>
-        <label class="option"><input type="checkbox" name="q17" value="D"> 7 321, 8 933, 13 762, 2 345</label>
+      <div class="question-title">17. Które z działań daje wynik 81?</div>
+      <label class="option"><input type="radio" name="q17" value="A"><span class="answer-label">A. 9 × 9</span></label>
+      <label class="option"><input type="radio" name="q17" value="B"><span class="answer-label">B. 8 × 8</span></label>
+      <label class="option"><input type="radio" name="q17" value="C"><span class="answer-label">C. 7 × 9</span></label>
+      <label class="option"><input type="radio" name="q17" value="D"><span class="answer-label">D. 9 × 7</span></label>
     </div>
 
-    <!-- Zadanie 18 -->
     <div class="question-card">
-        <div class="question-title">18. Jak można podzielić 36 ciastek między sześcioro dzieci?</div>
-        <label class="option"><input type="checkbox" name="q18" value="A"> 1+3+5+7+9+11</label>
-        <label class="option"><input type="checkbox" name="q18" value="B"> 2+4+6+8+10+12</label>
-        <label class="option"><input type="checkbox" name="q18" value="C"> 6 · 6</label>
-        <label class="option"><input type="checkbox" name="q18" value="D"> 2+3+7+8+6+9</label>
+      <div class="question-title">18. Oblicz: 84 : 12.</div>
+      <label class="option"><input type="radio" name="q18" value="A"><span class="answer-label">A. 6</span></label>
+      <label class="option"><input type="radio" name="q18" value="B"><span class="answer-label">B. 7</span></label>
+      <label class="option"><input type="radio" name="q18" value="C"><span class="answer-label">C. 8</span></label>
+      <label class="option"><input type="radio" name="q18" value="D"><span class="answer-label">D. 9</span></label>
     </div>
 
-    <!-- Zadanie 19 -->
     <div class="question-card">
-        <div class="question-title">19. Wskaż liczby, których połowa jest liczbą parzystą.</div>
-        <label class="option"><input type="checkbox" name="q19" value="A"> 72</label>
-        <label class="option"><input type="checkbox" name="q19" value="B"> 66</label>
-        <label class="option"><input type="checkbox" name="q19" value="C"> 50</label>
-        <label class="option"><input type="checkbox" name="q19" value="D"> 84</label>
+      <div class="question-title">19. Jaki jest wynik 12 + 13 + 14?</div>
+      <label class="option"><input type="radio" name="q19" value="A"><span class="answer-label">A. 38</span></label>
+      <label class="option"><input type="radio" name="q19" value="B"><span class="answer-label">B. 39</span></label>
+      <label class="option"><input type="radio" name="q19" value="C"><span class="answer-label">C. 40</span></label>
+      <label class="option"><input type="radio" name="q19" value="D"><span class="answer-label">D. 41</span></label>
     </div>
 
-    <!-- Zadanie 20 -->
     <div class="question-card">
-        <div class="question-title">20. Długość skoku kangura wynosi dziewięć metrów. Ile takich skoków musi wykonać kangur, żeby pokonać odległość 81 metrów?</div>
-        <label class="option"><input type="checkbox" name="q20" value="A"> 6</label>
-        <label class="option"><input type="checkbox" name="q20" value="B"> 8</label>
-        <label class="option"><input type="checkbox" name="q20" value="C"> 9</label>
-        <label class="option"><input type="checkbox" name="q20" value="D"> 7</label>
+      <div class="question-title">20. Ile to: 3/5 z 25?</div>
+      <label class="option"><input type="radio" name="q20" value="A"><span class="answer-label">A. 10</span></label>
+      <label class="option"><input type="radio" name="q20" value="B"><span class="answer-label">B. 12</span></label>
+      <label class="option"><input type="radio" name="q20" value="C"><span class="answer-label">C. 15</span></label>
+      <label class="option"><input type="radio" name="q20" value="D"><span class="answer-label">D. 20</span></label>
     </div>
 
-    <!-- Zadanie 21 -->
     <div class="question-card">
-        <div class="question-title">21. Od iloczynu liczb 6 i 8 odejmij ich sumę.</div>
-        <label class="option"><input type="checkbox" name="q21" value="A"> 14</label>
-        <label class="option"><input type="checkbox" name="q21" value="B"> 42</label>
-        <label class="option"><input type="checkbox" name="q21" value="C"> 40</label>
-        <label class="option"><input type="checkbox" name="q21" value="D"> 34</label>
+      <div class="question-title">21. Ile dni ma 2 tygodnie?</div>
+      <label class="option"><input type="radio" name="q21" value="A"><span class="answer-label">A. 10</span></label>
+      <label class="option"><input type="radio" name="q21" value="B"><span class="answer-label">B. 12</span></label>
+      <label class="option"><input type="radio" name="q21" value="C"><span class="answer-label">C. 14</span></label>
+      <label class="option"><input type="radio" name="q21" value="D"><span class="answer-label">D. 16</span></label>
     </div>
 
-    <!-- Zadanie 22 -->
     <div class="question-card">
-        <div class="question-title">22. Wskaż liczby trzycyfrowe parzyste, w których rząd setek to dziewięć, a rząd jedności to osiem.</div>
-        <label class="option"><input type="checkbox" name="q22" value="A"> 998</label>
-        <label class="option"><input type="checkbox" name="q22" value="B"> 989</label>
-        <label class="option"><input type="checkbox" name="q22" value="C"> 898</label>
-        <label class="option"><input type="checkbox" name="q22" value="D"> 908</label>
+      <div class="question-title">22. Jaka jest połowa liczby 48?</div>
+      <label class="option"><input type="radio" name="q22" value="A"><span class="answer-label">A. 22</span></label>
+      <label class="option"><input type="radio" name="q22" value="B"><span class="answer-label">B. 24</span></label>
+      <label class="option"><input type="radio" name="q22" value="C"><span class="answer-label">C. 26</span></label>
+      <label class="option"><input type="radio" name="q22" value="D"><span class="answer-label">D. 28</span></label>
     </div>
 
-    <!-- Zadanie 23 -->
     <div class="question-card">
-        <div class="question-title">23. Ile razem nóg mają 3 tygrysy, 4 lwy i 2 papugi?</div>
-        <label class="option"><input type="checkbox" name="q23" value="A"> 32</label>
-        <label class="option"><input type="checkbox" name="q23" value="B"> 16</label>
-        <label class="option"><input type="checkbox" name="q23" value="C"> 9</label>
-        <label class="option"><input type="checkbox" name="q23" value="D"> 22</label>
+      <div class="question-title">23. Czy 5 jest dzielnikiem liczby 45?</div>
+      <label class="option"><input type="radio" name="q23" value="A"><span class="answer-label">A. Tak</span></label>
+      <label class="option"><input type="radio" name="q23" value="B"><span class="answer-label">B. Nie</span></label>
+      <label class="option"><input type="radio" name="q23" value="C"><span class="answer-label">C. Tylko w maju</span></label>
+      <label class="option"><input type="radio" name="q23" value="D"><span class="answer-label">D. Nie wiadomo</span></label>
     </div>
 
-    <!-- Zadanie 24 -->
     <div class="question-card">
-        <div class="question-title">24. Zosia spędziła dwa tygodnie ferii zimowych u babci na wsi. Ile to dni?</div>
-        <label class="option"><input type="checkbox" name="q24" value="A"> 28 dni</label>
-        <label class="option"><input type="checkbox" name="q24" value="B"> 21 dni</label>
-        <label class="option"><input type="checkbox" name="q24" value="C"> 7 dni</label>
-        <label class="option"><input type="checkbox" name="q24" value="D"> 14 dni</label>
+      <div class="question-title">24. Oblicz: 15 × 3.</div>
+      <label class="option"><input type="radio" name="q24" value="A"><span class="answer-label">A. 35</span></label>
+      <label class="option"><input type="radio" name="q24" value="B"><span class="answer-label">B. 40</span></label>
+      <label class="option"><input type="radio" name="q24" value="C"><span class="answer-label">C. 45</span></label>
+      <label class="option"><input type="radio" name="q24" value="D"><span class="answer-label">D. 50</span></label>
     </div>
 
-    <!-- Zadanie 25 -->
     <div class="question-card">
-        <div class="question-title">25. Ile wynosi długość drogi liska? (27 cm + 25 cm + 9 cm + 12 cm + 6 cm)</div>
-        <label class="option"><input type="checkbox" name="q25" value="A"> 80 cm</label>
-        <label class="option"><input type="checkbox" name="q25" value="B"> 78 cm</label>
-        <label class="option"><input type="checkbox" name="q25" value="C"> 79 cm</label>
-        <label class="option"><input type="checkbox" name="q25" value="D"> 77 cm</label>
+      <div class="question-title">25. Kąty w trójkącie sumują się do:</div>
+      <label class="option"><input type="radio" name="q25" value="A"><span class="answer-label">A. 90°</span></label>
+      <label class="option"><input type="radio" name="q25" value="B"><span class="answer-label">B. 180°</span></label>
+      <label class="option"><input type="radio" name="q25" value="C"><span class="answer-label">C. 360°</span></label>
+      <label class="option"><input type="radio" name="q25" value="D"><span class="answer-label">D. 270°</span></label>
+    </div>
+
+    <div class="question-card">
+      <div class="question-title">26. Jaki jest wynik 8 × 8 + 7?</div>
+      <label class="option"><input type="radio" name="q26" value="A"><span class="answer-label">A. 55</span></label>
+      <label class="option"><input type="radio" name="q26" value="B"><span class="answer-label">B. 63</span></label>
+      <label class="option"><input type="radio" name="q26" value="C"><span class="answer-label">C. 71</span></label>
+      <label class="option"><input type="radio" name="q26" value="D"><span class="answer-label">D. 65</span></label>
+    </div>
+
+    <div class="question-card">
+      <div class="question-title">27. Która z liczb jest liczbą pierwszą?</div>
+      <label class="option"><input type="radio" name="q27" value="A"><span class="answer-label">A. 21</span></label>
+      <label class="option"><input type="radio" name="q27" value="B"><span class="answer-label">B. 29</span></label>
+      <label class="option"><input type="radio" name="q27" value="C"><span class="answer-label">C. 33</span></label>
+      <label class="option"><input type="radio" name="q27" value="D"><span class="answer-label">D. 35</span></label>
+    </div>
+
+    <div class="question-card">
+      <div class="question-title">28. Oblicz: 9 × 9 - 9.</div>
+      <label class="option"><input type="radio" name="q28" value="A"><span class="answer-label">A. 70</span></label>
+      <label class="option"><input type="radio" name="q28" value="B"><span class="answer-label">B. 72</span></label>
+      <label class="option"><input type="radio" name="q28" value="C"><span class="answer-label">C. 74</span></label>
+      <label class="option"><input type="radio" name="q28" value="D"><span class="answer-label">D. 81</span></label>
+    </div>
+
+    <div class="question-card">
+      <div class="question-title">29. Ile to: 2/3 z 18?</div>
+      <label class="option"><input type="radio" name="q29" value="A"><span class="answer-label">A. 10</span></label>
+      <label class="option"><input type="radio" name="q29" value="B"><span class="answer-label">B. 12</span></label>
+      <label class="option"><input type="radio" name="q29" value="C"><span class="answer-label">C. 14</span></label>
+      <label class="option"><input type="radio" name="q29" value="D"><span class="answer-label">D. 16</span></label>
+    </div>
+
+    <div class="question-card">
+      <div class="question-title">30. Który z podanych zbiorów zawiera tylko liczby nieparzyste?</div>
+      <label class="option"><input type="radio" name="q30" value="A"><span class="answer-label">A. 11, 13, 15, 17</span></label>
+      <label class="option"><input type="radio" name="q30" value="B"><span class="answer-label">B. 12, 14, 16, 18</span></label>
+      <label class="option"><input type="radio" name="q30" value="C"><span class="answer-label">C. 10, 12, 14, 15</span></label>
+      <label class="option"><input type="radio" name="q30" value="D"><span class="answer-label">D. 13, 15, 18, 20</span></label>
     </div>
 
     <button onclick="checkQuiz()">Sprawdź wynik</button>
     <div id="result"></div>
+  </div>
 
-    <script>
-        function checkQuiz() {
-            const correctAnswers = {
-                q1: ['A', 'C'],
-                q2: ['A'],
-                q3: ['A'],
-                q4: ['B'],
-                q5: ['A'],
-                q6: ['A'],
-                q7: ['C'],
-                q8: ['C'],
-                q9: ['A'],
-                q10: ['A', 'B'],
-                q11: ['D'],
-                q12: ['A', 'B', 'C'],
-                q13: ['B'],
-                q14: ['A'],
-                q15: ['B'],
-                q16: ['A'],
-                q17: ['C'],
-                q18: ['C'],
-                q19: ['A', 'D'],
-                q20: ['C'],
-                q21: ['D'],
-                q22: ['A', 'D'],
-                q23: ['A'],
-                q24: ['D'],
-                q25: ['C']
-            };
+  <script>
+    function checkQuiz() {
+      const correctAnswers = {
+        q1: ['C'], q2: ['B'], q3: ['A'], q4: ['C'], q5: ['D'], q6: ['B'], q7: ['A'],
+        q8: ['B'], q9: ['B'], q10: ['B'], q11: ['B'], q12: ['B'], q13: ['B'], q14: ['B'],
+        q15: ['B'], q16: ['B'], q17: ['A'], q18: ['B'], q19: ['B'], q20: ['C'], q21: ['C'],
+        q22: ['B'], q23: ['A'], q24: ['C'], q25: ['B'], q26: ['C'], q27: ['B'], q28: ['B'],
+        q29: ['B'], q30: ['A']
+      };
 
-            let score = 0;
-            let totalQuestions = Object.keys(correctAnswers).length;
+      let score = 0;
+      const total = Object.keys(correctAnswers).length;
 
-            for (let q in correctAnswers) {
-                const checkboxes = document.querySelectorAll(`input[name="${q}"]:checked`);
-                const userSelected = Array.from(checkboxes).map(cb => cb.value);
-                const isCorrect = correctAnswers[q].length === userSelected.length &&
-                                  correctAnswers[q].every(val => userSelected.includes(val));
+      for (const q in correctAnswers) {
+        const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`)).map(el => el.value);
+        const isCorrect = correctAnswers[q].length === selected.length && correctAnswers[q].every(v => selected.includes(v));
+        if (isCorrect) score++;
+      }
 
-                if (isCorrect) {
-                    score++;
-                }
-            }
-
-            const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `Twój wynik to: ${score} z ${totalQuestions} punktów!`;
-        }
-    </script>
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `Twój wynik to: ${score} z ${total} punktów!`;
+    }
+  </script>
 </body>
 </html>
