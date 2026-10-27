@@ -129,6 +129,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .question-item.correct {
+            background-color: #dcfce7;
+            border-color: #86efac;
+        }
+
+        .question-item.incorrect {
+            background-color: #fee2e2;
+            border-color: #fca5a5;
         }
 
         .question-item label.q-num {
@@ -189,6 +200,15 @@
             color: #64748b;
         }
 
+        .details-list {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px dashed var(--success-border);
+            padding-top: 0.5rem;
+        }
+
         @media (max-width: 900px) {
             .container {
                 flex-direction: column;
@@ -243,44 +263,71 @@
                 <button type="submit" class="btn-submit">Wyślij do sprawdzenia przez AI</button>
             </form>
 
-            <div id="loading" class="loading">Sztuczna inteligencja sprawdzająca arkusz... ⏳</div>
+            <div id="loading" class="loading">AI analizuje poprawne odpowiedzi z kluczem... ⏳</div>
             <div id="ai-result"></div>
         </div>
     </div>
 
     <script>
-        // Konfiguracja arkuszy dla poszczególnych klas
+        // Klucze poprawnych odpowiedzi dla poszczególnych klas
         const sheetsData = {
             k1: {
                 title: "Karta Odpowiedzi – Klasa 1 (Wiosna 2025)",
                 url: "https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview",
-                totalQuestions: 25
+                answers: {
+                    1: ["A"], 2: ["C"], 3: ["B"], 4: ["A", "B"], 5: ["B"], 
+                    6: ["B"], 7: ["D"], 8: ["A", "C"], 9: ["A", "D"], 10: ["C"],
+                    11: ["B"], 12: ["A"], 13: ["B"], 14: ["D"], 15: ["A"],
+                    16: ["C"], 17: ["B"], 18: ["A"], 19: ["B"], 20: ["D"],
+                    21: ["A"], 22: ["D"], 23: ["C"], 24: ["A"], 25: ["D"]
+                }
             },
             k2: {
                 title: "Karta Odpowiedzi – Klasa 2 (Wiosna 2025)",
                 url: "https://drive.google.com/file/d/11O_GoCPRoSZAIKNK5rFmtqm7Q6ulOP0P/preview",
-                totalQuestions: 25
+                answers: {
+                    1: ["A", "C"], 2: ["B"], 3: ["A", "C"], 4: ["D"], 5: ["D"],
+                    6: ["A", "C"], 7: ["B"], 8: ["A"], 9: ["B"], 10: ["D"],
+                    11: ["A"], 12: ["B", "C"], 13: ["A", "C"], 14: ["B"], 15: ["C"],
+                    16: ["B"], 17: ["A"], 18: ["A"], 19: ["A", "D"], 20: ["D"],
+                    21: ["D"], 22: ["B"], 23: ["A"], 24: ["B"], 25: ["A"]
+                }
             },
             k3: {
                 title: "Karta Odpowiedzi – Klasa 3 (Wiosna 2025)",
                 url: "https://drive.google.com/file/d/1d5uqyxEFghwiZTNo11R74WFCcA-hbMJR/preview",
-                totalQuestions: 26
+                answers: {
+                    1: ["A"], 2: ["A", "B", "C"], 3: ["B"], 4: ["B"], 5: ["C"],
+                    6: ["B"], 7: ["C"], 8: ["B", "D"], 9: ["="], 10: ["D"],
+                    11: ["B"], 12: ["C"], 13: ["A", "D"], 14: ["A"], 15: ["A"],
+                    16: ["B"], 17: ["A"], 18: ["D"], 19: ["B", "C"], 20: ["A", "C"],
+                    21: ["B", "D"], 22: ["A", "B", "C"], 23: ["B", "D"], 24: ["A"],
+                    25: ["D"], 26: ["A"]
+                }
             },
             k4: {
                 title: "Karta Odpowiedzi – Klasa 4 (Wiosna 2025)",
                 url: "https://drive.google.com/file/d/1Kuztm9mSARFrYd7RdG6JFd6qGTFS80Uk/preview",
-                totalQuestions: 25
+                answers: {
+                    1: ["A", "B", "C"], 2: ["A"], 3: ["C"], 4: ["B"], 5: ["A", "B", "D"],
+                    6: ["B"], 7: ["A"], 8: ["A", "B", "C"], 9: ["D"], 10: ["B"],
+                    11: ["C"], 12: ["B"], 13: ["B"], 14: ["D"], 15: ["A", "B"],
+                    16: ["A", "D"], 17: ["A", "B", "D"], 18: ["C"], 19: ["A"], 20: ["C"],
+                    21: ["D"], 22: ["A"], 23: ["A"], 24: ["B"], 25: ["A"]
+                }
             }
         };
 
         // Generowanie pola pytań w karcie odpowiedzi
-        function renderQuestions(total) {
+        function renderQuestions(answersKey) {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
+            const total = Object.keys(answersKey).length;
 
             for (let i = 1; i <= total; i++) {
                 const item = document.createElement('div');
                 item.className = 'question-item';
+                item.id = `q-item-${i}`;
                 
                 item.innerHTML = `
                     <label class="q-num">Zadanie ${i}:</label>
@@ -302,16 +349,16 @@
 
             document.getElementById('pdfFrame').src = data.url;
             document.getElementById('sheetTitle').innerText = data.title;
-            renderQuestions(data.totalQuestions);
+            renderQuestions(data.answers);
 
             // Ukrycie poprzedniego wyniku AI
             document.getElementById('ai-result').style.display = 'none';
         }
 
         // Inicjalizacja domyślnego arkusza (Klasa 3)
-        renderQuestions(sheetsData.k3.totalQuestions);
+        renderQuestions(sheetsData.k3.answers);
 
-        // Obsługa wysyłania odpowiedzi i symulacja analizy AI
+        // Obsługa wysyłania odpowiedzi i sprawdzanie z kluczem
         document.getElementById('quiz-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -325,30 +372,48 @@
             const imie = formData.get('imie');
             const nazwisko = formData.get('nazwisko');
             const selectedKey = document.getElementById('pdfSelector').value;
-            const total = sheetsData[selectedKey].totalQuestions;
+            const correctAnswersKey = sheetsData[selectedKey].answers;
+            const totalQuestions = Object.keys(correctAnswersKey).length;
 
-            // Liczenie uzupełnionych odpowiedzi
-            let answeredCount = 0;
-            for (let i = 1; i <= total; i++) {
-                if (formData.getAll(`q${i}`).length > 0) {
-                    answeredCount++;
+            let score = 0;
+            let detailsHtml = '';
+
+            // Weryfikacja każdego pytania
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userChoice = formData.getAll(`q${i}`).sort();
+                const correctChoice = (correctAnswersKey[i] || []).sort();
+                const itemElem = document.getElementById(`q-item-${i}`);
+
+                const isCorrect = JSON.stringify(userChoice) === JSON.stringify(correctChoice);
+
+                if (isCorrect) {
+                    score++;
+                    itemElem.className = 'question-item correct';
+                    detailsHtml += `<div>Zadanie ${i}: <span style="color:green;">✔ Poprawnie</span> (${correctChoice.join(', ')})</div>`;
+                } else {
+                    itemElem.className = 'question-item incorrect';
+                    detailsHtml += `<div>Zadanie ${i}: <span style="color:red;">✘ Błąd</span> (Twoja odp: ${userChoice.join(', ') || 'brak'}, poprawna: ${correctChoice.join(', ')})</div>`;
                 }
             }
 
-            // Symulacja sprawdzenia przez AI
+            // Symulacja weryfikacji przez AI
             setTimeout(() => {
                 loading.style.display = 'none';
                 
+                const percentage = Math.round((score / totalQuestions) * 100);
+                
                 resultDiv.className = 'result-success';
                 resultDiv.innerHTML = `
-                    <h3>Wynik sprawdzenia AI</h3>
+                    <h3>Wynik Weryfikacji AI</h3>
                     <p style="margin-top:0.4rem;"><strong>Uczeń:</strong> ${imie} ${nazwisko}</p>
-                    <p><strong>Uzupełnione zadania:</strong> ${answeredCount} / ${total}</p>
-                    <p><strong>Ocena szacowana przez AI:</strong> Bardzo dobry (${Math.round((answeredCount/total)*100)}% rozwiązanych)</p>
-                    <p style="margin-top:0.5rem; font-size:0.85rem;"><em>AI: Arkusz został pomyślnie przetworzony i wysłany do sprawdzenia.</em></p>
+                    <p><strong>Zdobyte punkty:</strong> ${score} / ${totalQuestions} (${percentage}%)</p>
+                    <div class="details-list">
+                        <strong>Szczegóły zadań:</strong>
+                        ${detailsHtml}
+                    </div>
                 `;
                 resultDiv.style.display = 'block';
-            }, 1800);
+            }, 1500);
         });
     </script>
 </body>
