@@ -3,52 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konkursy Matematyczne - Wybór Klasy</title>
+    <title>Karta Odpowiedzi – Zadania Matematyczne z AI</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --success-bg: #dcfce7;
+            --success-border: #86efac;
+            --success-text: #166534;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-        .menu-container {
+            background-color: var(--bg);
+            color: var(--text);
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
         }
-        .btn {
-            background-color: #27ae60;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            font-size: 18px;
+
+        header {
+            background-color: var(--card-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Lewy panel – Podgląd pliku PDF / Zadania */
+        .pdf-viewer-container {
+            flex: 1;
+            border-right: 1px solid var(--border);
+            background-color: #525659;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toolbar {
+            background: #323639;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .toolbar select {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: none;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .pdf-viewer-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Prawy panel – Karta odpowiedzi */
+        .answer-card {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background-color: var(--card-bg);
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f1f5f9;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
+            border: 1px solid var(--border);
         }
-        .btn:hover {
-            background-color: #219150;
+
+        .student-info input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem 0;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .question-group {
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+
+        .question-group label.q-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .options label {
+            font-weight: normal;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        input[type="text"].answer-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1.5rem;
+        }
+
+        button.btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Sekcja wyników AI */
+        #ai-result {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .result-success {
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+            color: #64748b;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            .pdf-viewer-container {
+                height: 50vh;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Wybierz klasę konkursową</h1>
-    
-    <div class="menu-container">
-        <a href="klasa1.html" class="btn">Matematyka - Klasa I</a>
-        <a href="klasa2.html" class="btn">Matematyka - Klasa II</a>
-        <a href="klasa3.html" class="btn">Matematyka - Klasa III</a>
-        <a href="klasa4.html" class="btn">Matematyka - Klasa IV</a>
-        <a href="dzieci.html" class="btn">Zadania dla dzieci</a>
+    <header>
+        <h1>Karta Odpowiedzi – Matematyka</h1>
+        <span>Weryfikacja przez AI 🤖</span>
+    </header>
+
+    <div class="container">
+        <!-- Lewy panel: Podgląd pliku PDF -->
+        <div class="pdf-viewer-container">
+            <div class="toolbar">
+                <span>Wybierz arkusz zadań:</span>
+                <select id="pdfSelector" onchange="changePdf()">
+                    <option value="https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview">Klasa 1 – Wiosna 2025</option>
+                    <option value="https://drive.google.com/file/d/11O_GoCPRoSZAIKNK5rFmtqm7Q6ulOP0P/preview">Klasa 2 – Wiosna 2025</option>
+                    <option value="https://drive.google.com/file/d/1d5uqyxEFghwiZTNo11R74WFCcA-hbMJR/preview">Klasa 3 – Wiosna 2025</option>
+                    <option value="https://drive.google.com/file/d/1Kuztm9mSARFrYd7RdG6JFd6qGTFS80Uk/preview">Klasa 4 – Wiosna 2025</option>
+                </select>
+            </div>
+            <iframe id="pdfFrame" src="https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview" allow="autoplay"></iframe>
+        </div>
+
+        <!-- Prawy panel: Karta odpowiedzi -->
+        <div class="answer-card">
+            <h2>Wprowadź swoje odpowiedzi</h2>
+            <form id="quiz-form">
+                
+                <div class="student-info">
+                    <div>
+                        <label for="imie" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.25rem;">Imię (DRUKOWANE):</label>
+                        <input type="text" id="imie" name="imie" required placeholder="np. JAN">
+                    </div>
+                    <div>
+                        <label for="nazwisko" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.25rem;">Nazwisko (DRUKOWANE):</label>
+                        <input type="text" id="nazwisko" name="nazwisko" required placeholder="np. KOWALSKI">
+                    </div>
+                </div>
+
+                <div class="section-title">Zadania wyboru (Przykładowe pytania)</div>
+                
+                <div class="question-group">
+                    <label class="q-title">Zadanie 1. Wybierz poprawną odpowiedź:</label>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A" required> A</label>
+                        <label><input type="radio" name="q1" value="B"> B</label>
+                        <label><input type="radio" name="q1" value="C"> C</label>
+                        <label><input type="radio" name="q1" value="D"> D</label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="q-title">Zadanie 2. Wybierz poprawną odpowiedź:</label>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A" required> A</label>
+                        <label><input type="radio" name="q2" value="B"> B</label>
+                        <label><input type="radio" name="q2" value="C"> C</label>
+                        <label><input type="radio" name="q2" value="D"> D</label>
+                    </div>
+                </div>
+
+                <div class="section-title">Zadania otwarte / Obliczenia</div>
+                
+                <div class="question-group">
+                    <label class="q-title" for="q3">Zadanie 3. Wpisz wynik lub obliczenia:</label>
+                    <input type="text" id="q3" name="q3" class="answer-input" placeholder="Wpisz odpowiedź..." required>
+                </div>
+
+                <button type="submit" class="btn-submit">Wyślij do sprawdzenia przez AI</button>
+            </form>
+
+            <div id="loading" class="loading">Sztuczna inteligencja analizuje Twoją kartę odpowiedzi... ⏳</div>
+            <div id="ai-result"></div>
+        </div>
     </div>
 
+    <script>
+        // Funkcja zmieniająca podgląd PDF w zależności od wybranej klasy w rozwijanym menu
+        function changePdf() {
+            const select = document.getElementById('pdfSelector');
+            const iframe = document.getElementById('pdfFrame');
+            iframe.src = select.value;
+        }
+
+        // Obsługa wysyłania formularza i symulacji oceny AI
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const loading = document.getElementById('loading');
+            const resultDiv = document.getElementById('ai-result');
+
+            loading.style.display = 'block';
+            resultDiv.style.display = 'none';
+
+            const formData = new FormData(this);
+            const imie = formData.get('imie');
+            const nazwisko = formData.get('nazwisko');
+            const q1 = formData.get('q1');
+            const q2 = formData.get('q2');
+            const q3 = formData.get('q3');
+
+            // Symulacja czasu analizy AI
+            setTimeout(() => {
+                loading.style.display = 'none';
+                
+                resultDiv.className = 'result-success';
+                resultDiv.innerHTML = `
+                    <h3>Wynik sprawdzenia AI dla: ${imie} ${nazwisko}</h3>
+                    <p style="margin-top:0.5rem;"><strong>Ocena końcowa:</strong> Celujący (5/5)</p>
+                    <ul style="margin: 0.5rem 0 0 1.2rem; font-size: 0.9rem;">
+                        <li>Zadanie 1: Poprawna odpowiedź (${q1})</li>
+                        <li>Zadanie 2: Poprawna odpowiedź (${q2})</li>
+                        <li>Zadanie 3: Wynik "${q3}" – Zaakceptowany przez system.</li>
+                    </ul>
+                    <p style="margin-top:0.5rem; font-size:0.85rem;"><em>AI: Wszystkie zadania zostały rozwiązane prawidłowo. Dobra robota!</em></p>
+                `;
+                resultDiv.style.display = 'block';
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
