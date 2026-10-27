@@ -203,7 +203,7 @@
         .details-list {
             margin-top: 0.8rem;
             font-size: 0.85rem;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             border-top: 1px dashed var(--success-border);
             padding-top: 0.5rem;
@@ -223,7 +223,7 @@
 
     <header>
         <h1>Karta Odpowiedzi – Konkurs Matematyczny Leon</h1>
-        <span>Weryfikacja przez AI 🤖</span>
+        <span>Weryfikacja AI 🤖</span>
     </header>
 
     <div class="container">
@@ -263,13 +263,13 @@
                 <button type="submit" class="btn-submit">Wyślij do sprawdzenia przez AI</button>
             </form>
 
-            <div id="loading" class="loading">AI analizuje poprawne odpowiedzi z kluczem... ⏳</div>
+            <div id="loading" class="loading">AI sprawdza poprawność odpowiedzi... ⏳</div>
             <div id="ai-result"></div>
         </div>
     </div>
 
     <script>
-        // Klucze poprawnych odpowiedzi dla poszczególnych klas
+        // Klucze poprawnych odpowiedzi
         const sheetsData = {
             k1: {
                 title: "Karta Odpowiedzi – Klasa 1 (Wiosna 2025)",
@@ -351,14 +351,13 @@
             document.getElementById('sheetTitle').innerText = data.title;
             renderQuestions(data.answers);
 
-            // Ukrycie poprzedniego wyniku AI
             document.getElementById('ai-result').style.display = 'none';
         }
 
         // Inicjalizacja domyślnego arkusza (Klasa 3)
         renderQuestions(sheetsData.k3.answers);
 
-        // Obsługa wysyłania odpowiedzi i sprawdzanie z kluczem
+        // Obsługa wysyłania odpowiedzi i weryfikacji
         document.getElementById('quiz-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -376,45 +375,4 @@
             const totalQuestions = Object.keys(correctAnswersKey).length;
 
             let score = 0;
-            let detailsHtml = '';
-
-            // Weryfikacja każdego pytania
-            for (let i = 1; i <= totalQuestions; i++) {
-                const userChoice = formData.getAll(`q${i}`).sort();
-                const correctChoice = (correctAnswersKey[i] || []).sort();
-                const itemElem = document.getElementById(`q-item-${i}`);
-
-                const isCorrect = JSON.stringify(userChoice) === JSON.stringify(correctChoice);
-
-                if (isCorrect) {
-                    score++;
-                    itemElem.className = 'question-item correct';
-                    detailsHtml += `<div>Zadanie ${i}: <span style="color:green;">✔ Poprawnie</span> (${correctChoice.join(', ')})</div>`;
-                } else {
-                    itemElem.className = 'question-item incorrect';
-                    detailsHtml += `<div>Zadanie ${i}: <span style="color:red;">✘ Błąd</span> (Twoja odp: ${userChoice.join(', ') || 'brak'}, poprawna: ${correctChoice.join(', ')})</div>`;
-                }
-            }
-
-            // Symulacja weryfikacji przez AI
-            setTimeout(() => {
-                loading.style.display = 'none';
-                
-                const percentage = Math.round((score / totalQuestions) * 100);
-                
-                resultDiv.className = 'result-success';
-                resultDiv.innerHTML = `
-                    <h3>Wynik Weryfikacji AI</h3>
-                    <p style="margin-top:0.4rem;"><strong>Uczeń:</strong> ${imie} ${nazwisko}</p>
-                    <p><strong>Zdobyte punkty:</strong> ${score} / ${totalQuestions} (${percentage}%)</p>
-                    <div class="details-list">
-                        <strong>Szczegóły zadań:</strong>
-                        ${detailsHtml}
-                    </div>
-                `;
-                resultDiv.style.display = 'block';
-            }, 1500);
-        });
-    </script>
-</body>
-</html>
+            let details
