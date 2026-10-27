@@ -40,7 +40,20 @@
         .options label {
             display: block;
             margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 4px;
             cursor: pointer;
+        }
+        /* Style podświetlania odpowiedzi po sprawdzeniu */
+        .correct-answer {
+            background-color: #d4edda !important;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect-answer {
+            background-color: #f8d7da !important;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         button {
             display: block;
@@ -76,7 +89,7 @@
 <body>
 
 <div class="container">
-    <h1>Konkurs Matematyczny Leon - Klasa IV</h1>
+    <h1>Konkurs Matematyczny Leon - Klasa IV (Wiosna 2024)</h1>
     <form id="quizForm">
         <div id="questionsContainer"></div>
         <button type="button" onclick="checkAnswers()">Sprawdź odpowiedzi</button>
@@ -85,7 +98,7 @@
 </div>
 
 <script>
-// Dane dotyczące zadań i poprawnych odpowiedzi
+// Baza danych zadań oparta na arkuszu konkursowym dla klasy IV
 const quizData = [
     { id: 1, text: "1. Liczba o 20 większa od ilorazu liczby 120 : 6 wynosi:", options: { A: "0", B: "20", C: "40", D: "60" }, correct: ["C"], multiple: false },
     { id: 2, text: "2. Iloczyn 5 · 5 · 5 · 5 możemy zapisać w postaci:", options: { A: "5⁴", B: "55", C: "55²", D: "4⁵" }, correct: ["A"], multiple: false },
@@ -105,10 +118,10 @@ const quizData = [
     { id: 16, text: "16. Obwód podanego trójkąta (boki: 25 cm, 25 cm, 13 cm) wynosi:", options: { A: "38 cm", B: "50 cm", C: "63 cm", D: "75 cm" }, correct: ["C"], multiple: false },
     { id: 17, text: "17. Liczba setek w sumie liczb 187 i 113 wynosi:", options: { A: "1", B: "2", C: "3", D: "4" }, correct: ["C"], multiple: false },
     { id: 18, text: "18. Wynikiem działania 10 - 4 : 2 jest liczba:", options: { A: "3", B: "6", C: "8", D: "10" }, correct: ["C"], multiple: false },
-    { id: 19, text: "19. W sali kinowej jest 10 rzędów po 12 miejsc i 5 miejsc specjalnych. Miejsc jest:", options: { A: "125 miejsc", B: "120 miejsc", C: "60 miejsc", D: "12 miejsc" }, correct: ["A"], multiple: false },
+    { id: 19, text: "19. W sali kinowej jest 10 rzędów po 12 miejsc i 5 miejsc specjalnych. W tej sali jest:", options: { A: "125 miejsc", B: "120 miejsc", C: "60 miejsc", D: "12 miejsc" }, correct: ["A"], multiple: false },
     { id: 20, text: "20. Osiem kwadransów to:", options: { A: "80 minut", B: "100 minut", C: "120 minut", D: "800 minut" }, correct: ["C"], multiple: false },
     
-    // ZADANIA WIELOKROTNEGO WYBORU
+    // ZADANIA WIELOKROTNEGO WYBORU (21-29)
     { id: 21, text: "21. Liczby większe od 47 to: (wielokrotny wybór)", options: { A: "XXVIII", B: "L", C: "XLIX", D: "XXIII" }, correct: ["B", "C"], multiple: true },
     { id: 22, text: "22. Które nierówności są prawidłowe? (wielokrotny wybór)", options: { A: "1548 - 500 > 1000", B: "2400 : 600 > 5", C: "4874 - 800 > 5000", D: "250 : 50 > 60" }, correct: ["A"], multiple: true },
     { id: 23, text: "23. Które liczby są większe od 0,4? (wielokrotny wybór)", options: { A: "0,397", B: "0,401", C: "0,098", D: "0,674" }, correct: ["B", "D"], multiple: true },
@@ -132,7 +145,7 @@ function renderQuiz() {
 
         for (const [key, value] of Object.entries(q.options)) {
             optionsHTML += `
-                <label>
+                <label id="label_q${q.id}_${key}">
                     <input type="${inputType}" name="q${q.id}" value="${key}">
                     ${key}. ${value}
                 </label>
@@ -147,15 +160,36 @@ function renderQuiz() {
     });
 }
 
-// Sprawdzanie odpowiedzi
+// Sprawdzanie odpowiedzi i podświetlanie poprawnych/błędnych
 function checkAnswers() {
     let score = 0;
 
     quizData.forEach(q => {
+        // Reset klas dla danego pytania
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            lbl.classList.remove('correct-answer', 'incorrect-answer');
+        }
+
         const selectedElements = document.querySelectorAll(`input[name="q${q.id}"]:checked`);
         const userAnswers = Array.from(selectedElements).map(el => el.value);
 
-        // Porównujemy wybrane odpowiedzi z poprawnymi
+        // Oznaczanie odpowiednimi kolorami
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            const isSelected = userAnswers.includes(key);
+            const isActuallyCorrect = q.correct.includes(key);
+
+            if (isActuallyCorrect) {
+                // Poprawna odpowiedź zawsze podświetla się na zielono
+                lbl.classList.add('correct-answer');
+            } else if (isSelected && !isActuallyCorrect) {
+                // Błędnie zaznaczona opcja podświetla się na czerwono
+                lbl.classList.add('incorrect-answer');
+            }
+        }
+
+        // Czy całe pytanie zostało rozwiązane bezbłędnie
         const isCorrect = userAnswers.length === q.correct.length && 
                           userAnswers.every(val => q.correct.includes(val));
 
@@ -164,14 +198,4 @@ function checkAnswers() {
         }
     });
 
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `Twój wynik to: ${score} / ${quizData.length}`;
-    resultDiv.className = score === quizData.length ? 'correct' : 'incorrect';
-}
-
-// Inicjalizacja przy załadowaniu strony
-renderQuiz();
-</script>
-
-</body>
-</html>
+    const
