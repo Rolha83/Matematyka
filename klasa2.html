@@ -1,374 +1,194 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matematyka - Klasa II</title>
-  <style>
-    :root {
-      --bg: #eef6ff;
-      --card: #ffffff;
-      --primary: #4d7cff;
-      --primary-dark: #2a4fb8;
-      --text: #1f2d3d;
-      --muted: #5a6d7b;
-      --line: #e3ebff;
-      --good: #2d9c72;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #edf5ff 0%, #f5f6ff 100%);
-      color: var(--text);
-      padding: 28px 16px;
-    }
-    .quiz {
-      max-width: 980px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.82);
-      border-radius: 18px;
-      padding: 24px 20px 32px;
-      box-shadow: 0 10px 30px rgba(31,45,61,0.08);
-    }
-    h1 {
-      margin: 0 0 24px;
-      text-align: center;
-      color: var(--primary-dark);
-      font-size: clamp(2rem, 3vw, 2.8rem);
-    }
-    .question-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-left: 6px solid var(--primary);
-      border-radius: 14px;
-      padding: 18px 16px 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 6px 18px rgba(31,45,61,0.04);
-    }
-    .question-title {
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 12px;
-      color: var(--primary-dark);
-      line-height: 1.5;
-    }
-    .option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      margin: 6px 0;
-      border-radius: 10px;
-      transition: background 0.15s ease;
-    }
-    .option:hover { background: #f4f7ff; }
-    .option input {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--good);
-    }
-    .answer-label { flex: 1; }
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 16px 18px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-      font-weight: 700;
-      font-size: 1.08rem;
-      cursor: pointer;
-    }
-    #result {
-      margin-top: 18px;
-      padding: 16px 18px;
-      display: none;
-      border-radius: 12px;
-      text-align: center;
-      background: #ebfaf2;
-      border: 2px solid #a5e3c0;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-    @media (max-width: 640px) {
-      .quiz { padding: 18px 12px 24px; }
-      .question-card { padding: 16px 12px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprawdzian z Matematyki - Klasa II (Wiosna 2024)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .task {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .task-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .correct-answer {
+            background-color: #d4edda !important;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect-answer {
+            background-color: #f8d7da !important;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #c0392b;
+        }
+    </style>
 </head>
 <body>
-  <div class="quiz">
-    <h1>Matematyka - Klasa II</h1>
 
-    <div class="question-card">
-      <div class="question-title">1. Ile centymetrów ma 1 metr?</div>
-      <label class="option"><input type="radio" name="q1" value="A"><span class="answer-label">A. 10 cm</span></label>
-      <label class="option"><input type="radio" name="q1" value="B"><span class="answer-label">B. 100 cm</span></label>
-      <label class="option"><input type="radio" name="q1" value="C"><span class="answer-label">C. 1000 cm</span></label>
-      <label class="option"><input type="radio" name="q1" value="D"><span class="answer-label">D. 50 cm</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">2. Ile to: 24 + 18?</div>
-      <label class="option"><input type="radio" name="q2" value="A"><span class="answer-label">A. 40</span></label>
-      <label class="option"><input type="radio" name="q2" value="B"><span class="answer-label">B. 42</span></label>
-      <label class="option"><input type="radio" name="q2" value="C"><span class="answer-label">C. 39</span></label>
-      <label class="option"><input type="radio" name="q2" value="D"><span class="answer-label">D. 44</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">3. Ile to: 35 - 17?</div>
-      <label class="option"><input type="radio" name="q3" value="A"><span class="answer-label">A. 20</span></label>
-      <label class="option"><input type="radio" name="q3" value="B"><span class="answer-label">B. 18</span></label>
-      <label class="option"><input type="radio" name="q3" value="C"><span class="answer-label">C. 19</span></label>
-      <label class="option"><input type="radio" name="q3" value="D"><span class="answer-label">D. 16</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">4. Ile to: 8 × 4?</div>
-      <label class="option"><input type="radio" name="q4" value="A"><span class="answer-label">A. 32</span></label>
-      <label class="option"><input type="radio" name="q4" value="B"><span class="answer-label">B. 28</span></label>
-      <label class="option"><input type="radio" name="q4" value="C"><span class="answer-label">C. 36</span></label>
-      <label class="option"><input type="radio" name="q4" value="D"><span class="answer-label">D. 30</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">5. Ile minut ma kwadrans?</div>
-      <label class="option"><input type="radio" name="q5" value="A"><span class="answer-label">A. 15 minut</span></label>
-      <label class="option"><input type="radio" name="q5" value="B"><span class="answer-label">B. 30 minut</span></label>
-      <label class="option"><input type="radio" name="q5" value="C"><span class="answer-label">C. 45 minut</span></label>
-      <label class="option"><input type="radio" name="q5" value="D"><span class="answer-label">D. 60 minut</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">6. Jaki znak należy wpisać: 27 ? 19</div>
-      <label class="option"><input type="radio" name="q6" value="A"><span class="answer-label">A. &lt;</span></label>
-      <label class="option"><input type="radio" name="q6" value="B"><span class="answer-label">B. &gt;</span></label>
-      <label class="option"><input type="radio" name="q6" value="C"><span class="answer-label">C. =</span></label>
-      <label class="option"><input type="radio" name="q6" value="D"><span class="answer-label">D. +</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">7. Ile to: 45 : 5?</div>
-      <label class="option"><input type="radio" name="q7" value="A"><span class="answer-label">A. 7</span></label>
-      <label class="option"><input type="radio" name="q7" value="B"><span class="answer-label">B. 8</span></label>
-      <label class="option"><input type="radio" name="q7" value="C"><span class="answer-label">C. 9</span></label>
-      <label class="option"><input type="radio" name="q7" value="D"><span class="answer-label">D. 10</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">8. Oblicz: 60 - 24.</div>
-      <label class="option"><input type="radio" name="q8" value="A"><span class="answer-label">A. 34</span></label>
-      <label class="option"><input type="radio" name="q8" value="B"><span class="answer-label">B. 36</span></label>
-      <label class="option"><input type="radio" name="q8" value="C"><span class="answer-label">C. 38</span></label>
-      <label class="option"><input type="radio" name="q8" value="D"><span class="answer-label">D. 40</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">9. Ile to: 3 × 7?</div>
-      <label class="option"><input type="radio" name="q9" value="A"><span class="answer-label">A. 21</span></label>
-      <label class="option"><input type="radio" name="q9" value="B"><span class="answer-label">B. 18</span></label>
-      <label class="option"><input type="radio" name="q9" value="C"><span class="answer-label">C. 24</span></label>
-      <label class="option"><input type="radio" name="q9" value="D"><span class="answer-label">D. 20</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">10. Ile to: 100 - 25?</div>
-      <label class="option"><input type="radio" name="q10" value="A"><span class="answer-label">A. 70</span></label>
-      <label class="option"><input type="radio" name="q10" value="B"><span class="answer-label">B. 75</span></label>
-      <label class="option"><input type="radio" name="q10" value="C"><span class="answer-label">C. 80</span></label>
-      <label class="option"><input type="radio" name="q10" value="D"><span class="answer-label">D. 85</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">11. Ile to: 6 × 6?</div>
-      <label class="option"><input type="radio" name="q11" value="A"><span class="answer-label">A. 30</span></label>
-      <label class="option"><input type="radio" name="q11" value="B"><span class="answer-label">B. 36</span></label>
-      <label class="option"><input type="radio" name="q11" value="C"><span class="answer-label">C. 34</span></label>
-      <label class="option"><input type="radio" name="q11" value="D"><span class="answer-label">D. 32</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">12. Ile gramów ma 1 kilogram?</div>
-      <label class="option"><input type="radio" name="q12" value="A"><span class="answer-label">A. 10 g</span></label>
-      <label class="option"><input type="radio" name="q12" value="B"><span class="answer-label">B. 100 g</span></label>
-      <label class="option"><input type="radio" name="q12" value="C"><span class="answer-label">C. 1000 g</span></label>
-      <label class="option"><input type="radio" name="q12" value="D"><span class="answer-label">D. 500 g</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">13. Jaka liczba jest o 11 większa od 29?</div>
-      <label class="option"><input type="radio" name="q13" value="A"><span class="answer-label">A. 39</span></label>
-      <label class="option"><input type="radio" name="q13" value="B"><span class="answer-label">B. 40</span></label>
-      <label class="option"><input type="radio" name="q13" value="C"><span class="answer-label">C. 38</span></label>
-      <label class="option"><input type="radio" name="q13" value="D"><span class="answer-label">D. 41</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">14. Ile to: 72 : 9?</div>
-      <label class="option"><input type="radio" name="q14" value="A"><span class="answer-label">A. 7</span></label>
-      <label class="option"><input type="radio" name="q14" value="B"><span class="answer-label">B. 8</span></label>
-      <label class="option"><input type="radio" name="q14" value="C"><span class="answer-label">C. 9</span></label>
-      <label class="option"><input type="radio" name="q14" value="D"><span class="answer-label">D. 10</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">15. Ile minut ma pół godziny?</div>
-      <label class="option"><input type="radio" name="q15" value="A"><span class="answer-label">A. 20 minut</span></label>
-      <label class="option"><input type="radio" name="q15" value="B"><span class="answer-label">B. 30 minut</span></label>
-      <label class="option"><input type="radio" name="q15" value="C"><span class="answer-label">C. 40 minut</span></label>
-      <label class="option"><input type="radio" name="q15" value="D"><span class="answer-label">D. 60 minut</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">16. Oblicz: 7 + 9 + 5.</div>
-      <label class="option"><input type="radio" name="q16" value="A"><span class="answer-label">A. 20</span></label>
-      <label class="option"><input type="radio" name="q16" value="B"><span class="answer-label">B. 21</span></label>
-      <label class="option"><input type="radio" name="q16" value="C"><span class="answer-label">C. 22</span></label>
-      <label class="option"><input type="radio" name="q16" value="D"><span class="answer-label">D. 23</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">17. Jaka jest różnica między 58 i 27?</div>
-      <label class="option"><input type="radio" name="q17" value="A"><span class="answer-label">A. 31</span></label>
-      <label class="option"><input type="radio" name="q17" value="B"><span class="answer-label">B. 32</span></label>
-      <label class="option"><input type="radio" name="q17" value="C"><span class="answer-label">C. 29</span></label>
-      <label class="option"><input type="radio" name="q17" value="D"><span class="answer-label">D. 30</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">18. Jaką liczbę trzeba dodać do 14, żeby było 20?</div>
-      <label class="option"><input type="radio" name="q18" value="A"><span class="answer-label">A. 5</span></label>
-      <label class="option"><input type="radio" name="q18" value="B"><span class="answer-label">B. 6</span></label>
-      <label class="option"><input type="radio" name="q18" value="C"><span class="answer-label">C. 7</span></label>
-      <label class="option"><input type="radio" name="q18" value="D"><span class="answer-label">D. 8</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">19. Wskaż liczbę parzystą z podanych: 21, 24, 27, 29.</div>
-      <label class="option"><input type="radio" name="q19" value="A"><span class="answer-label">A. 21</span></label>
-      <label class="option"><input type="radio" name="q19" value="B"><span class="answer-label">B. 24</span></label>
-      <label class="option"><input type="radio" name="q19" value="C"><span class="answer-label">C. 27</span></label>
-      <label class="option"><input type="radio" name="q19" value="D"><span class="answer-label">D. 29</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">20. Jaki wynik daje 9 × 5?</div>
-      <label class="option"><input type="radio" name="q20" value="A"><span class="answer-label">A. 44</span></label>
-      <label class="option"><input type="radio" name="q20" value="B"><span class="answer-label">B. 45</span></label>
-      <label class="option"><input type="radio" name="q20" value="C"><span class="answer-label">C. 46</span></label>
-      <label class="option"><input type="radio" name="q20" value="D"><span class="answer-label">D. 50</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">21. Ile to: 90 : 10?</div>
-      <label class="option"><input type="radio" name="q21" value="A"><span class="answer-label">A. 8</span></label>
-      <label class="option"><input type="radio" name="q21" value="B"><span class="answer-label">B. 9</span></label>
-      <label class="option"><input type="radio" name="q21" value="C"><span class="answer-label">C. 10</span></label>
-      <label class="option"><input type="radio" name="q21" value="D"><span class="answer-label">D. 11</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">22. Ile to: 46 + 17?</div>
-      <label class="option"><input type="radio" name="q22" value="A"><span class="answer-label">A. 63</span></label>
-      <label class="option"><input type="radio" name="q22" value="B"><span class="answer-label">B. 62</span></label>
-      <label class="option"><input type="radio" name="q22" value="C"><span class="answer-label">C. 61</span></label>
-      <label class="option"><input type="radio" name="q22" value="D"><span class="answer-label">D. 60</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">23. Która liczba jest większa od 50, ale mniejsza od 60?</div>
-      <label class="option"><input type="radio" name="q23" value="A"><span class="answer-label">A. 48</span></label>
-      <label class="option"><input type="radio" name="q23" value="B"><span class="answer-label">B. 51</span></label>
-      <label class="option"><input type="radio" name="q23" value="C"><span class="answer-label">C. 60</span></label>
-      <label class="option"><input type="radio" name="q23" value="D"><span class="answer-label">D. 64</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">24. Ile to: 5 × 8?</div>
-      <label class="option"><input type="radio" name="q24" value="A"><span class="answer-label">A. 45</span></label>
-      <label class="option"><input type="radio" name="q24" value="B"><span class="answer-label">B. 40</span></label>
-      <label class="option"><input type="radio" name="q24" value="C"><span class="answer-label">C. 35</span></label>
-      <label class="option"><input type="radio" name="q24" value="D"><span class="answer-label">D. 42</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">25. Ile to: 84 : 7?</div>
-      <label class="option"><input type="radio" name="q25" value="A"><span class="answer-label">A. 10</span></label>
-      <label class="option"><input type="radio" name="q25" value="B"><span class="answer-label">B. 11</span></label>
-      <label class="option"><input type="radio" name="q25" value="C"><span class="answer-label">C. 12</span></label>
-      <label class="option"><input type="radio" name="q25" value="D"><span class="answer-label">D. 13</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">26. Ile to: 48 + 25?</div>
-      <label class="option"><input type="radio" name="q26" value="A"><span class="answer-label">A. 73</span></label>
-      <label class="option"><input type="radio" name="q26" value="B"><span class="answer-label">B. 63</span></label>
-      <label class="option"><input type="radio" name="q26" value="C"><span class="answer-label">C. 74</span></label>
-      <label class="option"><input type="radio" name="q26" value="D"><span class="answer-label">D. 83</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">27. Ile to: 9 × 4?</div>
-      <label class="option"><input type="radio" name="q27" value="A"><span class="answer-label">A. 32</span></label>
-      <label class="option"><input type="radio" name="q27" value="B"><span class="answer-label">B. 36</span></label>
-      <label class="option"><input type="radio" name="q27" value="C"><span class="answer-label">C. 40</span></label>
-      <label class="option"><input type="radio" name="q27" value="D"><span class="answer-label">D. 45</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">28. Oblicz: 63 - 27.</div>
-      <label class="option"><input type="radio" name="q28" value="A"><span class="answer-label">A. 46</span></label>
-      <label class="option"><input type="radio" name="q28" value="B"><span class="answer-label">B. 36</span></label>
-      <label class="option"><input type="radio" name="q28" value="C"><span class="answer-label">C. 26</span></label>
-      <label class="option"><input type="radio" name="q28" value="D"><span class="answer-label">D. 39</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">29. Ile to: 24 : 3?</div>
-      <label class="option"><input type="radio" name="q29" value="A"><span class="answer-label">A. 6</span></label>
-      <label class="option"><input type="radio" name="q29" value="B"><span class="answer-label">B. 8</span></label>
-      <label class="option"><input type="radio" name="q29" value="C"><span class="answer-label">C. 7</span></label>
-      <label class="option"><input type="radio" name="q29" value="D"><span class="answer-label">D. 9</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">30. Ile minut ma 1 godzina i pół?</div>
-      <label class="option"><input type="radio" name="q30" value="A"><span class="answer-label">A. 45</span></label>
-      <label class="option"><input type="radio" name="q30" value="B"><span class="answer-label">B. 60</span></label>
-      <label class="option"><input type="radio" name="q30" value="C"><span class="answer-label">C. 90</span></label>
-      <label class="option"><input type="radio" name="q30" value="D"><span class="answer-label">D. 75</span></label>
-    </div>
-
-    <button onclick="checkQuiz()">Sprawdź wynik</button>
+<div class="container">
+    <h1>Konkurs Matematyczny Leon - Klasa II (Wiosna 2024)</h1>
+    <form id="quizForm">
+        <div id="questionsContainer"></div>
+        <button type="button" onclick="checkAnswers()">Sprawdź odpowiedzi</button>
+    </form>
     <div id="result"></div>
-  </div>
+</div>
 
-  <script>
-    function checkQuiz() {
-      const correctAnswers = {
-        q1: ['B'], q2: ['B'], q3: ['C'], q4: ['A'], q5: ['A'], q6: ['B'], q7: ['C'],
-        q8: ['B'], q9: ['A'], q10: ['B'], q11: ['B'], q12: ['C'], q13: ['A'], q14: ['B'],
-        q15: ['B'], q16: ['B'], q17: ['A'], q18: ['D'], q19: ['B'], q20: ['B'], q21: ['C'],
-        q22: ['A'], q23: ['B'], q24: ['B'], q25: ['C'], q26: ['A'], q27: ['B'], q28: ['B'],
-        q29: ['B'], q30: ['C']
-      };
+<script>
+const quizData = [
+    { id: 1, text: "1. Ile centymetrów brakuje do metra? (16 cm + 56 cm oraz 11 cm + 48 cm)[span_6](start_span)[span_6](end_span)", options: { A: "26 cm (do pierwszego)", B: "28 cm (do pierwszego)", C: "40 cm (do drugiego)", D: "41 cm (do drugiego)" }, correct: ["B", "D"], multiple: true },
+    { id: 2, text: "2. Patryk ma 16 lat, a Adaś 7. Oblicz, o ile lat Adaś jest młodszy od Patryka[span_7](start_span)[span_7](end_span).", options: { A: "7 lat", B: "9 lat", C: "8 lat", D: "10 lat" }, correct: ["B"], multiple: false },
+    { id: 3, text: "3. Jest godzina 9.55. Która godzina będzie za 2 kwadranse?[span_8](start_span)[span_8](end_span)", options: { A: "10.35", B: "10.40", C: "10.25", D: "10.10" }, correct: ["C"], multiple: false },
+    { id: 4, text: "4. Wskaż prawidłowe odpowiedzi (Kwadrans, Pół kilograma, Półtorej metra)[span_9](start_span)[span_9](end_span).", options: { A: "15 min", B: "60 min", C: "50 dag", D: "500 dag", E: "150 cm", F: "15 cm" }, correct: ["A", "C", "E"], multiple: true },
+    { id: 5, text: "5. Ustal, jakie wartości mogły się ukryć pod motylkami[span_10](start_span)[span_10](end_span).", options: { A: "27 (dla pierwszego warunku < 38)", B: "56 (7 * 8)", C: "9 (42:6 < )", D: "36 (42:6 < )" }, correct: ["A", "B", "C", "D"], multiple: true },
+    { id: 6, text: "6. Oblicz różnicę liczb: 63 i 29[span_11](start_span)[span_11](end_span).", options: { A: "36", B: "34", C: "46", D: "35" }, correct: ["B"], multiple: false },
+    { id: 7, text: "7. Wczoraj była środa. Pojutrze będzie[span_12](start_span)[span_12](end_span):", options: { A: "niedziela", B: "piątek", C: "sobota", D: "poniedziałek" }, correct: ["C"], multiple: false },
+    { id: 8, text: "8. Marta ma kilka patyczków jednakowej długości. Z ilu patyczków może zbudować 2 trójkąty (wspólny bok)?[span_13](start_span)[span_13](end_span)", options: { A: "3", B: "5", C: "1", D: "brak odpowiedzi" }, correct: ["B"], multiple: false },
+    { id: 9, text: "9. Wskaż liczbę, która ma więcej jedności niż dziesiątek[span_14](start_span)[span_14](end_span).", options: { A: "89", B: "98", C: "75", D: "36" }, correct: ["A", "D"], multiple: true },
+    { id: 10, text: "10. Każdy kwiatek zastępuje tę samą liczbę w równaniu 45 - kwiatek = 30[span_15](start_span)[span_15](end_span). Jaka to liczba?", options: { A: "15", B: "6", C: "5", D: "4" }, correct: ["A"], multiple: false },
+    { id: 11, text: "11. Ile to miesięcy? 3 kwartały[span_16](start_span)[span_16](end_span).", options: { A: "3", B: "12", C: "9", D: "6" }, correct: ["C"], multiple: false },
+    { id: 12, text: "12. Od godziny 20.10 do godziny 21.05 minęło[span_17](start_span)[span_17](end_span)?", options: { A: "60 minut", B: "45 minut", C: "55 minut", D: "50 minut" }, correct: ["C"], multiple: false },
+    { id: 13, text: "13. Wstaw odpowiednie znaki (<, =, >) dla porównań pieniężnych[span_18](start_span)[span_18](end_span).", options: { A: "8 zł < 10 zł", B: "25 zł > 23 zł", C: "16 zł < 17 zł" }, correct: ["A", "B", "C"], multiple: true },
+    { id: 14, text: "14. Wskaż składniki sumy równej 20[span_19](start_span)[span_19](end_span).", options: { A: "12 + 3 + 5", B: "14 + 6", C: "11 + 6 + 2", D: "3 + 4 + 3" }, correct: ["A", "B"], multiple: true },
+    { id: 15, text: "15. Zaznacz błędne obliczenia[span_20](start_span)[span_20](end_span).", options: { A: "73 + 8 = 82", B: "5 + 9 = 45", C: "35 + 7 = 93", D: "42 + 8 = 50" }, correct: ["A", "B", "C"], multiple: true },
+    { id: 16, text: "16. Wstążka ma długość 20 cm. Ile cm ma każda z 4 równych części[span_21](start_span)[span_21](end_span)?", options: { A: "4 cm", B: "5 cm", C: "3 cm", D: "6 cm" }, correct: ["B"], multiple: false },
+    { id: 17, text: "17. Wskaż rzeczy, które występują zawsze w parach[span_22](start_span)[span_22](end_span).", options: { A: "szaliki", B: "buty", C: "skarpetki", D: "rękawiczki" }, correct: ["B", "C", "D"], multiple: true },
+    { id: 18, text: "18. Jedna biedronka siedmiokropka ma 7 kropek. Ile kropek mają cztery takie biedronki[span_23](start_span)[span_23](end_span)?", options: { A: "28", B: "35", C: "7", D: "21" }, correct: ["A"], multiple: false },
+    { id: 19, text: "19. Karol spędził tydzień ferii nad morzem i 3 dni w górach. Ile to dni[span_24](start_span)[span_24](end_span)?", options: { A: "14 dni", B: "3 dni", C: "7 dni", D: "10 dni" }, correct: ["D"], multiple: false },
+    { id: 20, text: "20. Wskaż liczby parzyste większe od 20, ale mniejsze od 30[span_25](start_span)[span_25](end_span).", options: { A: "20", B: "30", C: "26", D: "28" }, correct: ["C", "D"], multiple: true },
+    { id: 21, text: "21. Porównaj sumy i różnice (prawidłowe relacje)[span_26](start_span)[span_26](end_span).", options: { A: "49-9 = 50-10", B: "85+5 > 85-5", C: "98-18 < 33+48" }, correct: ["A", "B", "C"], multiple: true },
+    { id: 22, text: "22. Worek z mąką waży 25 kg. Pusty worek jest o 23 kg lżejszy. Ile waży worek[span_27](start_span)[span_27](end_span)?", options: { A: "23 kg", B: "2 kg", C: "25 kg", D: "1 kg" }, correct: ["B"], multiple: false },
+    { id: 23, text: "23. Wskaż iloczyny, które mają takie same wyniki[span_28](start_span)[span_28](end_span).", options: { A: "2 · 2", B: "4 · 1", C: "3 · 0", D: "2 · 3" }, correct: ["A", "B"], multiple: true },
+    { id: 24, text: "24. Oblicz sumę liczb: dwadzieścia osiem i dziewięć[span_29](start_span)[span_29](end_span).", options: { A: "37", B: "28", C: "9", D: "19" }, correct: ["A"], multiple: false },
+    { id: 25, text: "25. Wskaż szereg uporządkowany od najmniejszej do największej[span_30](start_span)[span_30](end_span).", options: { A: "trzydzieści, sześćdziesiąt, osiemdziesiąt", B: "dziesięć, pięćdziesiąt, dziewięćdziesiąt", C: "czterdzieści, trzydzieści, siedemdziesiąt", D: "dwadzieścia, sto, sześćdziesiąt" }, correct: ["A", "B"], multiple: true }
+];
 
-      let score = 0;
-      const total = Object.keys(correctAnswers).length;
+function renderQuiz() {
+    const container = document.getElementById('questionsContainer');
+    quizData.forEach(q => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'task';
+        
+        let optionsHTML = '';
+        const inputType = q.multiple ? 'checkbox' : 'radio';
 
-      for (const q in correctAnswers) {
-        const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`)).map(el => el.value);
-        const isCorrect = correctAnswers[q].length === selected.length && correctAnswers[q].every(v => selected.includes(v));
-        if (isCorrect) score++;
-      }
+        for (const [key, value] of Object.entries(q.options)) {
+            optionsHTML += `
+                <label id="label_q${q.id}_${key}">
+                    <input type="${inputType}" name="q${q.id}" value="${key}">
+                    ${key}. ${value}
+                </label>
+            `;
+        }
 
-      const resultDiv = document.getElementById('result');
-      resultDiv.style.display = 'block';
-      resultDiv.innerHTML = `Twój wynik to: ${score} z ${total} punktów!`;
-    }
-  </script>
+        taskDiv.innerHTML = `
+            <div class="task-title">${q.text}</div>
+            <div class="options">${optionsHTML}</div>
+        `;
+        container.appendChild(taskDiv);
+    });
+}
+
+function checkAnswers() {
+    let score = 0;
+
+    quizData.forEach(q => {
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            lbl.classList.remove('correct-answer', 'incorrect-answer');
+        }
+
+        const selectedElements = document.querySelectorAll(`input[name="q${q.id}"]:checked`);
+        const userAnswers = Array.from(selectedElements).map(el => el.value);
+
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            const isSelected = userAnswers.includes(key);
+            const isActuallyCorrect = q.correct.includes(key);
+
+            if (isActuallyCorrect) {
+                lbl.classList.add('correct-answer');
+            } else if (isSelected && !isActuallyCorrect) {
+                lbl.classList.add('incorrect-answer');
+            }
+        }
+
+        const isCorrect = userAnswers.length === q.correct.length && 
+                          userAnswers.every(val => q.correct.includes(val));
+
+        if (isCorrect) {
+            score++;
+        }
+    });
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `Twój wynik to: ${score} / ${quizData.length}`;
+    resultDiv.className = score === quizData.length ? 'correct' : 'incorrect';
+}
+
+renderQuiz();
+</script>
+
 </body>
 </html>
