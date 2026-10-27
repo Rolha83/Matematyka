@@ -375,4 +375,45 @@
             const totalQuestions = Object.keys(correctAnswersKey).length;
 
             let score = 0;
-            let details
+            let detailsHtml = '';
+
+            // Weryfikacja bez podawania poprawnych odpowiedzi
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userChoice = formData.getAll(`q${i}`).sort();
+                const correctChoice = (correctAnswersKey[i] || []).sort();
+                const itemElem = document.getElementById(`q-item-${i}`);
+
+                const isCorrect = JSON.stringify(userChoice) === JSON.stringify(correctChoice);
+
+                if (isCorrect) {
+                    score++;
+                    itemElem.className = 'question-item correct';
+                    detailsHtml += `<div>Zadanie ${i}: <span style="color:green; font-weight:600;">✔ Poprawnie</span></div>`;
+                } else {
+                    itemElem.className = 'question-item incorrect';
+                    detailsHtml += `<div>Zadanie ${i}: <span style="color:red; font-weight:600;">✘ Błąd</span></div>`;
+                }
+            }
+
+            // Symulacja czasu odpowiedzi AI
+            setTimeout(() => {
+                loading.style.display = 'none';
+                
+                const percentage = Math.round((score / totalQuestions) * 100);
+                
+                resultDiv.className = 'result-success';
+                resultDiv.innerHTML = `
+                    <h3>Wynik Weryfikacji AI</h3>
+                    <p style="margin-top:0.4rem;"><strong>Uczeń:</strong> ${imie} ${nazwisko}</p>
+                    <p><strong>Zdobyte punkty:</strong> ${score} / ${totalQuestions} (${percentage}%)</p>
+                    <div class="details-list">
+                        <strong>Status zadań:</strong><br><br>
+                        ${detailsHtml}
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
