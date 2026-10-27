@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karta Odpowiedzi – Zadania Matematyczne z AI</title>
+    <title>Karta Odpowiedzi – Konkurs Matematyczny Leon</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -34,7 +34,7 @@
 
         header {
             background-color: var(--card-bg);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -42,7 +42,7 @@
         }
 
         header h1 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--primary);
         }
 
@@ -52,7 +52,7 @@
             overflow: hidden;
         }
 
-        /* Lewy panel – Podgląd pliku PDF / Zadania */
+        /* Lewy panel – Podgląd pliku PDF */
         .pdf-viewer-container {
             flex: 1;
             border-right: 1px solid var(--border);
@@ -64,19 +64,20 @@
         .toolbar {
             background: #323639;
             color: #fff;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
         }
 
         .toolbar select {
-            padding: 0.25rem 0.5rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 4px;
             border: none;
             background: #fff;
             color: var(--text);
+            font-weight: 600;
             cursor: pointer;
         }
 
@@ -89,7 +90,7 @@
         /* Prawy panel – Karta odpowiedzi */
         .answer-card {
             flex: 1;
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             overflow-y: auto;
             background-color: var(--card-bg);
         }
@@ -98,8 +99,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
             background: #f1f5f9;
             border-radius: 8px;
             border: 1px solid var(--border);
@@ -107,56 +108,46 @@
 
         .student-info input {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.4rem 0.6rem;
             border: 1px solid var(--border);
             border-radius: 4px;
             text-transform: uppercase;
         }
 
-        .section-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 1.5rem 0 1rem 0;
-            padding-bottom: 0.25rem;
-            border-bottom: 2px solid var(--primary);
-            color: var(--primary);
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
         }
 
-        .question-group {
-            margin-bottom: 1.2rem;
-            padding: 0.8rem;
+        .question-item {
+            padding: 0.6rem 0.8rem;
             border: 1px solid var(--border);
             border-radius: 6px;
             background-color: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .question-group label.q-title {
-            display: block;
+        .question-item label.q-num {
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            min-width: 80px;
         }
 
         .options {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
+            gap: 0.8rem;
         }
 
         .options label {
-            font-weight: normal;
+            font-size: 0.85rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-        }
-
-        input[type="text"].answer-input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.9rem;
+            gap: 0.2rem;
         }
 
         button.btn-submit {
@@ -170,7 +161,6 @@
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
-            margin-top: 1.5rem;
         }
 
         button.btn-submit:hover {
@@ -179,8 +169,8 @@
 
         /* Sekcja wyników AI */
         #ai-result {
-            margin-top: 1.5rem;
-            padding: 1.2rem;
+            margin-top: 1.2rem;
+            padding: 1rem;
             border-radius: 6px;
             display: none;
         }
@@ -204,7 +194,7 @@
                 flex-direction: column;
             }
             .pdf-viewer-container {
-                height: 50vh;
+                height: 45vh;
             }
         }
     </style>
@@ -212,87 +202,116 @@
 <body>
 
     <header>
-        <h1>Karta Odpowiedzi – Matematyka</h1>
+        <h1>Karta Odpowiedzi – Konkurs Matematyczny Leon</h1>
         <span>Weryfikacja przez AI 🤖</span>
     </header>
 
     <div class="container">
-        <!-- Lewy panel: Podgląd pliku PDF -->
+        <!-- Lewy panel: Podgląd arkusza PDF -->
         <div class="pdf-viewer-container">
             <div class="toolbar">
-                <span>Wybierz arkusz zadań:</span>
-                <select id="pdfSelector" onchange="changePdf()">
-                    <option value="https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview">Klasa 1 – Wiosna 2025</option>
-                    <option value="https://drive.google.com/file/d/11O_GoCPRoSZAIKNK5rFmtqm7Q6ulOP0P/preview">Klasa 2 – Wiosna 2025</option>
-                    <option value="https://drive.google.com/file/d/1d5uqyxEFghwiZTNo11R74WFCcA-hbMJR/preview">Klasa 3 – Wiosna 2025</option>
-                    <option value="https://drive.google.com/file/d/1Kuztm9mSARFrYd7RdG6JFd6qGTFS80Uk/preview">Klasa 4 – Wiosna 2025</option>
+                <label for="pdfSelector">Wybierz arkusz zadań:</label>
+                <select id="pdfSelector" onchange="updateSheet()">
+                    <option value="k1">Klasa 1 – Wiosna 2025 (25 zadań)</option>
+                    <option value="k2">Klasa 2 – Wiosna 2025 (25 zadań)</option>
+                    <option value="k3" selected>Klasa 3 – Wiosna 2025 (26 zadań)</option>
+                    <option value="k4">Klasa 4 – Wiosna 2025 (25 zadań)</option>
                 </select>
             </div>
-            <iframe id="pdfFrame" src="https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview" allow="autoplay"></iframe>
+            <iframe id="pdfFrame" src="https://drive.google.com/file/d/1d5uqyxEFghwiZTNo11R74WFCcA-hbMJR/preview" allow="autoplay"></iframe>
         </div>
 
         <!-- Prawy panel: Karta odpowiedzi -->
         <div class="answer-card">
-            <h2>Wprowadź swoje odpowiedzi</h2>
+            <h2 id="sheetTitle">Karta Odpowiedzi – Klasa 3</h2>
             <form id="quiz-form">
                 
                 <div class="student-info">
                     <div>
-                        <label for="imie" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.25rem;">Imię (DRUKOWANE):</label>
+                        <label for="imie" style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:0.2rem;">Imię (DRUKOWANE):</label>
                         <input type="text" id="imie" name="imie" required placeholder="np. JAN">
                     </div>
                     <div>
-                        <label for="nazwisko" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.25rem;">Nazwisko (DRUKOWANE):</label>
+                        <label for="nazwisko" style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:0.2rem;">Nazwisko (DRUKOWANE):</label>
                         <input type="text" id="nazwisko" name="nazwisko" required placeholder="np. KOWALSKI">
                     </div>
                 </div>
 
-                <div class="section-title">Zadania wyboru (Przykładowe pytania)</div>
-                
-                <div class="question-group">
-                    <label class="q-title">Zadanie 1. Wybierz poprawną odpowiedź:</label>
-                    <div class="options">
-                        <label><input type="radio" name="q1" value="A" required> A</label>
-                        <label><input type="radio" name="q1" value="B"> B</label>
-                        <label><input type="radio" name="q1" value="C"> C</label>
-                        <label><input type="radio" name="q1" value="D"> D</label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label class="q-title">Zadanie 2. Wybierz poprawną odpowiedź:</label>
-                    <div class="options">
-                        <label><input type="radio" name="q2" value="A" required> A</label>
-                        <label><input type="radio" name="q2" value="B"> B</label>
-                        <label><input type="radio" name="q2" value="C"> C</label>
-                        <label><input type="radio" name="q2" value="D"> D</label>
-                    </div>
-                </div>
-
-                <div class="section-title">Zadania otwarte / Obliczenia</div>
-                
-                <div class="question-group">
-                    <label class="q-title" for="q3">Zadanie 3. Wpisz wynik lub obliczenia:</label>
-                    <input type="text" id="q3" name="q3" class="answer-input" placeholder="Wpisz odpowiedź..." required>
-                </div>
+                <!-- Kontener na dynamicznie generowane pytania -->
+                <div id="questionsContainer" class="questions-grid"></div>
 
                 <button type="submit" class="btn-submit">Wyślij do sprawdzenia przez AI</button>
             </form>
 
-            <div id="loading" class="loading">Sztuczna inteligencja analizuje Twoją kartę odpowiedzi... ⏳</div>
+            <div id="loading" class="loading">Sztuczna inteligencja sprawdzająca arkusz... ⏳</div>
             <div id="ai-result"></div>
         </div>
     </div>
 
     <script>
-        // Funkcja zmieniająca podgląd PDF w zależności od wybranej klasy w rozwijanym menu
-        function changePdf() {
-            const select = document.getElementById('pdfSelector');
-            const iframe = document.getElementById('pdfFrame');
-            iframe.src = select.value;
+        // Konfiguracja arkuszy dla poszczególnych klas
+        const sheetsData = {
+            k1: {
+                title: "Karta Odpowiedzi – Klasa 1 (Wiosna 2025)",
+                url: "https://drive.google.com/file/d/1v6tfz03foWk1hHc3Zcvp5MsBPwrbPb2F/preview",
+                totalQuestions: 25
+            },
+            k2: {
+                title: "Karta Odpowiedzi – Klasa 2 (Wiosna 2025)",
+                url: "https://drive.google.com/file/d/11O_GoCPRoSZAIKNK5rFmtqm7Q6ulOP0P/preview",
+                totalQuestions: 25
+            },
+            k3: {
+                title: "Karta Odpowiedzi – Klasa 3 (Wiosna 2025)",
+                url: "https://drive.google.com/file/d/1d5uqyxEFghwiZTNo11R74WFCcA-hbMJR/preview",
+                totalQuestions: 26
+            },
+            k4: {
+                title: "Karta Odpowiedzi – Klasa 4 (Wiosna 2025)",
+                url: "https://drive.google.com/file/d/1Kuztm9mSARFrYd7RdG6JFd6qGTFS80Uk/preview",
+                totalQuestions: 25
+            }
+        };
+
+        // Generowanie pola pytań w karcie odpowiedzi
+        function renderQuestions(total) {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= total; i++) {
+                const item = document.createElement('div');
+                item.className = 'question-item';
+                
+                item.innerHTML = `
+                    <label class="q-num">Zadanie ${i}:</label>
+                    <div class="options">
+                        <label><input type="checkbox" name="q${i}" value="A"> A</label>
+                        <label><input type="checkbox" name="q${i}" value="B"> B</label>
+                        <label><input type="checkbox" name="q${i}" value="C"> C</label>
+                        <label><input type="checkbox" name="q${i}" value="D"> D</label>
+                    </div>
+                `;
+                container.appendChild(item);
+            }
         }
 
-        // Obsługa wysyłania formularza i symulacji oceny AI
+        // Zmiana arkusza po wyborze z listy
+        function updateSheet() {
+            const selectedKey = document.getElementById('pdfSelector').value;
+            const data = sheetsData[selectedKey];
+
+            document.getElementById('pdfFrame').src = data.url;
+            document.getElementById('sheetTitle').innerText = data.title;
+            renderQuestions(data.totalQuestions);
+
+            // Ukrycie poprzedniego wyniku AI
+            document.getElementById('ai-result').style.display = 'none';
+        }
+
+        // Inicjalizacja domyślnego arkusza (Klasa 3)
+        renderQuestions(sheetsData.k3.totalQuestions);
+
+        // Obsługa wysyłania odpowiedzi i symulacja analizy AI
         document.getElementById('quiz-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -305,27 +324,31 @@
             const formData = new FormData(this);
             const imie = formData.get('imie');
             const nazwisko = formData.get('nazwisko');
-            const q1 = formData.get('q1');
-            const q2 = formData.get('q2');
-            const q3 = formData.get('q3');
+            const selectedKey = document.getElementById('pdfSelector').value;
+            const total = sheetsData[selectedKey].totalQuestions;
 
-            // Symulacja czasu analizy AI
+            // Liczenie uzupełnionych odpowiedzi
+            let answeredCount = 0;
+            for (let i = 1; i <= total; i++) {
+                if (formData.getAll(`q${i}`).length > 0) {
+                    answeredCount++;
+                }
+            }
+
+            // Symulacja sprawdzenia przez AI
             setTimeout(() => {
                 loading.style.display = 'none';
                 
                 resultDiv.className = 'result-success';
                 resultDiv.innerHTML = `
-                    <h3>Wynik sprawdzenia AI dla: ${imie} ${nazwisko}</h3>
-                    <p style="margin-top:0.5rem;"><strong>Ocena końcowa:</strong> Celujący (5/5)</p>
-                    <ul style="margin: 0.5rem 0 0 1.2rem; font-size: 0.9rem;">
-                        <li>Zadanie 1: Poprawna odpowiedź (${q1})</li>
-                        <li>Zadanie 2: Poprawna odpowiedź (${q2})</li>
-                        <li>Zadanie 3: Wynik "${q3}" – Zaakceptowany przez system.</li>
-                    </ul>
-                    <p style="margin-top:0.5rem; font-size:0.85rem;"><em>AI: Wszystkie zadania zostały rozwiązane prawidłowo. Dobra robota!</em></p>
+                    <h3>Wynik sprawdzenia AI</h3>
+                    <p style="margin-top:0.4rem;"><strong>Uczeń:</strong> ${imie} ${nazwisko}</p>
+                    <p><strong>Uzupełnione zadania:</strong> ${answeredCount} / ${total}</p>
+                    <p><strong>Ocena szacowana przez AI:</strong> Bardzo dobry (${Math.round((answeredCount/total)*100)}% rozwiązanych)</p>
+                    <p style="margin-top:0.5rem; font-size:0.85rem;"><em>AI: Arkusz został pomyślnie przetworzony i wysłany do sprawdzenia.</em></p>
                 `;
                 resultDiv.style.display = 'block';
-            }, 2000);
+            }, 1800);
         });
     </script>
 </body>
