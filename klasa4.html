@@ -355,55 +355,58 @@
     document.getElementById('konkurs').addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Poprawne odpowiedzi jednokrotnego wyboru
       const correct = {
-        q1: "C", q2: "A", q3: "D", q4: "C", q5: "C",
-        q6: "A", q7: "C", q8: "A", q9: "C", q10: "B",
-        q11: "A", q12: "C", q13: "A", q14: "B", q15: "B",
-        q16: "C", q17: "C", q18: "C", q19: "A", q20: "C",
-        q21: "B", q28: "C", q29: "B"
+        q1: 'C', q2: 'A', q3: 'D', q4: 'C', q5: 'C',
+        q6: 'A', q7: 'C', q8: 'A', q9: 'C', q10: 'B',
+        q11: 'A', q12: 'C', q13: 'A', q14: 'B', q15: 'B',
+        q16: 'C', q17: 'C', q18: 'C', q19: 'A', q20: 'C',
+        q21: 'B', q28: 'C', q29: 'B'
       };
 
-      // Pytania wielokrotnego wyboru – poprawne zestawy
+      const correctSingleNumbers = {
+        q1: 1, q2: 2, q3: 3, q4: 4, q5: 5,
+        q6: 6, q7: 7, q8: 8, q9: 9, q10: 10,
+        q11: 11, q12: 12, q13: 13, q14: 14, q15: 15,
+        q16: 16, q17: 17, q18: 18, q19: 19, q20: 20,
+        q21: 21, q28: 28, q29: 29
+      };
+
       const multiCorrect = {
-        q22: ["A", "D"],
-        q23: ["B", "D"],
-        q24: ["A", "B", "C"],
-        q25: ["A", "B", "C"],
-        q26: ["A", "B"],
-        q27: ["B"]
+        q22: ['A', 'D'],
+        q23: ['B', 'D'],
+        q24: ['A', 'B', 'C'],
+        q25: ['A', 'B', 'C'],
+        q26: ['A', 'B'],
+        q27: ['B']
       };
 
-      let errors = [];
+      const multiNumbers = {
+        q22: 22, q23: 23, q24: 24, q25: 25, q26: 26, q27: 27
+      };
 
-      // Sprawdzanie jednokrotnego wyboru
-      let nr = 1;
-      for (let q in correct) {
-        const chosen = document.querySelector(`input[name="${q}"]:checked`);
-        if (!chosen || chosen.value !== correct[q]) {
-          errors.push(`Zadanie ${nr} – odpowiedź błędna`);
+      const errors = [];
+
+      for (const [question, expected] of Object.entries(correct)) {
+        const chosen = document.querySelector(`input[name="${question}"]:checked`);
+        if (!chosen || chosen.value !== expected) {
+          errors.push(`Zadanie ${correctSingleNumbers[question]} – odpowiedź błędna`);
         }
-        nr++;
       }
 
-      // Sprawdzanie wielokrotnego wyboru
-      let multiNr = 22;
-      for (let group in multiCorrect) {
-        const required = multiCorrect[group];
-        const chosen = Array.from(document.querySelectorAll(`input[name^="${group}"]:checked`))
-                            .map(el => el.value);
+      for (const [group, required] of Object.entries(multiCorrect)) {
+        const chosen = Array.from(
+          document.querySelectorAll(`input[name^="${group}"]:checked`)
+        ).map((element) => element.value);
 
-        if (chosen.length !== required.length ||
-            !required.every(val => chosen.includes(val))) {
-          errors.push(`Zadanie ${multiNr} – odpowiedź błędna`);
+        if (chosen.length !== required.length || !required.every((value) => chosen.includes(value))) {
+          errors.push(`Zadanie ${multiNumbers[group]} – odpowiedź błędna`);
         }
-        multiNr++;
       }
 
       if (errors.length === 0) {
-        alert("Wszystkie odpowiedzi są poprawne!");
+        alert('Wszystkie odpowiedzi są poprawne!');
       } else {
-        alert("Błędne odpowiedzi:\n\n" + errors.join("\n"));
+        alert('Błędne odpowiedzi:\n\n' + errors.join('\n'));
       }
     });
   </script>
