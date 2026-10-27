@@ -1,295 +1,334 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <title>Konkurs matematyczny – klasa III</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h1 { text-align: center; }
-    fieldset { margin-bottom: 20px; padding: 15px; }
-    legend { font-weight: bold; }
-    .answers label { display: block; margin: 4px 0; }
-    .info { margin-bottom: 20px; }
-    button { padding: 10px 20px; font-size: 18px; }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Konkurs matematyczny – klasa III</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      fieldset {
+        margin-bottom: 20px;
+        padding: 15px;
+      }
+      legend {
+        font-weight: bold;
+      }
+      .answers label {
+        display: block;
+        margin: 4px 0;
+      }
+      .info {
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Konkurs matematyczny – klasa III</h1>
 
-<h1>Konkurs matematyczny – klasa III</h1>
+    <div class="info">
+      <label>Imię (WIELKIMI LITERAMI):
+        <input type="text" name="imie" />
+      </label><br />
+      <label>Nazwisko (WIELKIMI LITERAMI):
+        <input type="text" name="nazwisko" />
+      </label>
+    </div>
 
-<div class="info">
-  <label>Imię (WIELKIMI LITERAMI):
-    <input type="text" name="imie" />
-  </label><br />
-  <label>Nazwisko (WIELKIMI LITERAMI):
-    <input type="text" name="nazwisko" />
-  </label>
-</div>
+    <form id="konkurs">
+      <fieldset>
+        <legend>Zadanie 1</legend>
+        <p>Wskaż równość prawdziwą.</p>
+        <div class="answers">
+          <label><input type="radio" name="q1" value="A"> 36 : 9 = 28 : 7</label>
+          <label><input type="radio" name="q1" value="B"> 24 : 4 = 54 : 8</label>
+          <label><input type="radio" name="q1" value="C"> 63 : 7 = 27 : 3</label>
+          <label><input type="radio" name="q1" value="D"> 48 : 6 = 4 : 2</label>
+        </div>
+      </fieldset>
 
-<form id="konkurs">
+      <fieldset>
+        <legend>Zadanie 2</legend>
+        <p>Wskaż zamalowaną ćwierć kwadratu.</p>
+        <div class="answers">
+          <label><input type="radio" name="q2" value="A"> A</label>
+          <label><input type="radio" name="q2" value="B"> B</label>
+          <label><input type="radio" name="q2" value="C"> C</label>
+          <label><input type="radio" name="q2" value="D"> D</label>
+        </div>
+      </fieldset>
 
-<!-- ===================== ZADANIA 1–25 ===================== -->
+      <fieldset>
+        <legend>Zadanie 3</legend>
+        <p>Staś ma 9 lat, a Kacper 26. O ile lat Kacper jest starszy od Stasia?</p>
+        <div class="answers">
+          <label><input type="radio" name="q3" value="A"> 17 lat</label>
+          <label><input type="radio" name="q3" value="B"> 16 lat</label>
+          <label><input type="radio" name="q3" value="C"> 35 lat</label>
+          <label><input type="radio" name="q3" value="D"> 18 lat</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 1</legend>
-  <p>Wskaż równość prawdziwą.</p>
-  <div class="answers">
-    <label><input type="radio" name="q1" value="A"> 36 : 9 = 28 : 7</label>
-    <label><input type="radio" name="q1" value="B"> 24 : 4 = 54 : 8</label>
-    <label><input type="radio" name="q1" value="C"> 63 : 7 = 27 : 3</label>
-    <label><input type="radio" name="q1" value="D"> 48 : 6 = 4 : 2</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 4</legend>
+        <p>Wskaż działanie niewykonalne.</p>
+        <div class="answers">
+          <label><input type="radio" name="q4" value="A"> 0 · 5</label>
+          <label><input type="radio" name="q4" value="B"> 5 · 0</label>
+          <label><input type="radio" name="q4" value="C"> 0 : 5</label>
+          <label><input type="radio" name="q4" value="D"> 5 : 0</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 2</legend>
-  <p>Wskaż zamalowaną ćwierć kwadratu.</p>
-  <div class="answers">
-    <label><input type="radio" name="q2" value="A"> A</label>
-    <label><input type="radio" name="q2" value="B"> B</label>
-    <label><input type="radio" name="q2" value="C"> C</label>
-    <label><input type="radio" name="q2" value="D"> D</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 5</legend>
+        <p>Ustal, jakie wartości kryją się pod motylkami.</p>
+        <div class="answers">
+          <label><input type="radio" name="q5a" value="A"> 37 + 63 = 100</label>
+          <label><input type="radio" name="q5a" value="B"> 37 + 64 = 100</label>
+          <label><input type="radio" name="q5a" value="C"> 37 + 65 = 100</label>
+          <label><input type="radio" name="q5a" value="D"> 37 + 62 = 100</label>
 
-<fieldset>
-  <legend>Zadanie 3</legend>
-  <p>Staś ma 9 lat, a Kacper 26. O ile lat Kacper jest starszy?</p>
-  <div class="answers">
-    <label><input type="radio" name="q3" value="A"> 17 lat</label>
-    <label><input type="radio" name="q3" value="B"> 16 lat</label>
-    <label><input type="radio" name="q3" value="C"> 35 lat</label>
-    <label><input type="radio" name="q3" value="D"> 18 lat</label>
-  </div>
-</fieldset>
+          <label><input type="radio" name="q5b" value="A"> 48 - 21 = 27</label>
+          <label><input type="radio" name="q5b" value="B"> 48 - 27 = 21</label>
+          <label><input type="radio" name="q5b" value="C"> 48 - 26 = 22</label>
+          <label><input type="radio" name="q5b" value="D"> 48 - 24 = 24</label>
 
-<fieldset>
-  <legend>Zadanie 4</legend>
-  <p>Wskaż działanie niewykonalne.</p>
-  <div class="answers">
-    <label><input type="radio" name="q4" value="A"> 0 · 5</label>
-    <label><input type="radio" name="q4" value="B"> 5 · 0</label>
-    <label><input type="radio" name="q4" value="C"> 0 : 5</label>
-    <label><input type="radio" name="q4" value="D"> 5 : 0</label>
-  </div>
-</fieldset>
+          <label><input type="radio" name="q5c" value="A"> 49 + 35 = 84</label>
+          <label><input type="radio" name="q5c" value="B"> 49 + 35 = 85</label>
+          <label><input type="radio" name="q5c" value="C"> 49 + 35 = 87</label>
+          <label><input type="radio" name="q5c" value="D"> 49 + 35 = 86</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 5</legend>
-  <p>Ustal wartości pod motylkami.</p>
-  <div class="answers">
-    <label><input type="radio" name="q5" value="A"> 64</label>
-    <label><input type="radio" name="q5" value="B"> 63</label>
-    <label><input type="radio" name="q5" value="C"> 65</label>
-    <label><input type="radio" name="q5" value="D"> 74</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 6</legend>
+        <p>Miesiąc IX ma:</p>
+        <div class="answers">
+          <label><input type="radio" name="q6" value="A"> 30 dni</label>
+          <label><input type="radio" name="q6" value="B"> 28 dni</label>
+          <label><input type="radio" name="q6" value="C"> 29 dni</label>
+          <label><input type="radio" name="q6" value="D"> 31 dni</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 6</legend>
-  <p>Miesiąc IX ma:</p>
-  <div class="answers">
-    <label><input type="radio" name="q6" value="A"> 30 dni</label>
-    <label><input type="radio" name="q6" value="B"> 28 dni</label>
-    <label><input type="radio" name="q6" value="C"> 29 dni</label>
-    <label><input type="radio" name="q6" value="D"> 31 dni</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 7</legend>
+        <p>Jest 8:45. Która godzina będzie za półtorej godziny?</p>
+        <div class="answers">
+          <label><input type="radio" name="q7" value="A"> 9:45</label>
+          <label><input type="radio" name="q7" value="B"> 10:45</label>
+          <label><input type="radio" name="q7" value="C"> 10:15</label>
+          <label><input type="radio" name="q7" value="D"> 10:30</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 7</legend>
-  <p>Jest 8:45. Która godzina będzie za półtorej godziny?</p>
-  <div class="answers">
-    <label><input type="radio" name="q7" value="A"> 9:45</label>
-    <label><input type="radio" name="q7" value="B"> 10:45</label>
-    <label><input type="radio" name="q7" value="C"> 10:15</label>
-    <label><input type="radio" name="q7" value="D"> 10:30</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 8</legend>
+        <p>Przedwczoraj był piątek. Pojutrze będzie:</p>
+        <div class="answers">
+          <label><input type="radio" name="q8" value="A"> środa</label>
+          <label><input type="radio" name="q8" value="B"> poniedziałek</label>
+          <label><input type="radio" name="q8" value="C"> wtorek</label>
+          <label><input type="radio" name="q8" value="D"> czwartek</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 8</legend>
-  <p>Przedwczoraj był piątek. Pojutrze będzie:</p>
-  <div class="answers">
-    <label><input type="radio" name="q8" value="A"> środa</label>
-    <label><input type="radio" name="q8" value="B"> poniedziałek</label>
-    <label><input type="radio" name="q8" value="C"> wtorek</label>
-    <label><input type="radio" name="q8" value="D"> czwartek</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 9</legend>
+        <p>Liczba z 4 setek, 3 dziesiątek i 8 jedności:</p>
+        <div class="answers">
+          <label><input type="radio" name="q9" value="A"> 438</label>
+          <label><input type="radio" name="q9" value="B"> 834</label>
+          <label><input type="radio" name="q9" value="C"> 483</label>
+          <label><input type="radio" name="q9" value="D"> 348</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 9</legend>
-  <p>Liczba z 4 setek, 3 dziesiątek i 8 jedności:</p>
-  <div class="answers">
-    <label><input type="radio" name="q9" value="A"> 438</label>
-    <label><input type="radio" name="q9" value="B"> 834</label>
-    <label><input type="radio" name="q9" value="C"> 483</label>
-    <label><input type="radio" name="q9" value="D"> 348</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 10</legend>
+        <p>Wskaż iloczyny o takich samych wynikach.</p>
+        <div class="answers">
+          <label><input type="checkbox" name="q10A" value="A"> 2 · 9</label>
+          <label><input type="checkbox" name="q10B" value="B"> 3 · 6</label>
+          <label><input type="checkbox" name="q10C" value="C"> 7 · 3</label>
+          <label><input type="checkbox" name="q10D" value="D"> 5 · 4</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 10</legend>
-  <p>Wskaż iloczyny o takich samych wynikach.</p>
-  <div class="answers">
-    <label><input type="checkbox" name="q10A" value="A"> 2 · 9</label>
-    <label><input type="checkbox" name="q10B" value="B"> 3 · 6</label>
-    <label><input type="checkbox" name="q10C" value="C"> 7 · 3</label>
-    <label><input type="checkbox" name="q10D" value="D"> 5 · 4</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 11</legend>
+        <p>Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile mu zostało?</p>
+        <div class="answers">
+          <label><input type="radio" name="q11" value="A"> 33 zł</label>
+          <label><input type="radio" name="q11" value="B"> 9 zł</label>
+          <label><input type="radio" name="q11" value="C"> 13 zł</label>
+          <label><input type="radio" name="q11" value="D"> 26 zł</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 11</legend>
-  <p>Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile mu zostało?</p>
-  <div class="answers">
-    <label><input type="radio" name="q11" value="A"> 33 zł</label>
-    <label><input type="radio" name="q11" value="B"> 9 zł</label>
-    <label><input type="radio" name="q11" value="C"> 13 zł</label>
-    <label><input type="radio" name="q11" value="D"> 26 zł</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 12</legend>
+        <p>Oblicz i wskaż działania z takimi samymi wynikami.</p>
+        <div class="answers">
+          <label><input type="checkbox" name="q12A" value="A"> 100 : 2</label>
+          <label><input type="checkbox" name="q12B" value="B"> 23 + 27</label>
+          <label><input type="checkbox" name="q12C" value="C"> 80 - 30</label>
+          <label><input type="checkbox" name="q12D" value="D"> 75 - 26</label>
+        </div>
+      </fieldset>
 
-<!-- ======= ZADANIA 12–25 ======= -->
+      <fieldset>
+        <legend>Zadanie 13</legend>
+        <p>Zmniejszyć liczbę 24 trzy razy, to znaczy:</p>
+        <div class="answers">
+          <label><input type="radio" name="q13" value="A"> pomnożyć przez 3</label>
+          <label><input type="radio" name="q13" value="B"> podzielić przez 3</label>
+          <label><input type="radio" name="q13" value="C"> odjąć 3</label>
+          <label><input type="radio" name="q13" value="D"> dodać 3</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 12</legend>
-  <p>Oblicz i wskaż działania z takimi samymi wynikami.</p>
-  <div class="answers">
-    <label><input type="checkbox" name="q12A" value="A"> 100 : 2</label>
-    <label><input type="checkbox" name="q12B" value="B"> 23 + 27</label>
-    <label><input type="checkbox" name="q12C" value="C"> 80 - 30</label>
-    <label><input type="checkbox" name="q12D" value="D"> 75 - 26</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 14</legend>
+        <p>🌸 9 = 3</p>
+        <div class="answers">
+          <label><input type="radio" name="q14" value="A"> 27</label>
+          <label><input type="radio" name="q14" value="B"> 36</label>
+          <label><input type="radio" name="q14" value="C"> 28</label>
+          <label><input type="radio" name="q14" value="D"> 24</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 13</legend>
-  <p>Zmniejszyć liczbę 24 trzy razy, to znaczy:</p>
-  <div class="answers">
-    <label><input type="radio" name="q13" value="A"> pomnożyć przez 3</label>
-    <label><input type="radio" name="q13" value="B"> podzielić przez 3</label>
-    <label><input type="radio" name="q13" value="C"> odjąć 3</label>
-    <label><input type="radio" name="q13" value="D"> dodać 3</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 15</legend>
+        <p>Rodzice Marty mają razem pół wieku. Mama ma 23 lata. Ile ma tata?</p>
+        <div class="answers">
+          <label><input type="radio" name="q15" value="A"> 23 lata</label>
+          <label><input type="radio" name="q15" value="B"> 27 lat</label>
+          <label><input type="radio" name="q15" value="C"> 26 lat</label>
+          <label><input type="radio" name="q15" value="D"> 28 lat</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 14</legend>
-  <p>🌸 9 = 3</p>
-  <div class="answers">
-    <label><input type="radio" name="q14" value="A"> 27</label>
-    <label><input type="radio" name="q14" value="B"> 36</label>
-    <label><input type="radio" name="q14" value="C"> 28</label>
-    <label><input type="radio" name="q14" value="D"> 24</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 16</legend>
+        <p>Ma początek, ale nie ma końca.</p>
+        <div class="answers">
+          <label><input type="radio" name="q16" value="A"> półprosta</label>
+          <label><input type="radio" name="q16" value="B"> odcinek</label>
+          <label><input type="radio" name="q16" value="C"> prosta</label>
+          <label><input type="radio" name="q16" value="D"> punkt</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 15</legend>
-  <p>Rodzice Marty mają razem pół wieku. Mama ma 23 lata. Ile ma tata?</p>
-  <div class="answers">
-    <label><input type="radio" name="q15" value="A"> 23 lata</label>
-    <label><input type="radio" name="q15" value="B"> 27 lat</label>
-    <label><input type="radio" name="q15" value="C"> 26 lat</label>
-    <label><input type="radio" name="q15" value="D"> 28 lat</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 17</legend>
+        <p>Wskaż szereg rosnący.</p>
+        <div class="answers">
+          <label><input type="radio" name="q17" value="A"> 12 343, 9 872, 71 602, 38 432</label>
+          <label><input type="radio" name="q17" value="B"> 8 574, 45 678, 76 521, 10 736</label>
+          <label><input type="radio" name="q17" value="C"> 5 864, 13 987, 36 655, 79 321</label>
+          <label><input type="radio" name="q17" value="D"> 7 321, 8 933, 13 762, 2 345</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 16</legend>
-  <p>Ma początek, ale nie ma końca.</p>
-  <div class="answers">
-    <label><input type="radio" name="q16" value="A"> półprosta</label>
-    <label><input type="radio" name="q16" value="B"> odcinek</label>
-    <label><input type="radio" name="q16" value="C"> prosta</label>
-    <label><input type="radio" name="q16" value="D"> punkt</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 18</legend>
+        <p>Jak podzielić 36 ciastek między 6 dzieci?</p>
+        <div class="answers">
+          <label><input type="radio" name="q18" value="A"> 1 + 3 + 5 + 7 + 9 + 11</label>
+          <label><input type="radio" name="q18" value="B"> 2 + 4 + 6 + 8 + 10 + 12</label>
+          <label><input type="radio" name="q18" value="C"> 6·6</label>
+          <label><input type="radio" name="q18" value="D"> 2 + 3 + 7 + 8 + 6 + 9</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 17</legend>
-  <p>Wskaż szereg rosnący.</p>
-  <div class="answers">
-    <label><input type="radio" name="q17" value="A"> 12 343, 9 872, 71 602, 38 432</label>
-    <label><input type="radio" name="q17" value="B"> 8 574, 45 678, 76 521, 10 736</label>
-    <label><input type="radio" name="q17" value="C"> 5 864, 13 987, 36 655, 79 321</label>
-    <label><input type="radio" name="q17" value="D"> 7 321, 8 933, 13 762, 2 345</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 19</legend>
+        <p>Wskaż liczby, których połowa jest parzysta.</p>
+        <div class="answers">
+          <label><input type="checkbox" name="q19A" value="A"> 72</label>
+          <label><input type="checkbox" name="q19B" value="B"> 66</label>
+          <label><input type="checkbox" name="q19C" value="C"> 50</label>
+          <label><input type="checkbox" name="q19D" value="D"> 84</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 18</legend>
-  <p>Jak podzielić 36 ciastek między 6 dzieci?</p>
-  <div class="answers">
-    <label><input type="radio" name="q18" value="A"> 1 + 3 + 5 + 7 + 9 + 11</label>
-    <label><input type="radio" name="q18" value="B"> 2 + 4 + 6 + 8 + 10 + 12</label>
-    <label><input type="radio" name="q18" value="C"> 6·6</label>
-    <label><input type="radio" name="q18" value="D"> 2 + 3 + 7 + 8 + 6 + 9</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 20</legend>
+        <p>Kangur skacze 9 m. Ile skoków na 81 m?</p>
+        <div class="answers">
+          <label><input type="radio" name="q20" value="A"> 8</label>
+          <label><input type="radio" name="q20" value="B"> 9</label>
+          <label><input type="radio" name="q20" value="C"> 7</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 19</legend>
-  <p>Wskaż liczby, których połowa jest parzysta.</p>
-  <div class="answers">
-    <label><input type="checkbox" name="q19A" value="A"> 72</label>
-    <label><input type="checkbox" name="q19B" value="B"> 66</label>
-    <label><input type="checkbox" name="q19C" value="C"> 50</label>
-    <label><input type="checkbox" name="q19D" value="D"> 84</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 21</legend>
+        <p>Od iloczynu 6·8 odejmij ich sumę.</p>
+        <div class="answers">
+          <label><input type="radio" name="q21" value="A"> 14</label>
+          <label><input type="radio" name="q21" value="B"> 42</label>
+          <label><input type="radio" name="q21" value="C"> 40</label>
+          <label><input type="radio" name="q21" value="D"> 34</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 20</legend>
-  <p>Kangur skacze 9 m. Ile skoków na 81 m?</p>
-  <div class="answers">
-    <label><input type="radio" name="q20" value="A"> 8</label>
-    <label><input type="radio" name="q20" value="B"> 9</label>
-    <label><input type="radio" name="q20" value="C"> 7</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 22</legend>
+        <p>Liczby trzycyfrowe parzyste z setkami = 9 i jednościami = 8.</p>
+        <div class="answers">
+          <label><input type="checkbox" name="q22A" value="A"> 998</label>
+          <label><input type="checkbox" name="q22B" value="B"> 989</label>
+          <label><input type="checkbox" name="q22C" value="C"> 898</label>
+          <label><input type="checkbox" name="q22D" value="D"> 908</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 21</legend>
-  <p>Od iloczynu 6·8 odejmij ich sumę.</p>
-  <div class="answers">
-    <label><input type="radio" name="q21" value="A"> 14</label>
-    <label><input type="radio" name="q21" value="B"> 42</label>
-    <label><input type="radio" name="q21" value="C"> 40</label>
-    <label><input type="radio" name="q21" value="D"> 34</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 23</legend>
+        <p>Ile nóg mają 3 tygrysy, 4 lwy i 2 papugi?</p>
+        <div class="answers">
+          <label><input type="radio" name="q23" value="A"> 32</label>
+          <label><input type="radio" name="q23" value="B"> 16</label>
+          <label><input type="radio" name="q23" value="C"> 9</label>
+          <label><input type="radio" name="q23" value="D"> 22</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 22</legend>
-  <p>Liczby trzycyfrowe parzyste z setkami = 9 i jednościami = 8.</p>
-  <div class="answers">
-    <label><input type="checkbox" name="q22A" value="A"> 998</label>
-    <label><input type="checkbox" name="q22B" value="B"> 989</label>
-    <label><input type="checkbox" name="q22C" value="C"> 898</label>
-    <label><input type="checkbox" name="q22D" value="D"> 908</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 24</legend>
+        <p>Zosia spędziła dwa tygodnie ferii. Ile to dni?</p>
+        <div class="answers">
+          <label><input type="radio" name="q24" value="A"> 28 dni</label>
+          <label><input type="radio" name="q24" value="B"> 21 dni</label>
+          <label><input type="radio" name="q24" value="C"> 7 dni</label>
+          <label><input type="radio" name="q24" value="D"> 14 dni</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 23</legend>
-  <p>Ile nóg mają 3 tygrysy, 4 lwy i 2 papugi?</p>
-  <div class="answers">
-    <label><input type="radio" name="q23" value="A"> 32</label>
-    <label><input type="radio" name="q23" value="B"> 16</label>
-    <label><input type="radio" name="q23" value="C"> 9</label>
-    <label><input type="radio" name="q23" value="D"> 22</label>
-  </div>
-</fieldset>
+      <fieldset>
+        <legend>Zadanie 25</legend>
+        <p>Ile wynosi długość drogi? Wskaż poprawną odpowiedź.</p>
+        <div class="answers">
+          <label><input type="radio" name="q25" value="A"> 80 cm</label>
+          <label><input type="radio" name="q25" value="B"> 78 cm</label>
+          <label><input type="radio" name="q25" value="C"> 79 cm</label>
+          <label><input type="radio" name="q25" value="D"> 77 cm</label>
+        </div>
+      </fieldset>
 
-<fieldset>
-  <legend>Zadanie 24</legend>
-  <p>Zosia spędziła dwa tygodnie ferii. Ile to dni?</p>
-  <div class="answers">
-    <label><input type="radio" name="q24" value="A"> 28 dni</label>
-    <label><input type="radio" name="q24" value="B"> 21 dni</label>
-    <label><input type="radio" name="q24" value="C"> 7 dni</label>
-    <label><input type="radio" name="q24" value="D"> 14 dni</label>
-  </div
+      <button type="submit">Sprawdź odpowiedzi</button>
+    </form>
+  </body>
+</html>
