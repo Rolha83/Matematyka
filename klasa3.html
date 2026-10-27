@@ -2,1199 +2,294 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matematyka Klasa III</title>
+  <title>Konkurs matematyczny – klasa III</title>
   <style>
-    :root {
-      --paper: #f8f7f2;
-      --page: #f3f2ee;
-      --ink: #2d2d2d;
-      --muted: #6a6a6a;
-      --line: #2e2e2e;
-      --border: #d7d7d7;
-      --green: #cfeec4;
-      --pink: #efb8c7;
-      --yellow: #f8e9a4;
-      --blue: #bfe8f6;
-      --mint: #c4efc3;
-      --purple: #d0c1f7;
-      --dots: #ff5e8e;
-      --dots2: #38c7ff;
-      --dots3: #ffcc00;
-      --dots4: #4ad47b;
-      --nav: #dfe5e8;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      background: #e9e9e9;
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .device {
-      width: 100%;
-      max-width: 860px;
-      min-height: 100vh;
-      background: var(--page);
-      border-left: 1px solid #cfcfcf;
-      border-right: 1px solid #cfcfcf;
-      box-shadow: 0 0 12px rgba(0,0,0,.08);
-      position: relative;
-    }
-
-    .topbar {
-      height: 64px;
-      background: rgba(223, 228, 232, 0.95);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      font-size: 15px;
-      color: #2d2d2d;
-      border-bottom: 1px solid #c2c2c2;
-    }
-
-    .topbar .status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-    }
-
-    .time {
-      letter-spacing: 0.02em;
-    }
-
-    .signal {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .signal span {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #2a2a2a;
-    }
-
-    .signal .strong { height: 8px; }
-    .signal .stronger { height: 12px; }
-
-    .signal-box {
-      width: 18px;
-      height: 12px;
-      border: 2px solid #2a2a2a;
-      border-radius: 2px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .signal-box::after {
-      content: "";
-      position: absolute;
-      right: -5px;
-      top: 3px;
-      width: 3px;
-      height: 4px;
-      background: #2a2a2a;
-      border-radius: 2px;
-    }
-
-    .battery {
-      width: 24px;
-      height: 12px;
-      border: 2px solid #2a2a2a;
-      border-radius: 2px;
-      position: relative;
-      display: inline-block;
-      background: linear-gradient(90deg, #2a2a2a 0 60%, transparent 60% 100%);
-    }
-
-    .battery::after {
-      content: "";
-      position: absolute;
-      right: -4px;
-      top: 2px;
-      width: 2px;
-      height: 6px;
-      background: #2a2a2a;
-      border-radius: 1px;
-    }
-
-    .sheet {
-      position: relative;
-      margin: 0 auto;
-      width: 100%;
-      max-width: 860px;
-      background: var(--paper);
-      border: 4px solid #dde0df;
-      border-top: 0;
-      min-height: calc(100vh - 64px);
-      overflow: hidden;
-    }
-
-    .sheet::before,
-    .sheet::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 20px;
-      background-image: radial-gradient(circle, var(--dots) 0 6px, transparent 6.5px),
-                        radial-gradient(circle, var(--dots2) 0 6px, transparent 6.5px),
-                        radial-gradient(circle, var(--dots3) 0 6px, transparent 6.5px),
-                        radial-gradient(circle, var(--dots4) 0 6px, transparent 6.5px);
-      background-size: 28px 20px;
-      background-repeat: repeat-x;
-      background-position: 0 6px;
-      opacity: 1;
-    }
-
-    .sheet::before {
-      top: 0;
-    }
-
-    .sheet::after {
-      bottom: 0;
-      transform: rotate(180deg);
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-      padding: 34px 24px 28px;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .document-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 8px;
-      margin-bottom: 20px;
-      padding: 0 8px;
-    }
-
-    .back {
-      font-size: 34px;
-      line-height: 1;
-      color: #2e2e2e;
-      transform: translateY(-2px);
-    }
-
-    .doc-title {
-      flex: 1;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: #2a2a2a;
-      font-size: clamp(20px, 2vw, 30px);
-      white-space: nowrap;
-    }
-
-    .doc-tools {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 18px;
-      color: #2a2a2a;
-    }
-
-    .doc-tools .tool {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #2a2a2a;
-      border-radius: 5px;
-      position: relative;
-    }
-
-    .doc-tools .tool.copy::before {
-      content: "";
-      position: absolute;
-      inset: 4px 4px auto auto;
-      width: 12px;
-      height: 12px;
-      border: 2px solid #2a2a2a;
-      border-radius: 3px;
-      background: transparent;
-    }
-
-    .doc-tools .tool.more::before,
-    .doc-tools .tool.more::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: #2a2a2a;
-      transform: translate(-50%, -50%);
-    }
-
-    .doc-tools .tool.more::before { box-shadow: -7px 0 0 #2a2a2a, 7px 0 0 #2a2a2a; }
-    .doc-tools .tool.more::after { box-shadow: 0 -7px 0 #2a2a2a, 0 7px 0 #2a2a2a; }
-
-    .doc-tools .tool.menu {
-      width: 18px;
-      height: 18px;
-      border: 0;
-      border-radius: 0;
-      position: relative;
-    }
-
-    .doc-tools .tool.menu::before,
-    .doc-tools .tool.menu::after,
-    .doc-tools .tool.menu span {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: #2a2a2a;
-      border-radius: 4px;
-    }
-
-    .doc-tools .tool.menu::before { top: 2px; }
-    .doc-tools .tool.menu::after { bottom: 2px; }
-    .doc-tools .tool.menu span { top: 7px; }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      margin: 18px 0 10px;
-      padding: 0 10px 10px;
-      border-bottom: 2px solid rgba(0,0,0,0);
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .logo-mark {
-      position: relative;
-      width: 120px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 54px;
-      font-weight: 800;
-      line-height: 1;
-      color: #2b2b2b;
-      transform: skewX(-8deg);
-      font-family: "Trebuchet MS", Arial, sans-serif;
-    }
-
-    .logo-mark .letter {
-      display: inline-block;
-      color: #70d3c9;
-      text-shadow: 1px 1px 0 #000, 0 0 0 transparent;
-      transform: rotate(-4deg);
-    }
-
-    .logo-mark .letter:nth-child(2) { color: #ff9bcb; }
-
-    .logo-word {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-      font-weight: 700;
-      transform: translateY(-4px);
-    }
-
-    .logo-word .top {
-      font-size: 22px;
-      letter-spacing: 0.05em;
-      color: #2b2b2b;
-    }
-
-    .logo-word .bottom {
-      font-size: 18px;
-      font-weight: 700;
-      color: #2b2b2b;
-    }
-
-    .paper-title {
-      font-weight: 700;
-      font-size: clamp(22px, 2.1vw, 34px);
-      text-align: right;
-      padding-right: 10px;
-      color: #2f2f2f;
-    }
-
-    .student-box {
-      margin-top: 10px;
-      margin-bottom: 8px;
-      padding: 0 10px 0 0;
-    }
-
-    .student-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-height: 38px;
-      margin-bottom: 6px;
-    }
-
-    .student-row label {
-      min-width: 120px;
-      font-size: 15px;
-      font-weight: 700;
-      color: #2c2c2c;
-      text-align: right;
-      padding-right: 6px;
-    }
-
-    .student-row .field {
-      flex: 1;
-      border-bottom: 2px solid #2e2e2e;
-      min-height: 24px;
-      position: relative;
-    }
-
-    .student-row .field input {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      padding: 3px 0 0;
-      font-size: 16px;
-      color: #2f2f2f;
-      outline: none;
-      font-family: inherit;
-    }
-
-    .question {
-      margin: 0 8px 14px;
-      padding: 8px 0 12px;
-      border-bottom: 1px dashed rgba(0,0,0,0.5);
-      position: relative;
-    }
-
-    .question:last-child {
-      border-bottom: 0;
-    }
-
-    .q-text {
-      font-size: 15px;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      color: #282828;
-      font-weight: 500;
-    }
-
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 16px;
-      align-items: center;
-    }
-
-    .option {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 22px;
-      color: #2b2b2b;
-      font-size: 15px;
-      line-height: 1.2;
-      padding-left: 2px;
-      cursor: pointer;
-    }
-
-    .option input {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid #2d2d2d;
-      background: rgba(255,255,255,0.2);
-      border-radius: 3px;
-      margin: 0;
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-
-    .option input[type="radio"] {
-      border-radius: 50%;
-    }
-
-    .option input:checked::after {
-      content: "";
-      position: absolute;
-      inset: 3px;
-      border-radius: 50%;
-      background: #2b2b2b;
-    }
-
-    .option input[type="checkbox"]:checked::after {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 1px;
-      width: 6px;
-      height: 10px;
-      border: solid #2b2b2b;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      background: transparent;
-    }
-
-    .question[data-kids="wide"] .options {
-      justify-content: flex-start;
-      gap: 8px 12px;
-    }
-
-    .question[data-kids="wide"] .option {
-      min-width: 118px;
-    }
-
-    .question[data-kids="wide"] .option:nth-child(1),
-    .question[data-kids="wide"] .option:nth-child(2),
-    .question[data-kids="wide"] .option:nth-child(3),
-    .question[data-kids="wide"] .option:nth-child(4) {
-      min-width: 110px;
-    }
-
-    .mini-figure {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 120px;
-      height: 120px;
-      pointer-events: none;
-      opacity: 0.94;
-    }
-
-    .mini-figure .blob {
-      position: absolute;
-      right: 8px;
-      top: 18px;
-      width: 86px;
-      height: 82px;
-      background: #f9c5d0;
-      border: 3px solid #2d2d2d;
-      border-radius: 52% 48% 54% 46% / 52% 42% 58% 48%;
-      box-shadow: inset -10px -10px 0 rgba(255,255,255,.18);
-    }
-
-    .mini-figure .face {
-      position: absolute;
-      right: 26px;
-      top: 38px;
-      width: 52px;
-      height: 38px;
-      border: 2px solid #2d2d2d;
-      border-radius: 60% 40% 50% 50% / 48% 40% 60% 52%;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .mini-figure .eye {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #2d2d2d;
-      border-radius: 50%;
-      top: 52px;
-      right: 50px;
-    }
-
-    .mini-figure .eye.other { right: 76px; }
-
-    .mini-figure .smile {
-      position: absolute;
-      width: 22px;
-      height: 12px;
-      border: 3px solid transparent;
-      border-bottom: 3px solid #2d2d2d;
-      border-radius: 50%;
-      right: 62px;
-      top: 62px;
-    }
-
-    .mini-figure .blob2 {
-      position: absolute;
-      right: 22px;
-      top: 48px;
-      width: 30px;
-      height: 34px;
-      background: #f9c5d0;
-      border: 3px solid #2d2d2d;
-      border-radius: 50% 50% 55% 45%;
-      transform: rotate(18deg);
-    }
-
-    .mini-figure.green {
-      right: 16px;
-      top: auto;
-      bottom: 18px;
-    }
-
-    .mini-figure.green .blob {
-      background: #9adf8d;
-      border-radius: 55% 45% 52% 48% / 62% 39% 61% 38%;
-    }
-
-    .mini-figure.green .face {
-      width: 60px;
-      height: 42px;
-      right: 25px;
-      top: 42px;
-      border-radius: 56% 44% 54% 46% / 37% 42% 58% 63%;
-    }
-
-    .mini-figure.green .eye { right: 44px; }
-    .mini-figure.green .eye.other { right: 68px; }
-    .mini-figure.green .smile {
-      width: 26px;
-      height: 18px;
-      right: 52px;
-      top: 60px;
-      border-bottom: 4px solid #2d2d2d;
-    }
-
-    .mini-figure.purple {
-      right: 30px;
-      top: auto;
-      bottom: 28px;
-    }
-
-    .mini-figure.purple .blob {
-      background: #d1b1ff;
-      border-radius: 46% 54% 50% 50% / 52% 44% 56% 48%;
-      width: 86px;
-      height: 74px;
-      right: 14px;
-      top: 28px;
-    }
-
-    .mini-figure.purple .face {
-      width: 58px;
-      height: 40px;
-      right: 30px;
-      top: 40px;
-      border-radius: 60% 40% 60% 40% / 40% 48% 52% 60%;
-    }
-
-    .mini-figure.purple .eye { width: 12px; height: 12px; right: 48px; top: 52px; }
-    .mini-figure.purple .eye.other { right: 74px; }
-    .mini-figure.purple .smile {
-      width: 24px;
-      height: 12px;
-      right: 60px;
-      top: 66px;
-      border-bottom: 4px solid #2d2d2d;
-    }
-
-    .mini-figure.yellow {
-      right: 18px;
-      top: auto;
-      bottom: 38px;
-    }
-
-    .mini-figure.yellow .blob {
-      background: #f4e190;
-      border-radius: 32% 68% 46% 54% / 55% 41% 59% 45%;
-    }
-
-    .mini-figure.yellow .face {
-      width: 58px;
-      height: 42px;
-      right: 32px;
-      top: 44px;
-      border-radius: 50% 50% 48% 52% / 42% 42% 58% 58%;
-    }
-
-    .mini-figure.yellow .eye { right: 52px; }
-    .mini-figure.yellow .eye.other { right: 76px; }
-    .mini-figure.yellow .smile {
-      width: 26px;
-      height: 18px;
-      right: 60px;
-      top: 62px;
-      border-bottom: 4px solid #2d2d2d;
-    }
-
-    .figure-neutral {
-      position: absolute;
-      right: 0;
-      bottom: 36px;
-      width: 150px;
-      height: 120px;
-      pointer-events: none;
-    }
-
-    .figure-neutral .head {
-      position: absolute;
-      right: 18px;
-      top: 16px;
-      width: 98px;
-      height: 82px;
-      background: #b4ddf6;
-      border: 3px solid #2d2d2d;
-      border-radius: 52% 48% 50% 50% / 62% 38% 62% 38%;
-      transform: rotate(-8deg);
-    }
-
-    .figure-neutral .eye {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #2d2d2d;
-      border-radius: 50%;
-      right: 72px;
-      top: 48px;
-    }
-
-    .figure-neutral .eye.other { right: 104px; }
-
-    .figure-neutral .smile {
-      position: absolute;
-      width: 28px;
-      height: 16px;
-      border: 4px solid transparent;
-      border-bottom: 4px solid #2d2d2d;
-      border-radius: 50%;
-      right: 86px;
-      top: 62px;
-      transform: rotate(8deg);
-    }
-
-    .figure-neutral .fin {
-      position: absolute;
-      right: 0;
-      top: 56px;
-      width: 26px;
-      height: 40px;
-      border: 3px solid #2d2d2d;
-      background: #b4ddf6;
-      border-radius: 50% 50% 55% 45%;
-      transform: rotate(-8deg);
-    }
-
-    .diagram {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .diagram-line {
-      position: relative;
-      width: 440px;
-      height: 120px;
-      background: transparent;
-      border-bottom: 2px solid #000;
-      margin: 14px 0 4px;
-    }
-
-    .diagram-line::before,
-    .diagram-line::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border: 2px solid #000;
-      border-radius: 50%;
-      background: #fff;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .diagram-line::before { left: 0; }
-    .diagram-line::after { right: 0; }
-
-    .diagram-line .segment {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-left: 3px solid #000;
-      border-bottom: 3px solid #000;
-      transform: rotate(45deg);
-      top: 48px;
-    }
-
-    .segment.s1 { left: 24px; }
-    .segment.s2 { left: 88px; }
-    .segment.s3 { left: 148px; }
-    .segment.s4 { left: 214px; }
-    .segment.s5 { left: 278px; }
-
-    .diagram-note {
-      position: absolute;
-      font-size: 16px;
-      font-weight: 600;
-      color: #2d2d2d;
-      transform: translateY(-11px);
-    }
-
-    .diagram-note.n1 { left: 8px; top: 26px; }
-    .diagram-note.n2 { left: 76px; top: 26px; }
-    .diagram-note.n3 { left: 138px; top: 26px; }
-    .diagram-note.n4 { left: 188px; top: 8px; }
-    .diagram-note.n5 { left: 270px; top: 32px; }
-
-    .shape-box {
-      width: 170px;
-      height: 85px;
-      position: relative;
-      margin-left: 18px;
-    }
-
-    .shape-box .fox {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 80px;
-      height: 56px;
-      background: #ea8e42;
-      border: 3px solid #2d2d2d;
-      border-radius: 52% 48% 48% 52% / 48% 44% 56% 52%;
-    }
-
-    .shape-box .fox::before,
-    .shape-box .fox::after {
-      content: "";
-      position: absolute;
-      width: 28px;
-      height: 18px;
-      background: #ea8e42;
-      border: 3px solid #2d2d2d;
-      border-radius: 50% 50% 60% 40%;
-      top: -12px;
-    }
-
-    .shape-box .fox::before { left: 8px; }
-    .shape-box .fox::after { right: 8px; }
-
-    .shape-box .mushroom {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 74px;
-      height: 76px;
-      background: #f6d0db;
-      border: 3px solid #2d2d2d;
-      border-radius: 50% 50% 42% 42%;
-      box-shadow: inset -12px -10px 0 rgba(255,255,255,.2);
-    }
-
-    .shape-box .mushroom::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -12px;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 34px;
-      background: #93e9ba;
-      border: 3px solid #2d2d2d;
-      border-radius: 55% 45% 48% 52% / 62% 58% 42% 38%;
-    }
-
-    .shape-box .mushroom::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 8px;
-      height: 8px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: -16px 10px 0 #fff, 16px 10px 0 #fff, 0 18px 0 #fff;
-    }
-
-    .empty-space {
-      margin: 18px 0 8px;
-      height: 18px;
-    }
-
-    .footer-page {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #2d2d2d;
-      margin-top: 10px;
-      padding: 0 12px 0 0;
-    }
-
-    .page-number {
-      text-align: right;
-      font-weight: 700;
-      font-size: 24px;
-    }
-
-    @media (max-width: 720px) {
-      .topbar { padding: 0 12px; }
-      .sheet { border-left: 0; border-right: 0; }
-      .page { padding: 28px 12px 22px; }
-      .document-header { gap: 8px; }
-      .doc-title { font-size: 18px; }
-      .back { font-size: 24px; }
-      .hero { grid-template-columns: 1fr; }
-      .paper-title { text-align: left; }
-      .student-row { flex-direction: column; align-items: stretch; }
-      .student-row label { text-align: left; min-width: 0; }
-      .diagram-line { width: 100%; }
-      .shape-box { margin-left: 0; }
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    fieldset { margin-bottom: 20px; padding: 15px; }
+    legend { font-weight: bold; }
+    .answers label { display: block; margin: 4px 0; }
+    .info { margin-bottom: 20px; }
+    button { padding: 10px 20px; font-size: 18px; }
   </style>
 </head>
 <body>
-  <div class="device">
-    <div class="topbar">
-      <div class="status">
-        <span class="time">18:50</span>
-        <span>wt., 27 paź</span>
-        <span class="signal">
-          <span class="strong"></span>
-          <span class="stronger"></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div class="status">
-        <div class="signal-box"></div>
-        <div class="battery"></div>
-      </div>
-    </div>
 
-    <div class="sheet">
-      <div class="page">
-        <header class="document-header">
-          <div class="back">&#8249;</div>
-          <div class="doc-title">MATEMATYKA Klasa III Wiosna 2024.pdf</div>
-          <div class="doc-tools">
-            <div class="tool copy"></div>
-            <div class="tool more"></div>
-            <div class="tool menu"><span></span></div>
-          </div>
-        </header>
+<h1>Konkurs matematyczny – klasa III</h1>
 
-        <section class="hero">
-          <div class="logo-wrap">
-            <div class="logo-mark">
-              <span class="letter">L</span><span class="letter">e</span><span class="letter">o</span><span class="letter">n</span>
-            </div>
-            <div class="logo-word">
-              <div class="top">Konkursy</div>
-            </div>
-          </div>
-          <div class="paper-title">Matematyka klasa III, wiosna 2024</div>
-        </section>
+<div class="info">
+  <label>Imię (WIELKIMI LITERAMI):
+    <input type="text" name="imie" />
+  </label><br />
+  <label>Nazwisko (WIELKIMI LITERAMI):
+    <input type="text" name="nazwisko" />
+  </label>
+</div>
 
-        <section class="student-box">
-          <div class="student-row">
-            <label>Imię</label>
-            <div class="field"><input type="text" value="Wypełnij DRUKOWANYMI literami" aria-label="Imię" /></div>
-          </div>
-          <div class="student-row">
-            <label>Nazwisko</label>
-            <div class="field"><input type="text" value="Wypełnij DRUKOWANYMI literami" aria-label="Nazwisko" /></div>
-          </div>
-        </section>
+<form id="konkurs">
 
-        <div class="question" data-kids="wide">
-          <div class="q-text">1. Wskaż równość prawdziwą.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q1" /> <span>36 : 9 = 28 : 7</span></label>
-            <label class="option"><input type="radio" name="q1" /> <span>24 : 4 = 54 : 8</span></label>
-            <label class="option"><input type="radio" name="q1" /> <span>63 : 7 = 27 : 3</span></label>
-            <label class="option"><input type="radio" name="q1" /> <span>48 : 6 = 4 · 2</span></label>
-          </div>
-        </div>
+<!-- ===================== ZADANIA 1–25 ===================== -->
 
-        <div class="question" data-kids="wide">
-          <div class="q-text">2. Wskaż zamalowaną ćwierć kwadratu.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q2" /></label>
-            <label class="option"><input type="radio" name="q2" /></label>
-            <label class="option"><input type="radio" name="q2" /></label>
-            <label class="option"><input type="radio" name="q2" /></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">3. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q3" /> <span>17 lat</span></label>
-            <label class="option"><input type="radio" name="q3" /> <span>16 lat</span></label>
-            <label class="option"><input type="radio" name="q3" /> <span>35 lat</span></label>
-            <label class="option"><input type="radio" name="q3" /> <span>18 lat</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">4. Wskaż działanie niewykonalne.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q4" /> <span>5 : 0</span></label>
-            <label class="option"><input type="radio" name="q4" /> <span>0 : 5</span></label>
-            <label class="option"><input type="radio" name="q4" /> <span>5 · 0</span></label>
-            <label class="option"><input type="radio" name="q4" /> <span>0 · 5</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">5. Ustal, jakie wartości kryją się pod motylkami.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q5" /> <span>37 + □ = 100</span></label>
-            <label class="option"><input type="radio" name="q5" /> <span>□ - 48 = 27</span></label>
-            <label class="option"><input type="radio" name="q5" /> <span>49 + 35 = □</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">6. Miesiąc IX ma:</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q6" /> <span>30 dni</span></label>
-            <label class="option"><input type="radio" name="q6" /> <span>28 dni</span></label>
-            <label class="option"><input type="radio" name="q6" /> <span>29 dni</span></label>
-            <label class="option"><input type="radio" name="q6" /> <span>31 dni</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">7. Jest godzina 8.45. Która godzina będzie za półtorej godziny?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q7" /> <span>9.45</span></label>
-            <label class="option"><input type="radio" name="q7" /> <span>10.45</span></label>
-            <label class="option"><input type="radio" name="q7" /> <span>10.15</span></label>
-            <label class="option"><input type="radio" name="q7" /> <span>10.30</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">8. Przedwczoraj był piątek. Pojutrze będzie:</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q8" /> <span>środa</span></label>
-            <label class="option"><input type="radio" name="q8" /> <span>poniedziałek</span></label>
-            <label class="option"><input type="radio" name="q8" /> <span>wtorek</span></label>
-            <label class="option"><input type="radio" name="q8" /> <span>czwartek</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">9. Wskaż liczbę złożoną z 4 setek, 3 dziesiątek i 8 jedności.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q9" /> <span>438</span></label>
-            <label class="option"><input type="radio" name="q9" /> <span>834</span></label>
-            <label class="option"><input type="radio" name="q9" /> <span>483</span></label>
-            <label class="option"><input type="radio" name="q9" /> <span>348</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">10. Wskaż iloczyny, które mają takie same wyniki.</div>
-          <div class="options">
-            <label class="option"><input type="checkbox" name="q10" /> <span>2 · 9</span></label>
-            <label class="option"><input type="checkbox" name="q10" /> <span>3 · 6</span></label>
-            <label class="option"><input type="checkbox" name="q10" /> <span>7 · 3</span></label>
-            <label class="option"><input type="checkbox" name="q10" /> <span>5 · 4</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">11. Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile złotych zostało Markowi?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q11" /> <span>33 zł</span></label>
-            <label class="option"><input type="radio" name="q11" /> <span>9 zł</span></label>
-            <label class="option"><input type="radio" name="q11" /> <span>13 zł</span></label>
-            <label class="option"><input type="radio" name="q11" /> <span>26 zł</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">12. Oblicz i wskaż działania z takimi samymi wynikami.</div>
-          <div class="options">
-            <label class="option"><input type="checkbox" name="q12" /> <span>100 : 2</span></label>
-            <label class="option"><input type="checkbox" name="q12" /> <span>23 + 27</span></label>
-            <label class="option"><input type="checkbox" name="q12" /> <span>80 - 30</span></label>
-            <label class="option"><input type="checkbox" name="q12" /> <span>75 - 26</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">13. Zmniejszyć liczbę 24 trzy razy, to znaczy:</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q13" /> <span>pomnożyć ją przez 3</span></label>
-            <label class="option"><input type="radio" name="q13" /> <span>podzielić ją przez 3</span></label>
-            <label class="option"><input type="radio" name="q13" /> <span>odjąć od niej 3</span></label>
-            <label class="option"><input type="radio" name="q13" /> <span>dodać do niej 3</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">14. Jaka liczba ukryła się pod kwiatkiem? 27 : 9 = 3</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q14" /> <span>27</span></label>
-            <label class="option"><input type="radio" name="q14" /> <span>36</span></label>
-            <label class="option"><input type="radio" name="q14" /> <span>28</span></label>
-            <label class="option"><input type="radio" name="q14" /> <span>24</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">15. Rodzice Marty mają razem pół wieku (50 lat). Mama Marty jest młodsza od taty i ma 23 lata. Ile lat ma tata Marty?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q15" /> <span>23 lata</span></label>
-            <label class="option"><input type="radio" name="q15" /> <span>27 lat</span></label>
-            <label class="option"><input type="radio" name="q15" /> <span>26 lat</span></label>
-            <label class="option"><input type="radio" name="q15" /> <span>28 lat</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">16. Ma początek, ale nie ma końca.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q16" /> <span>półprosta</span></label>
-            <label class="option"><input type="radio" name="q16" /> <span>odcinek</span></label>
-            <label class="option"><input type="radio" name="q16" /> <span>prosta</span></label>
-            <label class="option"><input type="radio" name="q16" /> <span>punkt</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">17. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q17" /> <span>12 434, 9 872, 71 602, 38 432</span></label>
-            <label class="option"><input type="radio" name="q17" /> <span>8 574, 45 678, 76 521, 10 736</span></label>
-            <label class="option"><input type="radio" name="q17" /> <span>5 864, 13 897, 38 655, 79 321</span></label>
-            <label class="option"><input type="radio" name="q17" /> <span>7 321, 8 933, 13 762, 2 345</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">18. Jak można podzielić 36 ciastek między sześcioro dzieci?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q18" /> <span>1 + 3 + 5 + 7 + 9 + 11</span></label>
-            <label class="option"><input type="radio" name="q18" /> <span>2 + 4 + 6 + 8 + 10 + 12</span></label>
-            <label class="option"><input type="radio" name="q18" /> <span>6 · 6</span></label>
-            <label class="option"><input type="radio" name="q18" /> <span>2 + 3 + 7 + 8 + 6 + 9</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">19. Wskaż liczby, których połowa jest liczbą parzystą.</div>
-          <div class="options">
-            <label class="option"><input type="checkbox" name="q19" /> <span>72</span></label>
-            <label class="option"><input type="checkbox" name="q19" /> <span>66</span></label>
-            <label class="option"><input type="checkbox" name="q19" /> <span>50</span></label>
-            <label class="option"><input type="checkbox" name="q19" /> <span>84</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">20. Długość skoku kangura wynosi dziewięć metrów. Ile takich skoków musi wykonać kangur, żeby pokonać odległość 81 metrów?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q20" /> <span>6</span></label>
-            <label class="option"><input type="radio" name="q20" /> <span>8</span></label>
-            <label class="option"><input type="radio" name="q20" /> <span>9</span></label>
-            <label class="option"><input type="radio" name="q20" /> <span>7</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">21. Od iloczynu liczb 6 i 8 odejmij ich sumę.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q21" /> <span>14</span></label>
-            <label class="option"><input type="radio" name="q21" /> <span>42</span></label>
-            <label class="option"><input type="radio" name="q21" /> <span>40</span></label>
-            <label class="option"><input type="radio" name="q21" /> <span>34</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">22. Wskaż liczby trzycyfrowe parzyste, w których rząd setek to dziewięć, a rząd jedności to osiem.</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q22" /> <span>998</span></label>
-            <label class="option"><input type="radio" name="q22" /> <span>989</span></label>
-            <label class="option"><input type="radio" name="q22" /> <span>898</span></label>
-            <label class="option"><input type="radio" name="q22" /> <span>908</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">23. Ile razem nóg mają 3 tygrysy, 4 lwy i 2 papugi?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q23" /> <span>32</span></label>
-            <label class="option"><input type="radio" name="q23" /> <span>16</span></label>
-            <label class="option"><input type="radio" name="q23" /> <span>9</span></label>
-            <label class="option"><input type="radio" name="q23" /> <span>22</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">24. Zosia spędziła dwa tygodnie ferii zimowych u babci na wsi. Ile to dni?</div>
-          <div class="options">
-            <label class="option"><input type="radio" name="q24" /> <span>28 dni</span></label>
-            <label class="option"><input type="radio" name="q24" /> <span>21 dni</span></label>
-            <label class="option"><input type="radio" name="q24" /> <span>7 dni</span></label>
-            <label class="option"><input type="radio" name="q24" /> <span>14 dni</span></label>
-          </div>
-        </div>
-
-        <div class="question" data-kids="wide">
-          <div class="q-text">25. Ile wynosi długość drogi lisa?</div>
-          <div class="diagram">
-            <div class="shape-box">
-              <div class="fox"></div>
-            </div>
-            <div class="diagram-line" aria-label="diagram drogi">
-              <div class="segment s1"></div>
-              <div class="segment s2"></div>
-              <div class="segment s3"></div>
-              <div class="segment s4"></div>
-              <div class="segment s5"></div>
-              <div class="diagram-note n1">27 cm</div>
-              <div class="diagram-note n2">25 cm</div>
-              <div class="diagram-note n3">9 cm</div>
-              <div class="diagram-note n4">12 cm</div>
-              <div class="diagram-note n5">6 cm</div>
-            </div>
-            <div class="shape-box">
-              <div class="mushroom"></div>
-            </div>
-          </div>
-          <div class="options" style="margin-top: 12px;">
-            <label class="option"><input type="radio" name="q25" /> <span>80 cm</span></label>
-            <label class="option"><input type="radio" name="q25" /> <span>78 cm</span></label>
-            <label class="option"><input type="radio" name="q25" /> <span>79 cm</span></label>
-            <label class="option"><input type="radio" name="q25" /> <span>77 cm</span></label>
-          </div>
-        </div>
-
-        <div class="empty-space"></div>
-
-        <div class="footer-page">
-          <div></div>
-          <div class="page-number">2/2</div>
-        </div>
-      </div>
-    </div>
+<fieldset>
+  <legend>Zadanie 1</legend>
+  <p>Wskaż równość prawdziwą.</p>
+  <div class="answers">
+    <label><input type="radio" name="q1" value="A"> 36 : 9 = 28 : 7</label>
+    <label><input type="radio" name="q1" value="B"> 24 : 4 = 54 : 8</label>
+    <label><input type="radio" name="q1" value="C"> 63 : 7 = 27 : 3</label>
+    <label><input type="radio" name="q1" value="D"> 48 : 6 = 4 : 2</label>
   </div>
-</body>
-</html>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 2</legend>
+  <p>Wskaż zamalowaną ćwierć kwadratu.</p>
+  <div class="answers">
+    <label><input type="radio" name="q2" value="A"> A</label>
+    <label><input type="radio" name="q2" value="B"> B</label>
+    <label><input type="radio" name="q2" value="C"> C</label>
+    <label><input type="radio" name="q2" value="D"> D</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 3</legend>
+  <p>Staś ma 9 lat, a Kacper 26. O ile lat Kacper jest starszy?</p>
+  <div class="answers">
+    <label><input type="radio" name="q3" value="A"> 17 lat</label>
+    <label><input type="radio" name="q3" value="B"> 16 lat</label>
+    <label><input type="radio" name="q3" value="C"> 35 lat</label>
+    <label><input type="radio" name="q3" value="D"> 18 lat</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 4</legend>
+  <p>Wskaż działanie niewykonalne.</p>
+  <div class="answers">
+    <label><input type="radio" name="q4" value="A"> 0 · 5</label>
+    <label><input type="radio" name="q4" value="B"> 5 · 0</label>
+    <label><input type="radio" name="q4" value="C"> 0 : 5</label>
+    <label><input type="radio" name="q4" value="D"> 5 : 0</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 5</legend>
+  <p>Ustal wartości pod motylkami.</p>
+  <div class="answers">
+    <label><input type="radio" name="q5" value="A"> 64</label>
+    <label><input type="radio" name="q5" value="B"> 63</label>
+    <label><input type="radio" name="q5" value="C"> 65</label>
+    <label><input type="radio" name="q5" value="D"> 74</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 6</legend>
+  <p>Miesiąc IX ma:</p>
+  <div class="answers">
+    <label><input type="radio" name="q6" value="A"> 30 dni</label>
+    <label><input type="radio" name="q6" value="B"> 28 dni</label>
+    <label><input type="radio" name="q6" value="C"> 29 dni</label>
+    <label><input type="radio" name="q6" value="D"> 31 dni</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 7</legend>
+  <p>Jest 8:45. Która godzina będzie za półtorej godziny?</p>
+  <div class="answers">
+    <label><input type="radio" name="q7" value="A"> 9:45</label>
+    <label><input type="radio" name="q7" value="B"> 10:45</label>
+    <label><input type="radio" name="q7" value="C"> 10:15</label>
+    <label><input type="radio" name="q7" value="D"> 10:30</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 8</legend>
+  <p>Przedwczoraj był piątek. Pojutrze będzie:</p>
+  <div class="answers">
+    <label><input type="radio" name="q8" value="A"> środa</label>
+    <label><input type="radio" name="q8" value="B"> poniedziałek</label>
+    <label><input type="radio" name="q8" value="C"> wtorek</label>
+    <label><input type="radio" name="q8" value="D"> czwartek</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 9</legend>
+  <p>Liczba z 4 setek, 3 dziesiątek i 8 jedności:</p>
+  <div class="answers">
+    <label><input type="radio" name="q9" value="A"> 438</label>
+    <label><input type="radio" name="q9" value="B"> 834</label>
+    <label><input type="radio" name="q9" value="C"> 483</label>
+    <label><input type="radio" name="q9" value="D"> 348</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 10</legend>
+  <p>Wskaż iloczyny o takich samych wynikach.</p>
+  <div class="answers">
+    <label><input type="checkbox" name="q10A" value="A"> 2 · 9</label>
+    <label><input type="checkbox" name="q10B" value="B"> 3 · 6</label>
+    <label><input type="checkbox" name="q10C" value="C"> 7 · 3</label>
+    <label><input type="checkbox" name="q10D" value="D"> 5 · 4</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 11</legend>
+  <p>Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile mu zostało?</p>
+  <div class="answers">
+    <label><input type="radio" name="q11" value="A"> 33 zł</label>
+    <label><input type="radio" name="q11" value="B"> 9 zł</label>
+    <label><input type="radio" name="q11" value="C"> 13 zł</label>
+    <label><input type="radio" name="q11" value="D"> 26 zł</label>
+  </div>
+</fieldset>
+
+<!-- ======= ZADANIA 12–25 ======= -->
+
+<fieldset>
+  <legend>Zadanie 12</legend>
+  <p>Oblicz i wskaż działania z takimi samymi wynikami.</p>
+  <div class="answers">
+    <label><input type="checkbox" name="q12A" value="A"> 100 : 2</label>
+    <label><input type="checkbox" name="q12B" value="B"> 23 + 27</label>
+    <label><input type="checkbox" name="q12C" value="C"> 80 - 30</label>
+    <label><input type="checkbox" name="q12D" value="D"> 75 - 26</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 13</legend>
+  <p>Zmniejszyć liczbę 24 trzy razy, to znaczy:</p>
+  <div class="answers">
+    <label><input type="radio" name="q13" value="A"> pomnożyć przez 3</label>
+    <label><input type="radio" name="q13" value="B"> podzielić przez 3</label>
+    <label><input type="radio" name="q13" value="C"> odjąć 3</label>
+    <label><input type="radio" name="q13" value="D"> dodać 3</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 14</legend>
+  <p>🌸 9 = 3</p>
+  <div class="answers">
+    <label><input type="radio" name="q14" value="A"> 27</label>
+    <label><input type="radio" name="q14" value="B"> 36</label>
+    <label><input type="radio" name="q14" value="C"> 28</label>
+    <label><input type="radio" name="q14" value="D"> 24</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 15</legend>
+  <p>Rodzice Marty mają razem pół wieku. Mama ma 23 lata. Ile ma tata?</p>
+  <div class="answers">
+    <label><input type="radio" name="q15" value="A"> 23 lata</label>
+    <label><input type="radio" name="q15" value="B"> 27 lat</label>
+    <label><input type="radio" name="q15" value="C"> 26 lat</label>
+    <label><input type="radio" name="q15" value="D"> 28 lat</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 16</legend>
+  <p>Ma początek, ale nie ma końca.</p>
+  <div class="answers">
+    <label><input type="radio" name="q16" value="A"> półprosta</label>
+    <label><input type="radio" name="q16" value="B"> odcinek</label>
+    <label><input type="radio" name="q16" value="C"> prosta</label>
+    <label><input type="radio" name="q16" value="D"> punkt</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 17</legend>
+  <p>Wskaż szereg rosnący.</p>
+  <div class="answers">
+    <label><input type="radio" name="q17" value="A"> 12 343, 9 872, 71 602, 38 432</label>
+    <label><input type="radio" name="q17" value="B"> 8 574, 45 678, 76 521, 10 736</label>
+    <label><input type="radio" name="q17" value="C"> 5 864, 13 987, 36 655, 79 321</label>
+    <label><input type="radio" name="q17" value="D"> 7 321, 8 933, 13 762, 2 345</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 18</legend>
+  <p>Jak podzielić 36 ciastek między 6 dzieci?</p>
+  <div class="answers">
+    <label><input type="radio" name="q18" value="A"> 1 + 3 + 5 + 7 + 9 + 11</label>
+    <label><input type="radio" name="q18" value="B"> 2 + 4 + 6 + 8 + 10 + 12</label>
+    <label><input type="radio" name="q18" value="C"> 6·6</label>
+    <label><input type="radio" name="q18" value="D"> 2 + 3 + 7 + 8 + 6 + 9</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 19</legend>
+  <p>Wskaż liczby, których połowa jest parzysta.</p>
+  <div class="answers">
+    <label><input type="checkbox" name="q19A" value="A"> 72</label>
+    <label><input type="checkbox" name="q19B" value="B"> 66</label>
+    <label><input type="checkbox" name="q19C" value="C"> 50</label>
+    <label><input type="checkbox" name="q19D" value="D"> 84</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 20</legend>
+  <p>Kangur skacze 9 m. Ile skoków na 81 m?</p>
+  <div class="answers">
+    <label><input type="radio" name="q20" value="A"> 8</label>
+    <label><input type="radio" name="q20" value="B"> 9</label>
+    <label><input type="radio" name="q20" value="C"> 7</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 21</legend>
+  <p>Od iloczynu 6·8 odejmij ich sumę.</p>
+  <div class="answers">
+    <label><input type="radio" name="q21" value="A"> 14</label>
+    <label><input type="radio" name="q21" value="B"> 42</label>
+    <label><input type="radio" name="q21" value="C"> 40</label>
+    <label><input type="radio" name="q21" value="D"> 34</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 22</legend>
+  <p>Liczby trzycyfrowe parzyste z setkami = 9 i jednościami = 8.</p>
+  <div class="answers">
+    <label><input type="checkbox" name="q22A" value="A"> 998</label>
+    <label><input type="checkbox" name="q22B" value="B"> 989</label>
+    <label><input type="checkbox" name="q22C" value="C"> 898</label>
+    <label><input type="checkbox" name="q22D" value="D"> 908</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 23</legend>
+  <p>Ile nóg mają 3 tygrysy, 4 lwy i 2 papugi?</p>
+  <div class="answers">
+    <label><input type="radio" name="q23" value="A"> 32</label>
+    <label><input type="radio" name="q23" value="B"> 16</label>
+    <label><input type="radio" name="q23" value="C"> 9</label>
+    <label><input type="radio" name="q23" value="D"> 22</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Zadanie 24</legend>
+  <p>Zosia spędziła dwa tygodnie ferii. Ile to dni?</p>
+  <div class="answers">
+    <label><input type="radio" name="q24" value="A"> 28 dni</label>
+    <label><input type="radio" name="q24" value="B"> 21 dni</label>
+    <label><input type="radio" name="q24" value="C"> 7 dni</label>
+    <label><input type="radio" name="q24" value="D"> 14 dni</label>
+  </div
