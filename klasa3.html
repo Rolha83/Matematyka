@@ -1,374 +1,204 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matematyka - Klasa III</title>
-  <style>
-    :root {
-      --bg: #f9f3ff;
-      --card: #ffffff;
-      --primary: #a855f7;
-      --primary-dark: #6d28d9;
-      --text: #1f2d3d;
-      --muted: #5a6d7b;
-      --line: #f0e7ff;
-      --good: #2d9c72;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f9f3ff 0%, #f1faff 100%);
-      color: var(--text);
-      padding: 28px 16px;
-    }
-    .quiz {
-      max-width: 980px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.82);
-      border-radius: 18px;
-      padding: 24px 20px 32px;
-      box-shadow: 0 10px 30px rgba(31,45,61,0.08);
-    }
-    h1 {
-      margin: 0 0 24px;
-      text-align: center;
-      color: var(--primary-dark);
-      font-size: clamp(2rem, 3vw, 2.8rem);
-    }
-    .question-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-left: 6px solid var(--primary);
-      border-radius: 14px;
-      padding: 18px 16px 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 6px 18px rgba(31,45,61,0.04);
-    }
-    .question-title {
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 12px;
-      color: var(--primary-dark);
-      line-height: 1.5;
-    }
-    .option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      margin: 6px 0;
-      border-radius: 10px;
-      transition: background 0.15s ease;
-    }
-    .option:hover { background: #faf4ff; }
-    .option input {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--good);
-    }
-    .answer-label { flex: 1; }
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 16px 18px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-      font-weight: 700;
-      font-size: 1.08rem;
-      cursor: pointer;
-    }
-    #result {
-      margin-top: 18px;
-      padding: 16px 18px;
-      display: none;
-      border-radius: 12px;
-      text-align: center;
-      background: #ebfaf2;
-      border: 2px solid #a5e3c0;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-    @media (max-width: 640px) {
-      .quiz { padding: 18px 12px 24px; }
-      .question-card { padding: 16px 12px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprawdzian z Matematyki - Klasa III (Wiosna 2024)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .task {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .task-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* Style do oznaczania odpowiedzi po sprawdzeniu */
+        .correct-answer {
+            background-color: #d4edda !important;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect-answer {
+            background-color: #f8d7da !important;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #c0392b;
+        }
+    </style>
 </head>
 <body>
-  <div class="quiz">
-    <h1>Matematyka - Klasa III</h1>
 
-    <div class="question-card">
-      <div class="question-title">1. Wskaż równość prawdziwą: 36 : 9 = ?</div>
-      <label class="option"><input type="radio" name="q1" value="A"><span class="answer-label">A. 4</span></label>
-      <label class="option"><input type="radio" name="q1" value="B"><span class="answer-label">B. 5</span></label>
-      <label class="option"><input type="radio" name="q1" value="C"><span class="answer-label">C. 6</span></label>
-      <label class="option"><input type="radio" name="q1" value="D"><span class="answer-label">D. 3</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">2. Ile to: 7 × 8?</div>
-      <label class="option"><input type="radio" name="q2" value="A"><span class="answer-label">A. 54</span></label>
-      <label class="option"><input type="radio" name="q2" value="B"><span class="answer-label">B. 56</span></label>
-      <label class="option"><input type="radio" name="q2" value="C"><span class="answer-label">C. 58</span></label>
-      <label class="option"><input type="radio" name="q2" value="D"><span class="answer-label">D. 64</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">3. Oblicz: 63 - 27.</div>
-      <label class="option"><input type="radio" name="q3" value="A"><span class="answer-label">A. 36</span></label>
-      <label class="option"><input type="radio" name="q3" value="B"><span class="answer-label">B. 34</span></label>
-      <label class="option"><input type="radio" name="q3" value="C"><span class="answer-label">C. 30</span></label>
-      <label class="option"><input type="radio" name="q3" value="D"><span class="answer-label">D. 38</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">4. Ile to: 72 : 9?</div>
-      <label class="option"><input type="radio" name="q4" value="A"><span class="answer-label">A. 6</span></label>
-      <label class="option"><input type="radio" name="q4" value="B"><span class="answer-label">B. 7</span></label>
-      <label class="option"><input type="radio" name="q4" value="C"><span class="answer-label">C. 8</span></label>
-      <label class="option"><input type="radio" name="q4" value="D"><span class="answer-label">D. 9</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">5. Która liczba jest liczbą złożoną?</div>
-      <label class="option"><input type="radio" name="q5" value="A"><span class="answer-label">A. 13</span></label>
-      <label class="option"><input type="radio" name="q5" value="B"><span class="answer-label">B. 17</span></label>
-      <label class="option"><input type="radio" name="q5" value="C"><span class="answer-label">C. 19</span></label>
-      <label class="option"><input type="radio" name="q5" value="D"><span class="answer-label">D. 21</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">6. Oblicz: 4 × 9 + 6.</div>
-      <label class="option"><input type="radio" name="q6" value="A"><span class="answer-label">A. 40</span></label>
-      <label class="option"><input type="radio" name="q6" value="B"><span class="answer-label">B. 42</span></label>
-      <label class="option"><input type="radio" name="q6" value="C"><span class="answer-label">C. 44</span></label>
-      <label class="option"><input type="radio" name="q6" value="D"><span class="answer-label">D. 46</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">7. Ile to: 120 - 45?</div>
-      <label class="option"><input type="radio" name="q7" value="A"><span class="answer-label">A. 75</span></label>
-      <label class="option"><input type="radio" name="q7" value="B"><span class="answer-label">B. 76</span></label>
-      <label class="option"><input type="radio" name="q7" value="C"><span class="answer-label">C. 74</span></label>
-      <label class="option"><input type="radio" name="q7" value="D"><span class="answer-label">D. 80</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">8. Co jest większe: 3/4 czy 1/2?</div>
-      <label class="option"><input type="radio" name="q8" value="A"><span class="answer-label">A. 1/2</span></label>
-      <label class="option"><input type="radio" name="q8" value="B"><span class="answer-label">B. 3/4</span></label>
-      <label class="option"><input type="radio" name="q8" value="C"><span class="answer-label">C. są równe</span></label>
-      <label class="option"><input type="radio" name="q8" value="D"><span class="answer-label">D. nic z tego</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">9. Oblicz 3/4 z 20.</div>
-      <label class="option"><input type="radio" name="q9" value="A"><span class="answer-label">A. 12</span></label>
-      <label class="option"><input type="radio" name="q9" value="B"><span class="answer-label">B. 15</span></label>
-      <label class="option"><input type="radio" name="q9" value="C"><span class="answer-label">C. 18</span></label>
-      <label class="option"><input type="radio" name="q9" value="D"><span class="answer-label">D. 20</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">10. Ile wynosi obwód prostokąta o bokach 5 cm i 3 cm?</div>
-      <label class="option"><input type="radio" name="q10" value="A"><span class="answer-label">A. 14 cm</span></label>
-      <label class="option"><input type="radio" name="q10" value="B"><span class="answer-label">B. 16 cm</span></label>
-      <label class="option"><input type="radio" name="q10" value="C"><span class="answer-label">C. 15 cm</span></label>
-      <label class="option"><input type="radio" name="q10" value="D"><span class="answer-label">D. 18 cm</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">11. Ile wynosi 25% z 80?</div>
-      <label class="option"><input type="radio" name="q11" value="A"><span class="answer-label">A. 15</span></label>
-      <label class="option"><input type="radio" name="q11" value="B"><span class="answer-label">B. 20</span></label>
-      <label class="option"><input type="radio" name="q11" value="C"><span class="answer-label">C. 25</span></label>
-      <label class="option"><input type="radio" name="q11" value="D"><span class="answer-label">D. 30</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">12. Które liczby mają wspólny dzielnik 6?</div>
-      <label class="option"><input type="radio" name="q12" value="A"><span class="answer-label">A. 12 i 15</span></label>
-      <label class="option"><input type="radio" name="q12" value="B"><span class="answer-label">B. 12 i 18</span></label>
-      <label class="option"><input type="radio" name="q12" value="C"><span class="answer-label">C. 14 i 15</span></label>
-      <label class="option"><input type="radio" name="q12" value="D"><span class="answer-label">D. 10 i 18</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">13. Jaka jest suma 37 i 63?</div>
-      <label class="option"><input type="radio" name="q13" value="A"><span class="answer-label">A. 90</span></label>
-      <label class="option"><input type="radio" name="q13" value="B"><span class="answer-label">B. 100</span></label>
-      <label class="option"><input type="radio" name="q13" value="C"><span class="answer-label">C. 110</span></label>
-      <label class="option"><input type="radio" name="q13" value="D"><span class="answer-label">D. 95</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">14. Ile to: 6 × 7 - 5?</div>
-      <label class="option"><input type="radio" name="q14" value="A"><span class="answer-label">A. 36</span></label>
-      <label class="option"><input type="radio" name="q14" value="B"><span class="answer-label">B. 37</span></label>
-      <label class="option"><input type="radio" name="q14" value="C"><span class="answer-label">C. 38</span></label>
-      <label class="option"><input type="radio" name="q14" value="D"><span class="answer-label">D. 39</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">15. Wskaż liczbę parzystą.</div>
-      <label class="option"><input type="radio" name="q15" value="A"><span class="answer-label">A. 35</span></label>
-      <label class="option"><input type="radio" name="q15" value="B"><span class="answer-label">B. 42</span></label>
-      <label class="option"><input type="radio" name="q15" value="C"><span class="answer-label">C. 47</span></label>
-      <label class="option"><input type="radio" name="q15" value="D"><span class="answer-label">D. 51</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">16. Oblicz: 5 × 12.</div>
-      <label class="option"><input type="radio" name="q16" value="A"><span class="answer-label">A. 50</span></label>
-      <label class="option"><input type="radio" name="q16" value="B"><span class="answer-label">B. 60</span></label>
-      <label class="option"><input type="radio" name="q16" value="C"><span class="answer-label">C. 70</span></label>
-      <label class="option"><input type="radio" name="q16" value="D"><span class="answer-label">D. 72</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">17. Które z działań daje wynik 81?</div>
-      <label class="option"><input type="radio" name="q17" value="A"><span class="answer-label">A. 9 × 9</span></label>
-      <label class="option"><input type="radio" name="q17" value="B"><span class="answer-label">B. 8 × 8</span></label>
-      <label class="option"><input type="radio" name="q17" value="C"><span class="answer-label">C. 7 × 9</span></label>
-      <label class="option"><input type="radio" name="q17" value="D"><span class="answer-label">D. 9 × 7</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">18. Oblicz: 84 : 12.</div>
-      <label class="option"><input type="radio" name="q18" value="A"><span class="answer-label">A. 6</span></label>
-      <label class="option"><input type="radio" name="q18" value="B"><span class="answer-label">B. 7</span></label>
-      <label class="option"><input type="radio" name="q18" value="C"><span class="answer-label">C. 8</span></label>
-      <label class="option"><input type="radio" name="q18" value="D"><span class="answer-label">D. 9</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">19. Jaki jest wynik 12 + 13 + 14?</div>
-      <label class="option"><input type="radio" name="q19" value="A"><span class="answer-label">A. 38</span></label>
-      <label class="option"><input type="radio" name="q19" value="B"><span class="answer-label">B. 39</span></label>
-      <label class="option"><input type="radio" name="q19" value="C"><span class="answer-label">C. 40</span></label>
-      <label class="option"><input type="radio" name="q19" value="D"><span class="answer-label">D. 41</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">20. Ile to: 3/5 z 25?</div>
-      <label class="option"><input type="radio" name="q20" value="A"><span class="answer-label">A. 10</span></label>
-      <label class="option"><input type="radio" name="q20" value="B"><span class="answer-label">B. 12</span></label>
-      <label class="option"><input type="radio" name="q20" value="C"><span class="answer-label">C. 15</span></label>
-      <label class="option"><input type="radio" name="q20" value="D"><span class="answer-label">D. 20</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">21. Ile dni ma 2 tygodnie?</div>
-      <label class="option"><input type="radio" name="q21" value="A"><span class="answer-label">A. 10</span></label>
-      <label class="option"><input type="radio" name="q21" value="B"><span class="answer-label">B. 12</span></label>
-      <label class="option"><input type="radio" name="q21" value="C"><span class="answer-label">C. 14</span></label>
-      <label class="option"><input type="radio" name="q21" value="D"><span class="answer-label">D. 16</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">22. Jaka jest połowa liczby 48?</div>
-      <label class="option"><input type="radio" name="q22" value="A"><span class="answer-label">A. 22</span></label>
-      <label class="option"><input type="radio" name="q22" value="B"><span class="answer-label">B. 24</span></label>
-      <label class="option"><input type="radio" name="q22" value="C"><span class="answer-label">C. 26</span></label>
-      <label class="option"><input type="radio" name="q22" value="D"><span class="answer-label">D. 28</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">23. Czy 5 jest dzielnikiem liczby 45?</div>
-      <label class="option"><input type="radio" name="q23" value="A"><span class="answer-label">A. Tak</span></label>
-      <label class="option"><input type="radio" name="q23" value="B"><span class="answer-label">B. Nie</span></label>
-      <label class="option"><input type="radio" name="q23" value="C"><span class="answer-label">C. Tylko w maju</span></label>
-      <label class="option"><input type="radio" name="q23" value="D"><span class="answer-label">D. Nie wiadomo</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">24. Oblicz: 15 × 3.</div>
-      <label class="option"><input type="radio" name="q24" value="A"><span class="answer-label">A. 35</span></label>
-      <label class="option"><input type="radio" name="q24" value="B"><span class="answer-label">B. 40</span></label>
-      <label class="option"><input type="radio" name="q24" value="C"><span class="answer-label">C. 45</span></label>
-      <label class="option"><input type="radio" name="q24" value="D"><span class="answer-label">D. 50</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">25. Kąty w trójkącie sumują się do:</div>
-      <label class="option"><input type="radio" name="q25" value="A"><span class="answer-label">A. 90°</span></label>
-      <label class="option"><input type="radio" name="q25" value="B"><span class="answer-label">B. 180°</span></label>
-      <label class="option"><input type="radio" name="q25" value="C"><span class="answer-label">C. 360°</span></label>
-      <label class="option"><input type="radio" name="q25" value="D"><span class="answer-label">D. 270°</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">26. Jaki jest wynik 8 × 8 + 7?</div>
-      <label class="option"><input type="radio" name="q26" value="A"><span class="answer-label">A. 55</span></label>
-      <label class="option"><input type="radio" name="q26" value="B"><span class="answer-label">B. 63</span></label>
-      <label class="option"><input type="radio" name="q26" value="C"><span class="answer-label">C. 71</span></label>
-      <label class="option"><input type="radio" name="q26" value="D"><span class="answer-label">D. 65</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">27. Która z liczb jest liczbą pierwszą?</div>
-      <label class="option"><input type="radio" name="q27" value="A"><span class="answer-label">A. 21</span></label>
-      <label class="option"><input type="radio" name="q27" value="B"><span class="answer-label">B. 29</span></label>
-      <label class="option"><input type="radio" name="q27" value="C"><span class="answer-label">C. 33</span></label>
-      <label class="option"><input type="radio" name="q27" value="D"><span class="answer-label">D. 35</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">28. Oblicz: 9 × 9 - 9.</div>
-      <label class="option"><input type="radio" name="q28" value="A"><span class="answer-label">A. 70</span></label>
-      <label class="option"><input type="radio" name="q28" value="B"><span class="answer-label">B. 72</span></label>
-      <label class="option"><input type="radio" name="q28" value="C"><span class="answer-label">C. 74</span></label>
-      <label class="option"><input type="radio" name="q28" value="D"><span class="answer-label">D. 81</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">29. Ile to: 2/3 z 18?</div>
-      <label class="option"><input type="radio" name="q29" value="A"><span class="answer-label">A. 10</span></label>
-      <label class="option"><input type="radio" name="q29" value="B"><span class="answer-label">B. 12</span></label>
-      <label class="option"><input type="radio" name="q29" value="C"><span class="answer-label">C. 14</span></label>
-      <label class="option"><input type="radio" name="q29" value="D"><span class="answer-label">D. 16</span></label>
-    </div>
-
-    <div class="question-card">
-      <div class="question-title">30. Który z podanych zbiorów zawiera tylko liczby nieparzyste?</div>
-      <label class="option"><input type="radio" name="q30" value="A"><span class="answer-label">A. 11, 13, 15, 17</span></label>
-      <label class="option"><input type="radio" name="q30" value="B"><span class="answer-label">B. 12, 14, 16, 18</span></label>
-      <label class="option"><input type="radio" name="q30" value="C"><span class="answer-label">C. 10, 12, 14, 15</span></label>
-      <label class="option"><input type="radio" name="q30" value="D"><span class="answer-label">D. 13, 15, 18, 20</span></label>
-    </div>
-
-    <button onclick="checkQuiz()">Sprawdź wynik</button>
+<div class="container">
+    <h1>Konkurs Matematyczny Leon - Klasa III</h1>
+    <form id="quizForm">
+        <div id="questionsContainer"></div>
+        <button type="button" onclick="checkAnswers()">Sprawdź odpowiedzi</button>
+    </form>
     <div id="result"></div>
-  </div>
+</div>
 
-  <script>
-    function checkQuiz() {
-      const correctAnswers = {
-        q1: ['C'], q2: ['B'], q3: ['A'], q4: ['C'], q5: ['D'], q6: ['B'], q7: ['A'],
-        q8: ['B'], q9: ['B'], q10: ['B'], q11: ['B'], q12: ['B'], q13: ['B'], q14: ['B'],
-        q15: ['B'], q16: ['B'], q17: ['A'], q18: ['B'], q19: ['B'], q20: ['C'], q21: ['C'],
-        q22: ['B'], q23: ['A'], q24: ['C'], q25: ['B'], q26: ['C'], q27: ['B'], q28: ['B'],
-        q29: ['B'], q30: ['A']
-      };
+<script>
+// Baza danych zadań oparta na arkuszu konkursowym dla klasy III
+const quizData = [
+    { id: 1, text: "1. Wskaż równość prawdziwą.", options: { A: "36 : 9 = 28 : 7", B: "4 : 4 = 54 : 8", C: "63 : 7 = 27 : 3", D: "48 : 6 = 4 · 2" }, correct: ["A", "D"], multiple: true },
+    { id: 2, text: "2. Wskaż zamalowaną ćwierć kwadratu.", options: { A: "Opcja A (1/4)", B: "Opcja B", C: "Opcja C", D: "Opcja D" }, correct: ["A"], multiple: false },
+    { id: 3, text: "3. Staś ma 9 lat, a Kacper 26. Oblicz, o ile lat Kacper jest starszy od Stasia.", options: { A: "17 lat", B: "16 lat", C: "35 lat", D: "18 lat" }, correct: ["A"], multiple: false },
+    { id: 4, text: "4. Wskaż działanie niewykonalne.", options: { A: "5 : 0", B: "0 : 5", C: "5 · 0", D: "0 · 5" }, correct: ["A"], multiple: false },
+    { id: 5, text: "5. Ustal, jakie wartości kryją się pod motylkami: (37 + = 100, - 48 = 27, 49 + 35 = )", options: { A: "63, 75, 84", B: "64, 75, 84", C: "63, 74, 85", D: "63, 75, 86" }, correct: ["A"], multiple: false },
+    { id: 6, text: "6. Miesiąc IX (wrzesień) ma:", options: { A: "30 dni", B: "28 dni", C: "29 dni", D: "31 dni" }, correct: ["A"], multiple: false },
+    { id: 7, text: "7. Jest godzina 8.45. Która godzina będzie za półtorej godziny?", options: { A: "9.45", B: "10.45", C: "10.15", D: "10.30" }, correct: ["C"], multiple: false },
+    { id: 8, text: "8. Przedwczoraj był piątek. Pojutrze będzie:", options: { A: "środa", B: "poniedziałek", C: "wtorek", D: "czwartek" }, correct: ["C"], multiple: false },
+    { id: 9, text: "9. Wskaż liczbę złożoną z 4 setek, 3 dziesiątek i 8 jedności.", options: { A: "438", B: "834", C: "483", D: "348" }, correct: ["A"], multiple: false },
+    { id: 10, text: "10. Wskaż iloczyny, które mają takie same wyniki. (2·9 = 18, 3·6 = 18, 7·3 = 21, 5·4 = 20)", options: { A: "2 · 9", B: "3 · 6", C: "7 · 3", D: "5 · 4" }, correct: ["A", "B"], multiple: true },
+    { id: 11, text: "11. Marek miał 9 monet po 5 zł. Kupił notes za 6 zł i długopis za 13 zł. Ile złotych zostało Markowi?", options: { A: "33 zł", B: "9 zł", C: "13 zł", D: "26 zł" }, correct: ["D"], multiple: false },
+    { id: 12, text: "12. Oblicz i wskaż działania z takimi samymi wynikami. (100:2=50, 23+27=50, 80-30=50, 75-26=49)", options: { A: "100 : 2", B: "23 + 27", C: "80 - 30", D: "75 - 26" }, correct: ["A", "B", "C"], multiple: true },
+    { id: 13, text: "13. Zmniejszyć liczbę 24 trzy razy, to znaczy:", options: { A: "pomnożyć ją przez 3", B: "podzielić ją przez 3", C: "odjąć od niej 3", D: "dodać do niej 3" }, correct: ["B"], multiple: false },
+    { id: 14, text: "14. Jaka liczba ukryła się pod kwiatkiem? (27 : 9 = 3)", options: { A: "27", B: "36", C: "28", D: "24" }, correct: ["A"], multiple: false },
+    { id: 15, text: "15. Rodzice Marty mają razem pół wieku (50 lat). Mama Marty jest młodsza od taty i ma 23 lata. Ile lat ma tata Marty?", options: { A: "23 lata", B: "27 lat", C: "26 lat", D: "28 lat" }, correct: ["B"], multiple: false },
+    { id: 16, text: "16. Ma początek, ale nie ma końca.", options: { A: "półprosta", B: "odcinek", C: "prosta", D: "punkt" }, correct: ["A"], multiple: false },
+    { id: 17, text: "17. Wskaż szereg, w którym liczby zostały uporządkowane od najmniejszej do największej.", options: { A: "12 434, 9 872, 71 602, 38 432", B: "8 574, 45 678, 76 521, 10 736", C: "5 864, 13 897, 38 655, 79 321", D: "7 321, 8 933, 13 762, 2 345" }, correct: ["C"], multiple: false },
+    { id: 18, text: "18. Jak można podzielić 36 ciastek między sześcioro dzieci?", options: { A: "1+3+5+7+9+11", B: "2+4+6+8+10+12", C: "6 · 6", D: "2+3+7+8+6+9" }, correct: ["B", "C"], multiple: true },
+    { id: 19, text: "19. Wskaż liczby, których połowa jest liczbą parzystą. (72/2=36 parzysta, 84/2=42 parzysta)", options: { A: "72", B: "66", C: "50", D: "84" }, correct: ["A", "D"], multiple: true },
+    { id: 20, text: "20. Długość skoku kangura wynosi dziewięć metrów. Ile takich skoków musi wykonać kangur, żeby pokonać odległość 81 metrów?", options: { A: "6", B: "8", C: "9", D: "7" }, correct: ["C"], multiple: false },
+    { id: 21, text: "21. Od iloczynu liczb 6 i 8 odejmij ich sumę. (6*8 = 48, 6+8 = 14, 48 - 14 = 34)", options: { A: "14", B: "42", C: "40", D: "34" }, correct: ["D"], multiple: false },
+    { id: 22, text: "22. Wskaż liczby trzycyfrowe parzyste, w których rząd setek to dziewięć, a rząd jedności to osiem.", options: { A: "998", B: "989", C: "898", D: "908" }, correct: ["A", "D"], multiple: true },
+    { id: 23, text: "23. Ile razem nóg mają 3 tygrysy, 4 lwy i 2 papugi? ((3+4)*4 + 2*2 = 28 + 4 = 32)", options: { A: "32", B: "16", C: "9", D: "22" }, correct: ["A"], multiple: false },
+    { id: 24, text: "24. Zosia spędziła dwa tygodnie ferii zimowych u babci na wsi. Ile to dni?", options: { A: "28 dni", B: "21 dni", C: "7 dni", D: "14 dni" }, correct: ["D"], multiple: false },
+    { id: 25, text: "25. Ile wynosi długość drogi liska? (27 + 25 + 9 + 12 + 6 = 79 cm)", options: { A: "80 cm", B: "78 cm", C: "79 cm", D: "77 cm" }, correct: ["C"], multiple: false }
+];
 
-      let score = 0;
-      const total = Object.keys(correctAnswers).length;
+// Generowanie formularza z pytaniami
+function renderQuiz() {
+    const container = document.getElementById('questionsContainer');
+    quizData.forEach(q => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'task';
+        
+        let optionsHTML = '';
+        const inputType = q.multiple ? 'checkbox' : 'radio';
 
-      for (const q in correctAnswers) {
-        const selected = Array.from(document.querySelectorAll(`input[name="${q}"]:checked`)).map(el => el.value);
-        const isCorrect = correctAnswers[q].length === selected.length && correctAnswers[q].every(v => selected.includes(v));
-        if (isCorrect) score++;
-      }
+        for (const [key, value] of Object.entries(q.options)) {
+            optionsHTML += `
+                <label id="label_q${q.id}_${key}">
+                    <input type="${inputType}" name="q${q.id}" value="${key}">
+                    ${key}. ${value}
+                </label>
+            `;
+        }
 
-      const resultDiv = document.getElementById('result');
-      resultDiv.style.display = 'block';
-      resultDiv.innerHTML = `Twój wynik to: ${score} z ${total} punktów!`;
-    }
-  </script>
+        taskDiv.innerHTML = `
+            <div class="task-title">${q.text}</div>
+            <div class="options">${optionsHTML}</div>
+        `;
+        container.appendChild(taskDiv);
+    });
+}
+
+// Sprawdzanie odpowiedzi i kolorowanie wyników
+function checkAnswers() {
+    let score = 0;
+
+    quizData.forEach(q => {
+        // Najpierw resetujemy klasy stylów dla tego pytania
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            lbl.classList.remove('correct-answer', 'incorrect-answer');
+        }
+
+        const selectedElements = document.querySelectorAll(`input[name="q${q.id}"]:checked`);
+        const userAnswers = Array.from(selectedElements).map(el => el.value);
+
+        // Kolorujemy odpowiedzi zgodnie z kluczem
+        for (const key of Object.keys(q.options)) {
+            const lbl = document.getElementById(`label_q${q.id}_${key}`);
+            const isSelected = userAnswers.includes(key);
+            const isActuallyCorrect = q.correct.includes(key);
+
+            if (isActuallyCorrect) {
+                // Prawidłowa odpowiedź zawsze podświetla się na zielono
+                lbl.classList.add('correct-answer');
+            } else if (isSelected && !isActuallyCorrect) {
+                // Jeśli użytkownik zaznaczył coś błędnie, podświetlamy na czerwono
+                lbl.classList.add('incorrect-answer');
+            }
+        }
+
+        // Sprawdzamy, czy cały zestaw odpowiedzi użytkownika jest w 100% poprawny
+        const isCorrect = userAnswers.length === q.correct.length && 
+                          userAnswers.every(val => q.correct.includes(val));
+
+        if (isCorrect) {
+            score++;
+        }
+    });
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `Twój wynik to: ${score} / ${quizData.length}`;
+    resultDiv.className = score === quizData.length ? 'correct' : 'incorrect';
+}
+
+// Inicjalizacja przy ładowaniu strony
+renderQuiz();
+</script>
+
 </body>
 </html>
